@@ -105,9 +105,9 @@ class Blox_Lite_Main {
         // Load the plugin.
         add_action( 'init', array( $this, 'init' ), 0 );
         
-        // Make sure our default settings are set during activation if blox_settings does 
+        // Make sure our default settings are set during init if blox_settings does 
        	// not exist (i.e. we have a brand new install)
-       	register_activation_hook( __FILE__ , array( $this, 'set_default_settings' ) );
+       	add_action( 'init', array( $this, 'set_default_settings' ) );
 
         // Add additional links to the plugin's row on the admin plugin page
         add_filter( 'plugin_action_links', array( $this, 'plugin_action_links' ), 10, 2 );
@@ -225,7 +225,7 @@ class Blox_Lite_Main {
 	 * @since 1.0.0
 	 */
 	public function set_default_settings() {
-
+	
 		if ( get_option( 'blox_settings' ) != false ) {
 			
 			// The option already exists so bail...
@@ -240,10 +240,12 @@ class Blox_Lite_Main {
         	$settings = $instance->get_registered_settings();		
 			$defaults = array();
 			
-			if ( ! empty( $settings[$tab] ) ) {
-				foreach ( $settings[$tab] as $key => $value ) {
-					if ( ! empty( $value[ 'default' ] ) ) {
-						$defaults[$key] = $value[ 'default' ];
+			foreach ( $settings as $tab ) {
+				if ( ! empty( $tab ) ) {
+					foreach ( $tab as $key => $value ) {
+						if ( ! empty( $value[ 'default' ] ) ) {
+							$defaults[$key] = $value[ 'default' ];
+						}
 					}
 				}
 			}
