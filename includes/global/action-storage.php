@@ -2,16 +2,14 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
 /**
- * Action Storage class.
+ * Action Storage class. A very clever way to pass parameters to existing Wordpress/Genesis actions that traditionally do not accept parameters.
  *
- * A very clever way to pass parameters to existing Wordpress/Genesis actions that traditionally do not accept parameters.
+ * @since 	1.0.0
  *
- * @since 1.0.0
- *
- * @package Blox
- * @author  Nicholas Diego (w/ guidance from toscho: http://wordpress.stackexchange.com/questions/45901/passing-a-parameter-to-filter-and-action-functions)
+ * @package	Blox
+ * @author  Nick Diego (w/ guidance from toscho: http://wordpress.stackexchange.com/questions/45901/passing-a-parameter-to-filter-and-action-functions)
+ * @license	http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 class Blox_Action_Storage {
 

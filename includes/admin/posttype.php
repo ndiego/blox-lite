@@ -2,14 +2,14 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
 /**
  * Posttype admin class.
  *
- * @since 1.0.0
+ * @since 	1.0.0
  *
- * @package Blox
- * @author  Nicholas Diego
+ * @package	Blox
+ * @author 	Nick Diego
+ * @license http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 class Blox_Posttype_Admin {
 
@@ -80,21 +80,21 @@ class Blox_Posttype_Admin {
     public function admin_column_titles( $columns ) {
 
         $columns = array(
-            'cb'            => '<input type="checkbox" />',
-            'title'     	=> __( 'Title', 'blox' ),
-            'content' 		=> __( 'Content', 'blox' ),
-            'position'		=> __( 'Position', 'blox' ),
-            'location'    	=> __( 'Location', 'blox' ),
-            'modified'  	=> __( 'Last Modified', 'blox' ),
-            'date'      	=> __( 'Date', 'blox' )
+            'cb'     => '<input type="checkbox" />',
+            'title'  => __( 'Title', 'blox' )
         );
 
-        return apply_filters( 'blox_admin_column_titles', $columns );
+        $columns = apply_filters( 'blox_admin_column_titles', $columns );
+        
+        $columns['modified'] = __( 'Last Modified', 'blox' );
+        $columns['date'] = __( 'Date', 'blox' );
+        
+        return $columns;
     }
 
 
     /**
-     * 
+     * Render the content for the admin columns for global blocks
      *
      * @since 1.0.0
      *
@@ -108,57 +108,17 @@ class Blox_Posttype_Admin {
         $post_id = absint( $post_id );
         
         $block_data = get_post_meta( $post_id, '_blox_content_blocks_data', true );
-
-        switch ( $column ) {
-            case 'content' :
-                if ( ! empty( $block_data['content']['content_type'] ) && array_key_exists( $block_data['content']['content_type'], $this->get_content_types() ) ) {
-                	echo ucfirst( $block_data['content']['content_type'] );
-                } else {
-                	echo ucfirst( $block_data['content']['content_type'] ) . ' - <span style="color:#a00;font-style:italic;">' . __( 'Error', 'blox' ) . '</span>';
-                }	
-                break;
-                
-            case 'position' :
-               	 if ( ! empty( $block_data['position']['position_type'] ) ) {
-               	 	if ( $block_data['position']['position_type'] == 'default' ) {
-            			echo blox_get_option( 'global_default_position', 'genesis_after_header' );
-            		} else if ( $block_data['position']['custom'] ) {
-            			echo ! empty( $block_data['position']['custom']['position'] ) ? $block_data['position']['custom']['position'] : '<span style="color:#a00;font-style:italic;">' . __( 'Error', 'blox' ) . '</span>';
-            		}
-            	}
-                break;
-                
-            case 'location' :
-               	$type = ! empty( $block_data['location']['location_type'] ) ? $block_data['location']['location_type'] : '';	
-                
-                // More location information to come...
-                switch ( $type ) {
-					case 'all' :
-						$output = __( 'All', 'blox' );
-						break;
-					case 'show_selected' :
-						$output = __( 'Selected', 'blox' );
-						break;
-					case 'hide_selected' :
-						$output = __( 'Selected', 'blox' );
-						break;
-					default :
-						$output = '<span style="color:#a00;font-style:italic;">' . __( 'Error', 'blox' ) . '</span>';
-						break;
-                }
-                
-                echo $output;
-                
-                break;
-
-            case 'modified' :
-                the_modified_date();
-                break;
+        
+        // Print all additional column data
+        do_action( 'blox_admin_column_data_' . $column, $post_id, $block_data );
+        
+        // Print the date last modified
+        if ( $column == 'modified' ) {
+        	the_modified_date();
         }
         
-        // Hook in additional column settings
+        // Hook in additional generic column settings
         do_action( 'blox_admin_column_data', $column, $post_id, $block_data );
-
     }
 
 
@@ -224,19 +184,24 @@ class Blox_Posttype_Admin {
      */
 	public function local_blocks_columns() {
 		global $typenow;
-
-		$enabled_pages = blox_get_option( 'local_enabled_pages', array( 'page', 'post' ) );
 		
-		// Note this does not work on some custom post types in other plugins, need to explore reason...
-		if ( in_array( $typenow, $enabled_pages ) ) {
-			add_filter( 'manage_' . $typenow . '_posts_columns', array( $this, 'local_blocks_column_title' ), 5 );
-			add_action( 'manage_' . $typenow . '_posts_custom_column', array( $this, 'local_blocks_column_data' ), 10, 2);
+		$local_enable  = blox_get_option( 'local_enable', false );
+		
+		if ( $local_enable ) {
+		
+			$enabled_pages = blox_get_option( 'local_enabled_pages', '' );
+		
+			// Note this does not work on some custom post types in other plugins, need to explore reason...
+			if ( ! empty( $enabled_pages ) && in_array( $typenow, $enabled_pages ) ) {
+				add_filter( 'manage_' . $typenow . '_posts_columns', array( $this, 'local_blocks_column_title' ), 5 );
+				add_action( 'manage_' . $typenow . '_posts_custom_column', array( $this, 'local_blocks_column_data' ), 10, 2);
+			}
         }
 	}
 
 
 	/**
-     * Add content to the Local Blocks column
+     * Add Local Blocks column title
      *
      * @since 1.0.0
      *
@@ -279,8 +244,8 @@ class Blox_Posttype_Admin {
 			}
 		}
 	}
-	
-	
+
+
 	/**
      * Helper function for retrieving the available content types.
      *

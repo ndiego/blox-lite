@@ -81,14 +81,17 @@
 	font-style: italic;
 	margin-top: 5px;
 }
-.blox-code-textbox {
-	width:100%;
-	max-width:100%;
+.blox-textarea-code {
+	width: 100%;
+	max-width: 100%;
 	font-family: Consolas, Monaco, monospace;
 	font-size: 13px;
 	background: #f9f9f9;
 	outline: 0;
 	resize: vertical;
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
 }
 .blox-full-text {
 	display: inline !important; /*correct for mobile styles*/
@@ -374,11 +377,7 @@ ul.blox-columns li {
 	line-height: 18px;
 	display: inline-block;
 }
-/* Hide the type when the block is not saved yet */
-.new .blox-content-block-type {
-	display: none;
-}
-.blox-content-block-state {
+.blox-content-block-meta {
 	color: #888;
 	font-size: 12px;
 	padding: 12px 0 12px 4px;
@@ -562,26 +561,7 @@ ul.blox-columns li {
 }
 .blox-image-atts .blox-subtitle span,
 .blox-image-link .blox-subtitle span {
-	width: 25px;
-}
-
-
-/* Editor Styles */
-
-.blox-editor-show-source {
-	margin-left: 10px !important;
-}
-.blox-editor-show-source.button:focus,
-.blox-editor-show-source.button:active {
-  	box-shadow: none;
-  	outline: 0;
-}
-.blox-editor-output-wrapper {
-	padding-top: 20px;
-	display: none;
-}
-#blox_editor_master_ifr {
-	min-height: 300px !important;
+	width: 30px;
 }
 
 
@@ -595,100 +575,6 @@ ul.blox-columns li {
 	display: inline-block;
 	margin-top: 12px;
 	margin-bottom: 12px;
-}
-
-
-/* Slideshow Styles */
-
-#blox_gallery_container,
-.blox-slider-container {
-	margin-top: 20px;
-	box-sizing: border-box;
-}
-#blox_gallery_container li,
-.blox-slider-container li {
-	background: #fff;
-	display: block;
-	float: left;
-	margin: 0 10px 10px 0;
-	padding: 4px;
-	list-style: none;
-	border: 1px solid #e5e5e5;
-	cursor: move;
-	width: 150px;
-}
-#blox_gallery_container li div.blox-gallery-container,
-.blox-slider-container li div.blox-slide-container {
-	background: #eee;
-	line-height: 0;	
-	width: 100%;
-}
-#blox_gallery_container li img,
-.blox-slide-container img {
-	width: 100%;
-}
-#blox_gallery_container li div.blox-slide-details-container,
-.blox-slider-container li div.blox-slide-details-container,
-.blox-filler .blox-filler-text {
-	padding: 4px 0 0;
-}
-a.blox-slide-remove {
-	float:right;
-	color: #a00;
-	font-size: 13px;
-	text-decoration: none;
-}
-a.blox-slide-remove:hover {
-	color: red;
-}
-a.blox-slide-details {
-	text-decoration: none;
-}
-#blox_gallery_container li.placeholder,
-.blox-slider-container li.placeholder {
-	background: transparent;
-	border: 1px dashed #d5d5d5;
-	-moz-box-shadow: none;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-}
-/* Styles for filler slide when slideshow is empty */
-.blox-filler {
-	cursor: default !important;
-}
-.blox-filler-container {
-	background-color: #eee;	
-	background-image: url('../images/default-square.png') !important;
-	width: 150px;
-	height: 150px;
-	position: relative;
-	top: 0;
-}
-.blox-filler-text span {
-	color: #e5e5e5;
-}
-.blox-filler-text .right {
-	float: right;
-}
-.blox-slide-multiplicity {
-	display: inline-block;
-	text-align: center;
-}
-/* Styles for settings on Slideshow */
-.blox-standard-settings {
-	margin-bottom: 20px;
-}
-.blox-standard-settings select {
-	display: inline !important;
-	margin-right: 4px;
-	width: 70px;
-}
-.blox-standard-settings input {
-	margin: 10px 4px 0 0;
-}
-.blox-advanced-settings label {
-	display: inline-block;
-	margin-bottom: 10px;
 }
 
 

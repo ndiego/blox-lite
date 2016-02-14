@@ -1,8 +1,8 @@
-=== Blox Lite ===
+=== Blox Lite - Content Blocks for Genesis ===
 Contributors: ndiego, outermostdesign
 Tags: genesis, content block, add content, genesis hooks, Genesis Framework, genesiswp, header, footer, sidebar, custom header, featured image
 Requires at least: 3.6
-Tested up to: 4.3
+Tested up to: 4.4.1
 Stable tag: 1.0.0
 License: GNU General Public License v2.0 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -18,7 +18,7 @@ Easily add custom content to your Genesis powered website.
 
 So you have picked out a Genesis theme for your new website. It is almost perfect, but you wish you could add a banner image to each post and “View Pricing” call-to-action on the home page. Or perhaps you want to add some custom content to the sidebar or footer that can’t be fulfilled by a widget. Now you could search the web for the needed code and add it to the theme’s functions.php file. But that would take a lot of work, and what happens if you want to switch Genesis themes down the line? Blox is the solution. Check out the video below to learn more. 
 
-[Still Working on Intro Video]
+https://www.youtube.com/watch?v=uPAR-GI6sxQ
 
 = Features =
 * Add content locally to post, pages, and all public custom post types
@@ -39,15 +39,15 @@ You might be wondering why there are only two content options… Well this is th
 
 This plugin purposefully includes minimal styling so that custom headers can adapt to your site. Therefore, custom CSS will occasionally need to be added to achieve the precise aesthetic you are looking for. Custom CSS can be added directly from the plugin Settings Page. If you have questions or would like to request additional features, let me know in the plugin support forum.
 
-= Blox vs. Blox Lite =
-
-Blox is not quite ready for purchase yet, but we wanted to get Blox Lite out for everyone to try.
-
 = What Blox Lite Doesn’t Do =
 
-As a general rule Blox (Blox Lite) *adds* content, it does not remove existing content. For example, say you hate the footer on your theme and you want to create a custom one using Blox. Blox will easily enable you to add the new footer, but the old one will be there as well. To remove content, you will need to add the necessary PHP code to your theme’s functions.php file. 
+As a general rule, Blox Lite allows you to *adds* content, it does not remove existing content. For example, say you hate the footer on your theme and you want to create a custom one using Blox. Blox will easily enable you to add the new footer, but the old one will be there as well. To remove content, you will need to add the necessary PHP code to your theme’s functions.php file. 
 
-Blox Lite does not include a lot styling. It does include a small amount of default CSS for images, but this can be turned off in the Settings. It is your site and we do not want to impose styling choices on you. Blox will inherit most of your theme’s styling, but you will likely need to add some CSS to get things looking exactly how you want them. This customizability is an intended feature of Blox and makes it all that more powerful. Simple questions about styling in Blox Lite can be asked in the plugin’s support forum, but if you would like in depth assistance, please look into purchasing [Blox](https://www.bloxwp.com). A paid Blox license comes with extensive plugin support. 
+Blox Lite does not include a lot styling. It does include a small amount of default CSS for images, but this can be turned off in the Settings. It is your site and we do not want to impose styling choices on you. Blox Lite will inherit most of your theme’s styling, but you will likely need to add some CSS to get things looking exactly how you want them. This customizability is an intended feature of Blox Lite and makes it all that more powerful. Simple questions about styling can be asked in the plugin’s support forum, but if you would like in depth assistance, please look into purchasing the full version of [Blox](https://www.bloxwp.com). A paid Blox license comes with extensive plugin support.
+
+= Blox vs. Blox Lite =
+
+Blox is not quite ready for purchase yet, but we wanted to get Blox Lite out for everyone to try. 
 
 
 == Installation ==
@@ -67,5 +67,5 @@ Blox Lite does not include a lot styling. It does include a small amount of defa
 
 == Changelog ==
 
-= 1.0.0 =
-* Initial Release
+= 0.9.0 =
+* Pre-Release

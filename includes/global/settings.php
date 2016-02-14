@@ -2,14 +2,14 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
 /**
  * Creates all Blox settings
  *
- * @since 1.0.0
+ * @since 	1.0.0
  *
- * @package Blox
- * @author  Nicholas Diego
+ * @package	Blox
+ * @author 	Nick Diego
+ * @license http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 class Blox_Settings {
  
@@ -52,7 +52,7 @@ class Blox_Settings {
 
         // Load the base class object.
         $this->base = Blox_Lite_Main::get_instance();
-		
+        		
 		add_action( 'admin_menu', array( $this, 'add_menu_links' ), 10 );
 		add_action( 'admin_init', array( $this, 'register_settings' ), 10 );
 		
@@ -88,7 +88,7 @@ class Blox_Settings {
 		<div class="wrap">
 			<h2><?php _e( 'Blox Settings', 'blox' ); ?></h2>
 		
-			<?php settings_errors( 'blox-notices' ); // Shouldn't have to use this... ?>
+			<?php settings_errors( 'blox-notices' ); ?>
 		
 			<h2 class="nav-tab-wrapper">
 				<?php foreach( $this->get_settings_tabs() as $tab_id => $tab_name ) {
@@ -110,17 +110,13 @@ class Blox_Settings {
 				<form method="post" action="options.php">
 					<table class="form-table">
 						<?php
-						do_action( 'blox_settings_form_top' );
-						
 						settings_fields( 'blox_settings' );
 						do_settings_fields( 'blox_settings_' . $active_tab, 'blox_settings_' . $active_tab );
 						?>
 					</table>
 					<?php 
-						submit_button( 'Save ' . ucfirst( $active_tab ) . ' Settings' ); 
-						submit_button( 'Reset ' . ucfirst( $active_tab ) . ' Settings', 'secondary', 'reset', true, array( 'id' => 'reset' ) );
-						
-						do_action( 'blox_settings_form_bottom' );
+						submit_button( sprintf( __( 'Save %1$s Settings', 'blox' ), ucfirst( $active_tab ) ) ); 
+						submit_button( sprintf( __( 'Reset %1$s Settings', 'blox' ), ucfirst( $active_tab ) ), 'secondary', 'reset', true, array( 'id' => 'reset' ) );
 					?>
 				</form>
 			</div><!-- #tab_container-->
@@ -147,11 +143,6 @@ class Blox_Settings {
 		$tabs['general']  = __( 'General', 'blox' );
 		$tabs['default']  = __( 'Defaults', 'blox' );
 		$tabs['style']    = __( 'Styles', 'blox' );
-
-		if( ! empty( $settings['extensions'] ) ) {
-			$tabs['extension'] = __( 'Extensions', 'blox' );
-		}
-
 		$tabs['misc']     = __( 'Misc', 'blox' );
 
 		return apply_filters( 'blox_settings_tabs', $tabs );
@@ -240,7 +231,15 @@ class Blox_Settings {
 						'name' => '<span class="title">' . __( 'Global Content Blocks', 'blox' ) . '</span>',
 						'desc' => '',
 						'type' => 'header'
-					),			
+					),	
+					'global_enable' => array(
+						'id'    => 'global_enable',
+						'name'  => __( 'Enable Global Blocks', 'blox' ),
+						'label' => __( 'Globally enable local content blocks', 'blox' ),
+						'desc'  => __( 'Turning off this setting will disable all global content blocks.', 'blox' ),
+						'type'  => 'checkbox',
+						'default' => true
+					),		
 					'global_permissions' => array(
 						'id'   => 'global_permissions',
 						'name' => __( 'Global Permissions', 'blox' ),
@@ -272,7 +271,7 @@ class Blox_Settings {
 						'name'  => __( 'Enable Local Blocks On...', 'blox' ),
 						'desc'  => __( 'Enable local blocks on specific post types. Note that only "public" custom post types will be displayed above. Disabling local blocks on a specific post type will not remove any meta data.', 'blox' ),
 						'type'  => 'enabled_pages',
-						'default' => array( 'post', 'page' ) // NEED TO ENABLE DEFAULTS ON PLUGIN ACTIVATION
+						'default' => array( 'post', 'page' )
 					),
 					'local_permissions' => array(
 						'id'   => 'local_permissions',
@@ -295,7 +294,7 @@ class Blox_Settings {
 					'defaults_position_header' => array(
 						'id' => 'defaults_position_header',
 						'name' => '<span class="title">' . __( 'Default Block Position', 'blox' ) . '</span>',
-						'desc' => '',
+						'desc' => sprintf( __( 'Please refer to the %1$sGenesis Visual Hook Guide%2$s for hook reference and position information. For priority, it is important to note that other plugins and themes can use Genesis Hooks to add content to a page. A low number tells Wordpress to try and add your custom content before all other content using the same Genesis Hook. A larger number will add the content later in the queue. (ex: Early=1, Medium=10, Late=100)', 'blox' ), '<a href="http://genesistutorials.com/visual-hook-guide/" alt="' . __( 'Genesis Visual Hook Guide', 'blox' ) . '" target="_blank">', '</a>' ),
 						'type' => 'header'
 					),
 					'global_default_position' => array(
@@ -359,8 +358,9 @@ class Blox_Settings {
 					'custom_css' => array(
 						'id'   => 'custom_css',
 						'name' => __( 'Custom CSS', 'blox' ),
-						'desc' => sprintf( __( 'Add custom CSS that can affect all content blocks. For reference on content block frontend markup, please refer to the %1$sBlox Documentation%2$s.', 'blox' ), '<a href="https://www.bloxwp.com/documentation">', '</a>' ),
+						'desc' => sprintf( __( 'Add custom CSS that can affect all content blocks. For reference on content block frontend markup, please refer to the %1$sBlox Documentation%2$s.', 'blox' ), '<a href="http://www.bloxwp.com/documentation">', '</a>' ),
 						'type' => 'textarea',
+						'class' => 'blox-textarea-code',
 						'size' => 10,
 						'default' => '',
 					),
@@ -374,7 +374,7 @@ class Blox_Settings {
 					),
 				)
 			),
-	
+		
 			/** Misc Settings */
 			'misc' => apply_filters('blox_settings_misc',
 				array(
@@ -383,10 +383,18 @@ class Blox_Settings {
 						'name' => __( 'Local Metabox Title', 'blox' ),
 						'desc' => __( 'This is the metabox title that is displayed on pages/posts/custom post types when local blocks are activated.', 'blox' ),
 						'type' => 'text',
-						'size' => 'large',
+						'size' => 'full',
 						'placeholder' => __( 'e.g. Local Content Blocks', 'blox' ),
 						'default' => __( 'Local Content Blocks', 'blox' ),
 						'sanitize' => 'no_html',
+					),
+					'uninstall_on_delete' => array(
+						'id'    => 'uninstall_on_delete',
+						'name'  => __( 'Remove Data on Uninstall', 'blox' ),
+						'label' => __( 'Check to completely remove all plugin data when Blox is deleted', 'blox' ),
+						'desc'  => '',
+						'type'  => 'checkbox',
+						'default' => '',
 					),
 				)
 			),
@@ -528,7 +536,16 @@ class Blox_Settings {
 	 * @return void
 	 */
 	public function header_callback( $args ) {
-		echo '<hr/>';
+		
+		if ( empty( $args['desc'] ) ) {
+			echo '<hr/>';
+		} else {
+			$html = '<div class="header-container"><hr/>';
+			$html .= '<p class="description" style="padding-top:5px;">' . $args['desc'] . '</p>';
+			$html .= '</div>';
+			
+			echo $html;
+		}
 	}
 
 
@@ -601,7 +618,7 @@ class Blox_Settings {
 			$value = isset( $args['default'] ) ? $args['default'] : '';
 		}
 
-		$html = '<textarea class="text-full ' . $args['class'] . '" rows="'  . $args['size'] . '" id="blox_settings[' . $args['id'] . ']" name="blox_settings[' . $args['id'] . ']">' . esc_textarea( stripslashes( $value ) ) . '</textarea>';
+		$html = '<textarea class="text-full ' . $args['class'] . '" rows="'  . $args['size'] . '" id="blox_settings[' . $args['id'] . ']" name="blox_settings[' . $args['id'] . ']" placeholder="' . $args['placeholder'] . '">' . esc_textarea( stripslashes( $value ) ) . '</textarea>';
 		$html .= ! empty( $args['desc'] ) ? ( '<p class="description">' . $args['desc'] . '</p>' ) : '';
 
 		echo $html;
@@ -718,7 +735,7 @@ class Blox_Settings {
 				?>
 				<label>
 					<input type="checkbox" name="blox_settings[<?php echo $args['id']; ?>][]" value="<?php echo $custom_post_type; ?>" <?php echo $enabled_pages && in_array( $custom_post_type, $enabled_pages ) ? 'checked="checked"' : ''; ?> />
-					<?php echo $post_name->labels->name; ?> <span class="status">(custom)</span>
+					<?php echo $post_name->labels->name; ?> <span class="status">(<?php _e( 'custom', 'blox' ); ?>)</span>
 				</label>
 				<?php
 			}
@@ -728,8 +745,6 @@ class Blox_Settings {
 		echo $description;
 	}
 
-
-   
 	
 	/***********************************************
 	 * Sanitization type callbacks
@@ -842,10 +857,18 @@ class Blox_Settings {
 	 * @since 1.0.0
 	 */
 	function admin_enqueue_scripts() {
-		wp_enqueue_style( 'blox-settings-styles', plugins_url( 'assets/css/settings.css' , dirname( dirname( __FILE__ ) ) ) ); // Need to us dirname twice due to file format of parent plugin
+		wp_enqueue_style( $this->base->plugin_slug . '-settings-styles', plugins_url( 'assets/css/settings.css' , dirname( dirname( __FILE__ ) ) ) ); // Need to us dirname twice due to file format of parent plugin
    
-		wp_register_script( 'blox-settings-scripts', plugins_url( 'assets/js/settings.js' , dirname( dirname( __FILE__ ) ) ) );
-		wp_enqueue_script( 'blox-settings-scripts' );
+		wp_register_script( $this->base->plugin_slug . '-settings-scripts', plugins_url( 'assets/js/settings.js' , dirname( dirname( __FILE__ ) ) ) );
+		wp_enqueue_script( $this->base->plugin_slug . '-settings-scripts' );
+		
+		wp_localize_script( 
+			$this->base->plugin_slug . '-settings-scripts', 
+			'blox_localize_settings_scripts', 
+			array(
+				'reset' => __( 'Are you sure you want to reset these settings? This action cannot be undone.', 'blox' )
+			) 
+		);
 	}
     
     

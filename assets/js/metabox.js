@@ -79,12 +79,12 @@ jQuery(document).ready(function($){
 		 */
 		uploader : function( id ) {
 			var block_id = id;
-			//alert (block_id);
+
 			var frame = wp.media({
-				title : 'Choose or Upload an Image',
+				title : blox_localize_metabox_scripts.image_media_title,
 				multiple : false,
 				library : { type : 'image' }, //only can upload images
-				button : { text : 'Use Selected Image' }
+				button : { text : blox_localize_metabox_scripts.image_media_button }
 			});
 
 			// Handle results from media manager
@@ -103,7 +103,7 @@ jQuery(document).ready(function($){
 		 * @param int id            The content block id so we can target the correct block
 		 */
 		render : function( attachment, id) {	
-			//alert (id);			
+			
 			$( '#' + id + ' .blox-image-preview' ).attr( 'src', attachment.url );
 			$( '#' + id + ' .blox-custom-image-id' ).val( attachment.id );
 			$( '#' + id + ' .blox-custom-image-url' ).val( attachment.url );
@@ -159,7 +159,7 @@ jQuery(document).ready(function($){
 		  $(this).parents( '.blox-image-link-enable' ).siblings( '.blox-image-link' ).hide();
 	  	}
 	});
-    
+	
 	
 
 	/* Position scripts
@@ -181,6 +181,20 @@ jQuery(document).ready(function($){
 	
 	
 	
+	/* Visibility scripts
+	-------------------------------------------------------------- */
+	
+	// Shows and hides visibility restrictions
+	$(document).on( 'change', '.blox-visibility-role_type select', function(){
+		if ( $(this).val() == 'restrict' ) {
+			$(this).parents( '.blox-visibility-role_type' ).siblings( '.blox-visibility-role-restrictions' ).removeClass( 'blox-hidden' );
+		} else {
+			$(this).parents( '.blox-visibility-role_type' ).siblings( '.blox-visibility-role-restrictions' ).addClass( 'blox-hidden' );
+		}	
+	});
+	
+	
+	
 	/* Location scripts
 	-------------------------------------------------------------- */
 	
@@ -188,12 +202,12 @@ jQuery(document).ready(function($){
 	$(document).on( 'change', '#blox_location_type', function(){
 		if ( $(this).val() == 'hide_selected' ) {
 			$( '.blox-location-container').removeClass( 'blox-hidden' );
-			$( '.blox-test-description' ).html( 'Choose the pages you would like the content block to be <strong>hidden</strong> on.' );
+			$( '.blox-test-description' ).html( blox_localize_metabox_scripts.location_test_hide );
 			$( 'tr#blox_location_manual_hide' ).addClass( 'blox-hidden' );
 			$( 'tr#blox_location_manual_show' ).removeClass( 'blox-hidden' );
 		} else if ( $(this).val() == 'show_selected' ) {
 			$( '.blox-location-container').removeClass( 'blox-hidden' );
-			$( '.blox-test-description' ).html( 'Choose the pages you would like the content block to be <strong>visible</strong> on.' );
+			$( '.blox-test-description' ).html( blox_localize_metabox_scripts.location_test_show );
 			$( 'tr#blox_location_manual_hide' ).removeClass( 'blox-hidden' );
 			$( 'tr#blox_location_manual_show' ).addClass( 'blox-hidden' );
 		} else {
@@ -318,7 +332,7 @@ jQuery(document).ready(function($){
 	// Remove Content Blocks (Need to '.on' because we are working with dynamically generated content)
 	$(document).on( 'click', '#blox_content_blocks_container .blox-remove-block', function() {
 		
-		var message = confirm( 'Are you sure you want to remove this content block? This action cannot be undone.' );
+		var message = confirm( blox_localize_metabox_scripts.confirm_remove );
 		
 		if ( message == true ) {
 			$(this).parents( '.blox-content-block' ).remove();
@@ -440,11 +454,11 @@ jQuery(document).ready(function($){
 			post_id: post_id,
 			block_id: block_id,
 			type: 'new',
-			blox_add_block_nonce: blox_localize.blox_add_block_nonce
+			blox_add_block_nonce: blox_localize_metabox_scripts.blox_add_block_nonce
 		};
 		
 		// AJAX call.
-		$.post( blox_localize.ajax_url, data, function( response ) {		
+		$.post( blox_localize_metabox_scripts.ajax_url, data, function( response ) {		
 			$('#blox_content_blocks_container').prepend(response);
 			$('#blox_content_blocks_container .blox-content-block').first().addClass( 'editing new' );
 			$('#blox_content_blocks_container .blox-content-block').first().children( '.blox-content-block-editing' ).prop( 'checked', true );
@@ -477,11 +491,11 @@ jQuery(document).ready(function($){
 			post_id: post_id,
 			block_id: block_id,
 			type: 'copy',
-			blox_add_block_nonce: blox_localize.blox_add_block_nonce
+			blox_add_block_nonce: blox_localize_metabox_scripts.blox_add_block_nonce
 		};
 		
 		// AJAX call.
-		$.post( blox_localize.ajax_url, data, function( response ) {		
+		$.post( blox_localize_metabox_scripts.ajax_url, data, function( response ) {		
 			$('#blox_content_blocks_container').prepend(response);
 			$('#blox_content_blocks_container .blox-content-block').first().addClass( 'editing new' );
 			$('#blox_content_blocks_container .blox-content-block').first().children( '.blox-content-block-editing' ).prop( 'checked', true );

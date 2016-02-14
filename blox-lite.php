@@ -27,7 +27,6 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
 /**
  * Main plugin class.
  *
@@ -105,12 +104,13 @@ class Blox_Lite_Main {
         // Load the plugin.
         add_action( 'init', array( $this, 'init' ), 0 );
         
-        // Make sure our default settings are set during init if blox_settings does 
+        // Make sure our default settings are set during activation if blox_settings does 
        	// not exist (i.e. we have a brand new install)
-       	add_action( 'init', array( $this, 'set_default_settings' ) );
+       	register_activation_hook( __FILE__ , array( $this, 'set_default_settings' ) );
 
         // Add additional links to the plugin's row on the admin plugin page
         add_filter( 'plugin_action_links', array( $this, 'plugin_action_links' ), 10, 2 );
+        add_filter( 'plugin_row_meta', array( $this, 'plugin_row_meta' ), 10, 2 );
     }
 	
 	
@@ -187,6 +187,9 @@ class Blox_Lite_Main {
 
 		// Settings class
 		require plugin_dir_path( __FILE__ ) . 'includes/global/settings.php';
+		
+		// Content block settings classes that need to be global in scope
+		require plugin_dir_path( __FILE__ ) . 'includes/global/location.php';
 
 		// Content classes
 		require plugin_dir_path( __FILE__ ) . 'includes/global/content/image.php';
@@ -201,7 +204,6 @@ class Blox_Lite_Main {
 
 			// Content block settings classes
 			require plugin_dir_path( __FILE__ ) . 'includes/admin/content.php';
-			require plugin_dir_path( __FILE__ ) . 'includes/admin/location.php';
 			require plugin_dir_path( __FILE__ ) . 'includes/admin/position.php';
 			require plugin_dir_path( __FILE__ ) . 'includes/admin/style.php';
 			
@@ -225,7 +227,7 @@ class Blox_Lite_Main {
 	 * @since 1.0.0
 	 */
 	public function set_default_settings() {
-	
+
 		if ( get_option( 'blox_settings' ) != false ) {
 			
 			// The option already exists so bail...
@@ -240,12 +242,10 @@ class Blox_Lite_Main {
         	$settings = $instance->get_registered_settings();		
 			$defaults = array();
 			
-			foreach ( $settings as $tab ) {
-				if ( ! empty( $tab ) ) {
-					foreach ( $tab as $key => $value ) {
-						if ( ! empty( $value[ 'default' ] ) ) {
-							$defaults[$key] = $value[ 'default' ];
-						}
+			if ( ! empty( $settings[$tab] ) ) {
+				foreach ( $settings[$tab] as $key => $value ) {
+					if ( ! empty( $value[ 'default' ] ) ) {
+						$defaults[$key] = $value[ 'default' ];
 					}
 				}
 			}
@@ -271,6 +271,40 @@ class Blox_Lite_Main {
 		if ( $file == 'blox-lite/blox-lite.php' ) {
 			array_unshift( $links, $settings_link );
 		}
+
+		return $links;
+	}
+	
+	
+	/**
+	 * Adds additional links to the plugin row meta links
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $links   Already defined meta links
+	 * @param string $file   Plugin file path and name being processed
+	 * @return array $links  The new array of meta links
+	 */
+	function plugin_row_meta( $links, $file ) {
+
+		// If we are not on the correct plugin, abort
+		if ( $file != 'blox-lite/blox-lite.php' ) {
+			return $links;
+		}
+
+		$docs_link = esc_url( add_query_arg( array(
+				'utm_source'   => 'blox-lite',
+				'utm_medium'   => 'plugin',
+				'utm_campaign' => 'Blox_Plugin_Links',
+				'utm_content'  => 'plugins-page-link'
+			), 'https://www.bloxwp.com/documentation/' )
+		);
+
+		$new_links = array(
+			'<a href="' . $docs_link . '">' . esc_html__( 'Documentation', 'blox' ) . '</a>',
+		);
+
+		$links = array_merge( $links, $new_links );
 
 		return $links;
 	}

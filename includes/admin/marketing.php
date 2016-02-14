@@ -71,7 +71,7 @@ class Blox_Marketing {
 			'id'   => 'disable_marketing_notices',
 			'name'  => __( 'Marketing Notices', 'blox' ),
 			'label' => __( 'Check to disable all those annoying marketing notices!', 'blox' ),
-			'desc'  => sprintf( __( 'But seriously though, Blox takes Blox Lite to the next level and comes with great support. %1$sLearn More%2$s.', 'blox' ), '<a href="https://www.bloxwp.com/">', '</a>' ),
+			'desc'  => sprintf( __( 'But seriously though, the full version of Blox takes Blox Lite to the next level and comes with great support. %1$sLearn More%2$s.', 'blox' ), '<a href="https://www.bloxwp.com/?utm_source=blox-lite&utm_medium=plugin&utm_content=marketing-links&utm_campaign=Blox_Plugin_Links" target="_blank">', '</a>' ),
 			'type'  => 'checkbox',
 			'default' => false
 		);
@@ -92,7 +92,7 @@ class Blox_Marketing {
     	if ( ! $disable_notices ) {
 			?>
 			<div class="blox-alert blox-alert-warning">
-				<?php echo sprintf( __( 'Enjoying %1$sBlox Lite%2$s but looking for more content options, visibility settings, priority support, frequent updates and more? Then you should consider %3$supgrading%4$s to %1$sBlox%2$s. Happy with the free version and have no need to upgrade? Then you might as well turn off these notifications in the plugin %5$ssettings%4$s.', 'blox' ), '<strong>', '</strong>', '<a href="https://www.bloxwp.com/">', '</a>', '<a href="' . admin_url( 'edit.php?post_type=blox&page=blox-settings&tab=misc' ) . '">' ); ?>
+				<?php echo sprintf( __( 'Enjoying %1$sBlox Lite%2$s but looking for more content options, visibility settings, priority support, frequent updates and more? Then you should consider %3$supgrading%4$s to %1$sBlox%2$s. Happy with the free version and have no need to upgrade? Then you might as well turn off these notifications in the plugin %5$ssettings%4$s.', 'blox' ), '<strong>', '</strong>', '<a href="https://www.bloxwp.com/?utm_source=blox-lite&utm_medium=plugin&utm_content=marketing-links&utm_campaign=Blox_Plugin_Links" target="_blank">', '</a>', '<a href="' . admin_url( 'edit.php?post_type=blox&page=blox-settings&tab=misc' ) . '">' ); ?>
 			</div>
 			<?php
 		}

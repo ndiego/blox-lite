@@ -2,14 +2,14 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
 /**
  * Creates the content tab and loads in all the available options
  *
  * @since 1.0.0
  *
- * @package Blox
- * @author  Nicholas Diego
+ * @package	Blox
+ * @author 	Nick Diego
+ * @license http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 class Blox_Content {
     
@@ -53,10 +53,17 @@ class Blox_Content {
         // Load the base class object.
         $this->base = Blox_Lite_Main::get_instance();
 		
+		// Setup content settings
 		add_filter( 'blox_metabox_tabs', array( $this, 'add_content_tab' ), 4 );
 		add_action( 'blox_get_metabox_tab_content', array( $this, 'get_metabox_tab_content' ), 10, 4 );
 		add_filter( 'blox_save_metabox_tab_content', array( $this, 'save_metabox_tab_content' ), 10, 3 );
+		
+		// Run content check to make sure all content types are available, otherwise print messages
 		add_action( 'blox_tab_container_before', array( $this, 'content_check' ), 10, 5 );
+		
+		// Add the admin column data for global blocks
+		add_filter( 'blox_admin_column_titles', array( $this, 'admin_column_title' ), 1, 1 );
+		add_action( 'blox_admin_column_data_content', array( $this, 'admin_column_data' ), 10, 2 );
     }
 
 
@@ -194,7 +201,7 @@ class Blox_Content {
      * @param bool $global    Indicates if the block is global
      */
 	public function content_check( $tab, $data, $name_id, $get_id, $global ) {  
-
+		
 		// Only display content check error on the content tab
 		if ( $tab == 'content' ) {
 		
@@ -210,12 +217,35 @@ class Blox_Content {
 			if ( isset( $set_content_type ) && ! array_key_exists( $set_content_type, $available_content_types ) ) {
 				?>
 				<div class="blox-alert blox-alert-error narrow">
-					<?php echo sprintf( __( 'The content type of this block is currently set to %1$s, which no longer exists. Therefore, this block is currently not visible on your site. Perhaps you deactivated a Blox Extension by mistake, or switched to Blox Lite. Choose a new content type and publish to get this block displaying again.', 'blox' ), '<strong>' . $set_content_type . '</strong>' ); ?>
+					<?php echo sprintf( __( 'The content type of this block is currently set to %1$s, which no longer exists. Therefore, this block is currently not visible on your site. Perhaps you deactivated a Blox Addon by mistake, or switched to Blox Lite. Choose a new content type and publish to get this block displaying again.', 'blox' ), '<strong>' . $set_content_type . '</strong>' ); ?>
 				</div>
 				<?php
 			}
 		}
-	} 
+	}
+	
+	
+    /**
+     * Add admin column for global blocks
+     *
+     * @param string $post_id
+     * @param array $block_data
+     */
+    public function admin_column_title( $columns ) {
+    	$columns['content'] = __( 'Content', 'blox' );
+    	return $columns; 
+    }
+    
+    
+    /**
+     * Print the admin column data for global blocks.
+     *
+     * @param string $post_id
+     * @param array $block_data
+     */
+    public function admin_column_data( $post_id, $block_data ) {
+    	echo ! empty( $block_data['content']['content_type'] ) ? ucfirst( $block_data['content']['content_type'] ) : '<span style="color:#a00;font-style:italic;">' . __( 'Error', 'blox' ) . '</span>';	
+	}
 	
 	
     /**
@@ -223,10 +253,10 @@ class Blox_Content {
      *
      * @since 1.0.0
      *
-     * @return array Array of image size data.
+     * @return array Array of all content types.
      */
     public function get_content_types() {
-
+    
         $instance = Blox_Common::get_instance();
         return $instance->get_content_types();
     }

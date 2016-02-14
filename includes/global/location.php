@@ -2,14 +2,14 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
 /**
  * Creates the location tab (only on global blocks) and loads in all the available options
  *
- * @since 1.0.0
+ * @since 	1.0.0
  *
- * @package Blox
- * @author  Nicholas Diego
+ * @package	Blox
+ * @author 	Nick Diego
+ * @license http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 class Blox_Location {
 
@@ -52,13 +52,21 @@ class Blox_Location {
 
         // Load the base class object.
         $this->base = Blox_Lite_Main::get_instance();
-
+		
+		// Setup location settings
 		add_filter( 'blox_metabox_tabs', array( $this, 'add_location_tab' ), 6 );
 		add_action( 'blox_get_metabox_tab_location', array( $this, 'get_metabox_tab_location' ), 10, 4 );
 		add_filter( 'blox_save_metabox_tab_location', array( $this, 'save_metabox_tab_location' ), 10, 3 );
+		
+		// Add the admin column data for global blocks
+		add_filter( 'blox_admin_column_titles', array( $this, 'admin_column_title' ), 3, 1 );
+		add_action( 'blox_admin_column_data_location', array( $this, 'admin_column_data' ), 10, 2 );
+		
+		// Run location test on the frontend.
+		add_filter( 'blox_display_test', array( $this, 'run_location_display_test' ), 5, 4 );
     }
-
-
+	
+	
 	/**
 	 * Add the Location tab
      *
@@ -789,7 +797,6 @@ class Blox_Location {
 		$settings['location_type'] 	= esc_attr( $name_prefix['location_type'] );
 		$settings['selection'] 		= isset( $name_prefix['selection'] ) ? array_map( 'esc_attr', $name_prefix['selection'] ) : '';
 
-
 		// Singles
 		$settings['singles']['select_type'] = esc_attr( $name_prefix['singles']['select_type'] );
 		$settings['singles']['selection'] 	= isset( $name_prefix['singles']['selection'] ) ? array_map( 'esc_attr', $name_prefix['singles']['selection'] ) : '';
@@ -861,8 +868,8 @@ class Blox_Location {
 		$settings['manual_override']['manual_show_ids'] = array_filter( array_map( 'absint', explode( ",", preg_replace( '/\s+/', '', $name_prefix['manual_override']['manual_show_ids'] ) ) ) );
         $settings['manual_override']['manual_hide_ids'] = array_filter( array_map( 'absint', explode( ",", preg_replace( '/\s+/', '', $name_prefix['manual_override']['manual_hide_ids'] ) ) ) );
 		*/
-		
-		return $settings;
+	
+		return apply_filters( 'blox_save_location_settings', $settings, $post_id, $name_prefix, $global );
 	}
 
 
@@ -877,7 +884,7 @@ class Blox_Location {
 
         $page_types = array(
             'front'     => __( 'Front Page', 'blox' ),
-            'home'      => __( 'Blog Page', 'blox' ),
+            'home'      => __( 'Posts Page', 'blox' ),
             'singles'   => __( 'Single Pages', 'blox' ),
             'archive'   => __( 'Archive Pages', 'blox' ),
             'search'    => __( 'Search Pages', 'blox' ),
@@ -886,6 +893,475 @@ class Blox_Location {
 
         return $page_types;
     }
+    
+    
+    /**
+     * Add admin column for global blocks
+     *
+     * @param string $post_id
+     * @param array $block_data
+     */
+    public function admin_column_title( $columns ) {
+    	$columns['location'] = __( 'Location', 'blox' );
+    	return $columns; 
+    }
+    
+    
+    /**
+     * Print the admin column data for global blocks.
+     *
+     * @param string $post_id
+     * @param array $block_data
+     */
+    public function admin_column_data( $post_id, $block_data ) {
+		$type = ! empty( $block_data['location']['location_type'] ) ? $block_data['location']['location_type'] : '';	
+                
+		// More location information to come...
+		switch ( $type ) {
+			case 'all' :
+				$output = __( 'All', 'blox' );
+				break;
+			case 'show_selected' :
+				$output = __( 'Selected', 'blox' );
+				break;
+			case 'hide_selected' :
+				$output = __( 'Selected', 'blox' );
+				break;
+			default :
+				$output = '<span style="color:#a00;font-style:italic;">' . __( 'Error', 'blox' ) . '</span>';
+				break;
+		}
+		
+		echo $output;
+    }
+
+
+	/**
+	 * Run the location test
+	 *
+     * @since 1.0.0
+	 *
+	 * @param bool $display_test Test for determining whether the block should be displayed
+	 * @param int $id            The block id, if global, id = $post->ID otherwise it is a random local id
+	 * @param array $block       Contains all of our block settings data
+	 * @param bool $global       Tells whether our block is global or local
+	 */
+	public function run_location_display_test( $display_test, $id, $block, $global ) {
+		
+		// If the display test is already false, bail...
+		if ( $display_test == false ) {
+			return $display_test;
+		}
+
+		if ( ! $global ) {
+
+			// This is a local block so no location testing is required, proceed to block positioning
+			return $display_test;
+
+		} else {
+
+			// Get our location data
+			$location_data = ! empty( $block['location'] ) ? $block['location'] : '';
+
+			if ( ! empty( $location_data['location_type'] ) ) {
+
+				if ( $location_data['location_type'] == 'show_selected' ) {
+
+					// Run our show on selected test
+					return $this->begin_location_test( $location_data, $id, $block, $global, 'show' );
+					
+				} else if ( $location_data['location_type'] == 'hide_selected' ) {
+
+					// Run our hide on selected test
+					return $this->begin_location_test( $location_data, $id, $block, $global, 'hide' );
+					
+				} else {
+
+					// If no test is selected, proceed to block positioning
+					return $display_test;
+				}
+			}
+		}
+	}
+
+
+	/**
+	 * Now we actually run the location test
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $location_data   An array of all the location data/settings
+	 * @param int $id       		 The block id, if global, id = $post->ID otherwise it is a random local id
+	 * @param array $block  		 Contains all of our block settings data
+	 * @param bool $global  		 Tells whether our block is global or local
+	 * @param string $show_hide_test Either "show" or "hide"
+	 */
+	public function begin_location_test( $location_data, $id, $block, $global, $show_hide_test ) {
+		
+		// Need to try and make this true in order for the block to display on the page
+		$location_test = false;
+
+		if ( ! empty( $location_data['selection'] ) ) {
+
+			if ( in_array( 'front', $location_data['selection'] ) && is_front_page() == true ) {
+
+				// For the actual front page of the website
+				$location_test = true;
+
+			} else if ( in_array( 'home', $location_data['selection'] ) && is_home() == true ) {
+
+				// For the blog index page (doesn't necessarily need to be the "homepage")
+				$location_test = true;
+
+			} else if ( in_array( 'search', $location_data['selection'] ) && is_search() == true ) {
+
+				// For any search archive
+				$location_test = true;
+
+				// POSSIBLY ADD MORE SEARCH OPTIONS IN THE FUTURE
+
+			} else if ( in_array( '404', $location_data['selection'] ) && is_404() == true ) {
+
+				// For the 404 page
+				$location_test = true;
+
+			} else if ( in_array( 'archive', $location_data['selection'] ) && is_archive() == true ) {
+
+				if ( $location_data['archive']['select_type'] == 'all' ) {
+
+					// Show the block on any archive page
+					$location_test = true;
+					
+					//echo 'hello';
+
+				} else if ( $location_data['archive']['select_type'] == 'selected' ) {
+				
+					// If our archive selection set is not empty, proceed...
+					if ( ! empty( $location_data['archive']['selection'] ) ) {
+                	
+                		if ( in_array( 'datetime', $location_data['archive']['selection'] ) && is_date() ) {
+                		
+                			// We are on a Date/Time archive, so proceed...
+							$location_test = true;
+                		
+                		} else if ( in_array( 'posttypes', $location_data['archive']['selection'] ) && is_post_type_archive() ) {
+                		
+                		    if ( $location_data['archive']['posttypes']['select_type'] == 'all' ) {
+
+								// Show the block on any post type archive page
+								$location_test = true;
+
+							} else if ( $location_data['archive']['posttypes']['select_type'] == 'selected' ) {
+							
+								if ( ! empty( $location_data['archive']['posttypes']['selection'] ) ) {
+									
+									$posttypes = $location_data['archive']['posttypes']['selection'];
+									
+									foreach ( $posttypes as $posttype ) {
+										$location_test = is_post_type_archive( $posttype ) ? true : false;
+									}
+								}
+							}
+                		
+                		} else if ( in_array( 'authors', $location_data['archive']['selection'] ) && is_author() ) {
+
+                			if ( $location_data['archive']['authors']['select_type'] == 'all' ) {
+
+								// Show the block on any author archive page
+								$location_test = true;
+
+							} else if ( $location_data['archive']['authors']['select_type'] == 'selected' ) {
+								
+								if ( ! empty( $location_data['archive']['authors']['selection'] ) ) {
+									
+									// Get author and sort through selection to check
+									$author = get_userdata( get_query_var('author') );
+									
+									if ( in_array( $author->id, $location_data['archive']['authors']['selection'] ) ) {
+										
+										// This author archive is part of the selection, so proceed...
+										$location_test = true;
+									
+									}
+								}
+							}
+                		
+                		} else if ( in_array( 'category', $location_data['archive']['selection'] ) && is_category() ) {
+							
+							// Post categories need to be treated differently than normal taxonomies
+                			if ( $location_data['archive']['category']['select_type'] == 'all' ) {
+
+								// Show the block on any Post category archive page
+								$location_test = true;
+
+							} else if ( $location_data['archive']['category']['select_type'] == 'selected' ) {
+								
+								if ( ! empty( $location_data['archive']['category']['selection'] ) ) {
+									
+									// Get selected categories and loop through to see which category page we are on, if any
+									$categories = $location_data['archive']['category']['selection'];
+									
+									foreach ( $categories as $category ) {
+										$term_test[] = is_category( $category ) ? true : false;
+									}
+									
+									$location_test = in_array( true, $term_test ) ? true : false;
+								}
+							}
+                		
+                		} else if ( in_array( 'post_tag', $location_data['archive']['selection'] ) && is_tag() ) {
+							
+							// Post tags need to be treated differently than normal taxonomies
+                			if ( $location_data['archive']['post_tag']['select_type'] == 'all' ) {
+
+								// Show the block on any Post tag archive page
+								$location_test = true;
+
+							} else if ( $location_data['archive']['post_tag']['select_type'] == 'selected' ) {
+								
+								if ( ! empty( $location_data['archive']['post_tag']['selection'] ) ) {
+									
+									// Get selected tags and loop through to see which tag page we are on, if any
+									$tags = $location_data['archive']['post_tag']['selection'];
+									
+									foreach ( $tags as $tag ) {
+										$term_test[] = is_tag( $tag ) ? true : false;
+									}
+									
+									$location_test = in_array( true, $term_test ) ? true : false;
+								}
+							}
+                		
+                		} else {
+                			
+                			// Remove Date/Time, Authors, Post Types, Post Tags, and Post Categories from the selection (if they are there)
+							$taxonomy_archives = array_diff( $location_data['archive']['selection'],  array( 'datetime', 'authors', 'posttypes', 'category', 'post_tag' ) );
+							
+							if ( ! empty( $taxonomy_archives ) ) {
+								foreach ( $taxonomy_archives as $taxonomy_archive ) {
+							
+									if ( $location_data['archive'][$taxonomy_archive]['select_type'] == 'all' ) {
+
+										// Show the block on any taxonomy's archive pages
+										$location_test = true;
+
+									} else if ( $location_data['archive'][$taxonomy_archive]['select_type'] == 'selected' ) {
+							
+										if ( ! empty( $location_data['archive'][$taxonomy_archive]['selection'] ) ) {
+								
+											// Get selected tags and loop through to see which tag page we are on, if any
+											$terms = $location_data['archive'][$taxonomy_archive]['selection'];
+											
+											foreach ( $terms as $term ) {
+												$term_object = get_term( $term, $taxonomy_archive );
+												$term_test[] = is_tax( $taxonomy_archive, $term_object->slug ) ? true : false;
+											}
+
+											$location_test = in_array( true, $term_test ) ? true : false;
+										}
+									}
+								}
+							}
+							
+                		} // end archive test
+                	
+                	}
+                	
+				}
+
+			} else if ( in_array( 'singles', $location_data['selection'] ) && is_singular() == true && is_front_page() == false ) {
+
+				if ( $location_data['singles']['select_type'] == 'all' ) {
+
+					// Show the block on any singles page
+					$location_test = true;
+
+				} else if ( $location_data['singles']['select_type'] == 'selected' ) {
+
+					// If our singles selection set is not empty, proceed...
+					if ( ! empty( $location_data['singles']['selection'] ) ) {
+
+						// Our singles selection is not empty so now get the current page's id and post type
+						$current_post_id   = get_the_ID();
+						$current_post_type = get_post_type( $current_post_id );
+
+						// If the current page's post type is in our selection, proceed...
+						if ( in_array( $current_post_type, $location_data['singles']['selection'] ) ) {
+
+							// Get our singles display type
+							$display_type = ! empty( $location_data['singles'][$current_post_type]['select_type'] ) ? $location_data['singles'][$current_post_type]['select_type'] : false;
+
+							if ( $display_type == 'all' ) {
+
+								// Show all posts so proceed...
+								$location_test = true;
+
+							} else if ( $display_type == 'selected_posts' ) {
+
+								// If our current post's id is one of the selected posts, proceed...
+								if ( ! empty( $location_data['singles'][$current_post_type]['selection'] ) && in_array( $current_post_id, $location_data['singles'][$current_post_type]['selection'] ) ) {
+									$location_test = true;
+								}
+
+							} else if ( $display_type == 'selected_taxonomies' ) {
+
+								// Get all the taxonomies objects of the current post types
+								$taxonomy_objects = get_object_taxonomies( $current_post_type, 'object' );
+
+								// If the current post type actually has taxonomies, proceed...
+								if ( ! empty( $taxonomy_objects ) ) {
+
+									// Determine what taxonomy test we are running
+									$taxonomy_test_type = ! empty( $location_data['singles'][$current_post_type]['taxonomies']['taxonomy_test'] ) ? $location_data['singles'][$current_post_type]['taxonomies']['taxonomy_test'] : false;
+
+									// Setup our taxonomy test array
+									$taxonomy_test = array();
+
+									// Loop through all taxonomies and run the taxonomy test
+									foreach ( $taxonomy_objects as $taxonomy_object ) {
+
+										// Get the taxonomy type from the taxonomy object
+										$taxonomy_type = $taxonomy_object->name;
+
+										if ( ! empty( $location_data['singles'][$current_post_type]['taxonomies'][$taxonomy_type]['select_type'] ) ) {
+
+											if ( $location_data['singles'][$current_post_type]['taxonomies'][$taxonomy_type]['select_type'] == 'selected_taxonomies' ) {
+
+												// Get the taxonomy terms associated with the current post and the number of terms the current post has
+												$current_post_term_list = wp_get_post_terms( $current_post_id, $taxonomy_type, array( "fields" => "ids" ) );
+												$num_current_post_terms = count( $current_post_term_list );
+
+												// Determine what taxonomy test we are running
+												$taxonomy_test_type     = ! empty( $location_data['singles'][$current_post_type]['taxonomies']['taxonomy_test'] ) ? $location_data['singles'][$current_post_type]['taxonomies']['taxonomy_test'] : false;
+
+												if ( ! empty( $location_data['singles'][$current_post_type]['taxonomies'][$taxonomy_type]['selection'] ) ) {
+
+													// Get the number of selected terms
+													$num_selected           = count( $location_data['singles'][$current_post_type]['taxonomies'][$taxonomy_type]['selection'] );
+
+													// See how many of the custom post type's terms are part of the taxonomy selection
+													$intersect_results      = array_intersect( $current_post_term_list, $location_data['singles'][$current_post_type]['taxonomies'][$taxonomy_type]['selection'] );
+													$num_intersect_results  = ! empty( $intersect_results ) ? count( $intersect_results ) : null;
+
+													if ( $taxonomy_test_type == 'loose' ) {
+
+														if ( ! empty( $intersect_results ) ) {
+
+															// If our current post's terms are part of the selected set (only one needs to match), proceed...
+															$taxonomy_test[$taxonomy_type] = true;
+														} else {
+
+															// If our current post's terms are part NOT of the selected set (not even one matches), end...
+															$taxonomy_test[$taxonomy_type] = false;
+														}
+													} else if ( $taxonomy_test_type == 'strict' ) {
+
+														// All terms of the current post have to be in the selected set, but the post can have more terms than are selected
+														if ( $num_selected <= $num_current_post_terms && $num_selected == $num_intersect_results ) {
+
+															// If our current post's terms are part of the selected set (only one needs to match), proceed...
+															$taxonomy_test[$taxonomy_type] = true;
+														} else {
+
+															// If our current post's terms are part NOT of the selected set (not even one matches), end...
+															$taxonomy_test[$taxonomy_type] = false;
+														}
+													} else if ( $taxonomy_test_type == 'binding' ) {
+
+														// Total number of terms the current post has, has to equal the number selected and the intersection of the current post's
+														// terms and the selected terms has to equal the number of selected (i.e. all terms of the current post match those selected, no more, no less)
+														if ( $num_selected == $num_current_post_terms && $num_selected == $num_intersect_results ) {
+
+															// If our current post's terms are all part of the selected set (all need to match), proceed...
+															$taxonomy_test[$taxonomy_type] = true;
+														} else {
+
+															// If our current post's terms are part NOT ALL of the selected set, end...
+															$taxonomy_test[$taxonomy_type] = false;
+														}
+													}
+
+												} else {
+
+													// Determine what will happen if the user enabled "Selected by Taxonomy Terms" but didn't select any terms
+													if ( $num_current_post_terms > 0 ) {
+
+														if ( $taxonomy_test_type == 'binding' ) {
+															// The webpage has terms but none were selected...so end
+															$taxonomy_test[$taxonomy_type] = false;
+														}
+
+														// For "Loose" and "Strict" tests, a block can still be displayed if no terms are selected. They just need to have selected terms in other taxonomies...
+
+													} else {
+
+														// User enabled "Selected by Taxonomy Terms" but didn't select any terms, and the webpage has no terms...so end
+														$taxonomy_test[$taxonomy_type] = false;
+													}
+												}
+											}
+
+											// If select type equals "ignore", we do not include the taxonomy as part of the taxonomy show/hide test
+
+										}
+									} 
+
+									// Determine the outcome of the taxonomy test
+									if ( $taxonomy_test_type == 'loose' ) {
+
+										// For the loose test, we only need to have one 'true'. If we passed the taxonomy test, proceed...
+										if ( ! empty( $taxonomy_test ) && in_array( true, $taxonomy_test ) ) {
+											$location_test = true;
+										}
+									} else if ( $taxonomy_test_type == 'strict' || $taxonomy_test_type == 'binding' ) {
+
+										// For the strict and binding tests, we can have no 'false'. If we passed the taxonomy test, proceed...
+										if ( ! empty( $taxonomy_test ) && ! in_array( false, $taxonomy_test ) ) {
+											$location_test = true;
+										}
+									} // end taxonomy test
+
+
+								}
+								
+							} else if ( $display_type == 'selected_authors' ) {
+									
+								// Get author of page and sort through selection to check
+								$author = get_queried_object()->post_author;
+
+								// If our current post's id is one of the selected posts, proceed...
+								if ( ! empty( $location_data['singles'][$current_post_type]['authors']['selection'] ) && in_array( $author, $location_data['singles'][$current_post_type]['authors']['selection'] ) ) {
+									$location_test = true;
+								}
+																
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		// Determine whether to show or hide the block
+		if ( $show_hide_test == 'show' ) {
+			
+			// Since we are running a show test, we only show the block if the location_test is true
+			if ( $location_test == true ) {
+				//echo 'hello';
+				return true;
+			} else {
+				return false;
+			}
+			
+		} else if ( $show_hide_test == 'hide' ) {
+
+			// Since we are running a hide test, we only show the block if the location_test is false
+			if ( $location_test == false ) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	}
 
 
     /**

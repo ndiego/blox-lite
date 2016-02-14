@@ -2,14 +2,14 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
 /**
  * Creates the style tab and loads in all the available options
  *
- * @since 1.0.0
+ * @since 	1.0.0
  *
- * @package Blox
- * @author  Nicholas Diego
+ * @package	Blox
+ * @author 	Nick Diego
+ * @license http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 class Blox_Style {
  
@@ -53,8 +53,8 @@ class Blox_Style {
         // Load the base class object.
         $this->base = Blox_Lite_Main::get_instance();
 		
+		// Setup style settings
 		add_filter( 'blox_metabox_tabs', array( $this, 'add_style_tab' ), 30 );
-		
 		add_action( 'blox_get_metabox_tab_style', array( $this, 'get_metabox_tab_style' ), 10, 4 );
 		add_filter( 'blox_save_metabox_tab_style', array( $this, 'save_metabox_tab_style' ), 10, 3 );
     }
@@ -148,7 +148,7 @@ class Blox_Style {
 				<tr>
 					<th scope="row"><?php _e( 'Custom Block CSS', 'blox' ); ?></th>
 					<td>
-						<textarea class="blox-code-textbox" name="<?php echo $name_prefix; ?>[custom_css]" rows="6" placeholder="<?php echo 'e.g. #blox_' . $block_scope . '_' . $id . ' { border: 1px solid green; }'; ?>"><?php echo ! empty( $get_prefix['custom_css'] ) ? esc_html( $get_prefix['custom_css'] ) : ''; ?></textarea>	
+						<textarea class="blox-textarea-code" name="<?php echo $name_prefix; ?>[custom_css]" rows="6" placeholder="<?php echo 'e.g. #blox_' . $block_scope . '_' . $id . ' { border: 1px solid green; }'; ?>"><?php echo ! empty( $get_prefix['custom_css'] ) ? esc_html( $get_prefix['custom_css'] ) : ''; ?></textarea>	
 						<div class="blox-description">
 							<?php echo __( 'All custom CSS for this block should begin with ', 'blox' ) . '<code>#blox_' . $block_scope . '_' . $id . '</code>' . __( '. Otherwise the custom CSS could interfere with other content blocks.', 'blox' ); ?>
 						</div>
@@ -213,7 +213,7 @@ class Blox_Style {
 		$settings['enable_wrap']    	 = isset( $name_prefix['enable_wrap'] ) ? 1 : 0;
 		$settings['disable_default_css'] = isset( $name_prefix['disable_default_css'] ) ? 1 : 0;
 
-		return apply_filters( 'blox_save_style_settings', $settings, $name_prefix, $post_id, $global );
+		return apply_filters( 'blox_save_style_settings', $settings, $post_id, $name_prefix, $global );
 	}
 
 

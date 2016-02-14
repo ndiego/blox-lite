@@ -2,14 +2,14 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
 /**
  * Creates the image content section within the content tab and loads in all available options
  *
- * @since 1.0.0
+ * @since 	1.0.0
  *
- * @package Blox
- * @author  Nicholas Diego
+ * @package	Blox
+ * @author 	Nick Diego
+ * @license http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 class Blox_Content_Image {
 
@@ -60,19 +60,21 @@ class Blox_Content_Image {
     }
 
 
-	/* Enabled the "image" content option in the plugin
+	/**
+	 * Enable the "image" content option in the plugin
      *
      * @since 1.0.0
      *
      * @param array $content_types  An array of the content types available
      */
 	public function add_image_content( $content_types ) {
-		$content_types['image'] = 'Static Image';
+		$content_types['image'] = __( 'Static Image', 'blox' );
 		return $content_types;
 	}
 
 
-	/* Generates all of the image ralated settings fields
+	/**
+	 * Generates all of the image ralated settings fields
      *
      * @since 1.0.0
      *
@@ -131,7 +133,7 @@ class Blox_Content_Image {
 						<input type="text" class="blox-force-hidden blox-custom-image-id" name="<?php echo $name_prefix; ?>[image][custom][id]" value="<?php echo isset( $get_prefix['image']['custom']['id'] ) ? esc_attr( $get_prefix['image']['custom']['id'] ) : ''; ?>" />
 						<input type="text" class="blox-force-hidden blox-custom-image-url" name="<?php echo $name_prefix; ?>[image][custom][url]" value="<?php echo isset( $get_prefix['image']['custom']['url'] ) ? esc_attr( $get_prefix['image']['custom']['url'] ) : ''; ?>" />
 
-						<input type="submit" class="button button-primary" name="blox_upload_button" id="blox_upload_button" value="Select an Image" onclick="blox_staticImageUpload.uploader(<?php echo $id; ?>); return false;" /> &nbsp;
+						<input type="submit" class="button button-primary" name="blox_upload_button" id="blox_upload_button" value="<?php _e( 'Select an Image', 'blox' );?>" onclick="blox_staticImageUpload.uploader(<?php echo $id; ?>); return false;" /> &nbsp;
 						<a class="button blox-remove-image"><?php _e( 'Remove Image', 'blox' ); ?></a><br/>
 
 						<div class="blox-image-preview-wrapper">
@@ -150,6 +152,13 @@ class Blox_Content_Image {
 								<span><?php _e( 'Alt', 'blox' ); ?></span>
 								<input type="text" class="blox-custom-image-alt" name="<?php echo $name_prefix; ?>[image][custom][alt]" value="<?php echo isset( $get_prefix['image']['custom']['alt'] ) ? esc_attr( $get_prefix['image']['custom']['alt'] ) : ''; ?>" />
 							</label>
+							<label class="blox-subtitle">
+								<span><?php _e( 'Class', 'blox' ); ?></span>
+								<input type="text" class="blox-custom-image-css" name="<?php echo $name_prefix; ?>[image][custom][css]" value="<?php echo isset( $get_prefix['image']['custom']['css'] ) ? esc_attr( $get_prefix['image']['custom']['css'] ) : ''; ?>" placeholder="<?php _e( 'e.g. class-one class-two', 'blox' );?>"/>
+								<div class="blox-description">
+									<?php  _e( 'Enter a space separated list of custom CSS classes to add to the image.', 'blox' ); ?>						
+								</div>
+							</label>
 						</div>
 
 					</td>
@@ -157,7 +166,7 @@ class Blox_Content_Image {
 				<tr>
 					<th scope="row"><?php _e( 'Image Size', 'blox' ); ?></th>
 					<td>
-						<select class="genesis-image-size-selector" name="<?php echo $name_prefix; ?>[image][size][size_type]">
+						<select class="genesis-image-size-selector blox-has-help" name="<?php echo $name_prefix; ?>[image][size][size_type]">
 							<?php foreach ( (array) $this->get_image_sizes() as $i => $size ) { ?>
 								<option value="<?php echo $size['value']; ?>" <?php ! empty( $get_prefix['image']['size']['size_type'] ) ? selected( $size['value'], $get_prefix['image']['size']['size_type'] ) : '';?>><?php echo $size['name']; ?></option>
 							<?php } ?>
@@ -168,13 +177,17 @@ class Blox_Content_Image {
 							<input type="text" name="<?php echo $name_prefix; ?>[image][size][custom][width]" value="<?php echo ! empty( $get_prefix['image']['size']['custom']['width'] ) ? esc_attr( $get_prefix['image']['size']['custom']['width'] ) : ''; ?>"/> <span>×</span> <input type="text" name="<?php echo $name_prefix; ?>[image][size][custom][height]" value="<?php echo ! empty( $get_prefix['image']['size']['custom']['height'] ) ? esc_attr( $get_prefix['image']['size']['custom']['height'] ) : ''; ?>"/> <strong>px</strong>
 						</div>
 						-->
-
-						<div class="blox-description"><?php _e( 'If you are using a Custom Image, note that the size selection will not be reflected in the image preview above.', 'blox' ); ?></div>
+						<span class="blox-help-text-icon">
+							<a href="#" class="dashicons dashicons-editor-help" onclick="helpIcon.toggleHelp(this);return false;"></a>
+						</span>
+						<div class="blox-help-text top">
+							<?php _e( 'If you are using a Custom Image, note that the size selection will not be reflected in the image preview above.', 'blox' ); ?>
+						</div>
 					</td>
 				</tr>
 				<tr>
 					<th scope="row"><?php _e( 'Image Link', 'blox' ); ?></th>
-					<td class="blox-check-correct">
+					<td>
 						<label class="blox-image-link-enable">
 							<input type="checkbox" name="<?php echo $name_prefix; ?>[image][link][enable]" value="1" <?php ! empty( $get_prefix['image']['link']['enable'] ) ? checked( $get_prefix['image']['link']['enable'] ) : ''; ?> />
 							<?php _e( 'Check to enable', 'blox' ); ?>
@@ -192,13 +205,24 @@ class Blox_Content_Image {
 								<input type="checkbox" name="<?php echo $name_prefix; ?>[image][link][target]" value="1" <?php ! empty( $get_prefix['image']['link']['target'] ) ? checked( $get_prefix['image']['link']['target'] ) : ''; ?> />
 								<?php _e( 'Open link in new window/tab', 'blox' ); ?>
 							</label>
+							<label class="blox-subtitle">
+								<span><?php _e( 'Rel', 'blox' ); ?></span>
+								<input type="text" name="<?php echo $name_prefix; ?>[image][link][rel]" value="<?php echo ! empty( $get_prefix['image']['link']['rel'] ) ? esc_attr( $get_prefix['image']['link']['rel'] ) : ''; ?>" />
+							</label>
+							<label class="blox-subtitle">
+								<span><?php _e( 'Class', 'blox' ); ?></span>
+								<input type="text" name="<?php echo $name_prefix; ?>[image][link][css]" value="<?php echo ! empty( $get_prefix['image']['link']['css'] ) ? esc_attr( $get_prefix['image']['link']['css'] ) : ''; ?>" placeholder="<?php _e( 'e.g. class-one class-two', 'blox' );?>"/>
+								<div class="blox-description">
+									<?php  _e( 'Enter a space separated list of custom CSS classes to add to the image link.', 'blox' ); ?>						
+								</div>
+							</label>
 						</div>
 					</td>
 				</tr>
 				<tr>
 					<th scope="row"><?php _e( 'Image Caption', 'blox' ); ?></th>
 					<td>
-						<textarea class="blox-code-textbox" name="<?php echo $name_prefix; ?>[image][caption]" rows="2" ><?php echo ! empty( $get_prefix['image']['caption'] ) ? esc_attr( $get_prefix['image']['caption'] ) : ''; ?></textarea>
+						<textarea class="blox-textarea-code" name="<?php echo $name_prefix; ?>[image][caption]" rows="2" ><?php echo ! empty( $get_prefix['image']['caption'] ) ? esc_attr( $get_prefix['image']['caption'] ) : ''; ?></textarea>
 						<div class="blox-description">
 							<?php _e( 'Only basic HTML and shortcodes are accepted. Leave blank for no caption.', 'blox' ); ?>
 						</div>
@@ -206,7 +230,7 @@ class Blox_Content_Image {
 				</tr>
 				<tr>
 					<th scope="row"><?php _e( 'Set As Background', 'blox' ); ?></th>
-					<td class="blox-check-correct">
+					<td>
 						<label>
 							<input type="checkbox" name="<?php echo $name_prefix; ?>[image][background]" value="1" <?php ! empty( $get_prefix['image']['background'] ) ? checked( $get_prefix['image']['background'] ) : ''; ?> />
 							<?php _e( 'Check to enable', 'blox' ); ?>
@@ -226,7 +250,8 @@ class Blox_Content_Image {
 	}
 
 
-	/* Saves all of the image ralated settings
+	/**
+	 * Saves all of the image ralated settings
      *
      * @since 1.0.0
 	 *
@@ -243,6 +268,7 @@ class Blox_Content_Image {
 		$settings['custom']['url']				= esc_url( $name_prefix['custom']['url'] );
 		$settings['custom']['title']			= trim( strip_tags( $name_prefix['custom']['title'] ) );
 		$settings['custom']['alt']				= trim( strip_tags( $name_prefix['custom']['alt'] ) );
+		$settings['custom']['css']				= trim( strip_tags( $name_prefix['custom']['css'] ) );
 		$settings['size']['size_type']			= esc_attr( $name_prefix['size']['size_type'] );
 		//$settings['size']['custom']['width']	= absint( $name_prefix['size']['custom']['width'] );
 		//$settings['size']['custom']['height']	= absint( $name_prefix['size']['custom']['height'] );
@@ -250,7 +276,8 @@ class Blox_Content_Image {
 		$settings['link']['url']				= $name_prefix['link']['url'] == 'http://' ? '' : esc_url( $name_prefix['link']['url'] );
 		$settings['link']['title']				= trim( strip_tags( $name_prefix['link']['title'] ) );
 		$settings['link']['target']				= isset( $name_prefix['link']['target'] ) ? 1 : 0;
-		//$settings['link']['rel']				= trim( strip_tags( $name_prefix['link']['rel'] ) );
+		$settings['link']['rel']				= trim( strip_tags( $name_prefix['link']['rel'] ) );
+		$settings['link']['css']				= trim( strip_tags( $name_prefix['link']['css'] ) );
 		$settings['caption']					= trim( strip_tags( $name_prefix['caption'] ) );
 		$settings['background']					= isset( $name_prefix['background'] ) ? 1 : 0;
 
@@ -259,7 +286,8 @@ class Blox_Content_Image {
 
 
 
-	/* Prints all of the image content to the frontend
+	/**
+	 * Prints all of the image content to the frontend
      *
      * @since 1.0.0
      *
@@ -287,7 +315,7 @@ class Blox_Content_Image {
 				$image =  esc_url( $content_data['image']['custom']['url'] );
 			} else {
 				if ( ! empty( $content_data['image']['custom']['id'] ) ) {
-					$image = wp_get_attachment_image( $content_data['image']['custom']['id'], $content_data['image']['size']['size_type'], false, array( 'class' => 'entry-image', 'title' => $content_data['image']['custom']['title'], 'alt' => $content_data['image']['custom']['alt'] ) );
+					$image = wp_get_attachment_image( $content_data['image']['custom']['id'], $content_data['image']['size']['size_type'], false, array( 'class' => 'entry-image ' . $content_data['image']['custom']['css'], 'title' => $content_data['image']['custom']['title'], 'alt' => $content_data['image']['custom']['alt'] ) );
 				}
 			}
 
@@ -313,7 +341,7 @@ class Blox_Content_Image {
 
 			$target = isset( $content_data['image']['link']['target'] ) ? '_blank' : '_self';
 
-			$link_start = '<a href="' . $content_data['image']['link']['url'] . '" target="' . $target . '" title="' . $content_data['image']['link']['title'] . '">';
+			$link_start = '<a href="' . $content_data['image']['link']['url'] . '" target="' . $target . '" title="' . $content_data['image']['link']['title'] . '" class="' . $content_data['image']['link']['css'] . '" rel="' . $content_data['image']['link']['rel'] . '">';
 			$link_end   = '</a>';
 		} else {
 			$link_start = '';

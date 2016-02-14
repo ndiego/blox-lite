@@ -2,14 +2,14 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
 /**
  * Posttype class.
  *
- * @since 1.0.0
+ * @since 	1.0.0
  *
- * @package Blox
- * @author  Nick Diego
+ * @package	Blox
+ * @author 	Nick Diego
+ * @license http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 class Blox_Posttype {
 
@@ -68,7 +68,7 @@ class Blox_Posttype {
 				'not_found_in_trash' => __( 'No global blocks found in trash.', 'blox' ),
 				'parent_item_colon'  => '',
 				'all_items'          => __( 'All Global Blocks', 'blox' ),
-				'menu_name'          => __( 'Blox Lite', 'blox' )
+				'menu_name'          => $this->base->plugin_name
 			)
 		);
 

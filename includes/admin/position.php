@@ -2,14 +2,14 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
 /**
  * Creates the poistion tab and loads in all the available options
  *
- * @since 1.0.0
+ * @since 	1.0.0
  *
- * @package Blox
- * @author  Nicholas Diego
+ * @package	Blox
+ * @author 	Nick Diego
+ * @license http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 class Blox_Position {
 
@@ -53,9 +53,14 @@ class Blox_Position {
         // Load the base class object.
         $this->base = Blox_Lite_Main::get_instance();
 
+		// Setup position settings
 		add_filter( 'blox_metabox_tabs', array( $this, 'add_position_tab' ), 5 );
 		add_action( 'blox_get_metabox_tab_position', array( $this, 'get_metabox_tab_position' ), 10, 4 );
 		add_filter( 'blox_save_metabox_tab_position', array( $this, 'save_metabox_tab_position' ), 10, 3 );
+		
+		// Add the admin column data for global blocks
+		add_filter( 'blox_admin_column_titles', array( $this, 'admin_column_title' ), 2, 1 );
+		add_action( 'blox_admin_column_data_position', array( $this, 'admin_column_data' ), 10, 2 );
     }
 
 
@@ -161,7 +166,7 @@ class Blox_Position {
 							<?php } ?>
 						</select>
 						<div class="blox-description">
-							<?php echo sprintf( __( 'Please refer to the %1$sGenesis Visual Hook Guide%2$s for hook reference and position information.', 'blox' ), '<a href="http://genesistutorials.com/visual-hook-guide/" alt="Genesis Visual Hook Guide" target="_blank">', '</a>' ); ?>
+							<?php echo sprintf( __( 'Please refer to the %1$sGenesis Visual Hook Guide%2$s for hook reference and position information.', 'blox' ), '<a href="http://genesistutorials.com/visual-hook-guide/" alt="' . __( 'Genesis Visual Hook Guide', 'blox' ) . '" target="_blank">', '</a>' ); ?>
 						</div>
 					</td>
 				</tr>
@@ -210,8 +215,39 @@ class Blox_Position {
 		$settings['custom']['position'] = esc_attr( $name_prefix['custom']['position'] );
 		$settings['custom']['priority'] = absint( $name_prefix['custom']['priority'] );
 
-		return apply_filters( 'blox_save_position_settings', $settings, $name_prefix, $post_id, $global );
+		return apply_filters( 'blox_save_position_settings', $settings, $post_id, $name_prefix, $global );
 	}
+	
+	
+	/**
+     * Add admin column for global blocks
+     *
+     * @param string $post_id
+     * @param array $block_data
+     */
+    public function admin_column_title( $columns ) {
+    	$columns['position'] = __( 'Position', 'blox' );
+    	return $columns; 
+    }
+    
+    
+    /**
+     * Print the admin column data for global blocks.
+     *
+     * @param string $post_id
+     * @param array $block_data
+     */
+    public function admin_column_data( $post_id, $block_data ) {
+		if ( ! empty( $block_data['position']['position_type'] ) ) {
+			if ( $block_data['position']['position_type'] == 'default' ) {
+				echo blox_get_option( 'global_default_position', 'genesis_after_header' );
+			} else if ( $block_data['position']['custom'] ) {
+				echo ! empty( $block_data['position']['custom']['position'] ) ? $block_data['position']['custom']['position'] : '<span style="color:#a00;font-style:italic;">' . __( 'Error', 'blox' ) . '</span>';
+			}
+		} else {
+			echo '<span style="color:#a00;font-style:italic;">' . __( 'Error', 'blox' ) . '</span>';
+		}
+    }
 
 
     /**

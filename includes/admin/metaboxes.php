@@ -2,14 +2,14 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
 /**
  * The main metabox class which creates all admin metaboxes
  *
- * @since 1.0.0
+ * @since 	1.0.0
  *
- * @package Blox
- * @author  Nicholas Diego
+ * @package	Blox
+ * @author 	Nick Diego
+ * @license http://opensource.org/licenses/gpl-2.0.php GNU Public Licenses
  */
 class Blox_Metaboxes {
 
@@ -22,6 +22,7 @@ class Blox_Metaboxes {
      */
     public static $instance;
 
+
     /**
      * Path to the file.
      *
@@ -31,6 +32,7 @@ class Blox_Metaboxes {
      */
     public $file = __FILE__;
 
+
     /**
      * Holds the base class object.
      *
@@ -39,6 +41,7 @@ class Blox_Metaboxes {
      * @var object
      */
     public $base;
+
 
     /**
      * Primary class constructor.
@@ -92,9 +95,6 @@ class Blox_Metaboxes {
             add_action( 'admin_head', array( $this, 'global_admin_css' ) );
         }
         
-        // Allow the use of the media uploader on global blocks pages
-        wp_enqueue_media( 'blox' );
-        
         // Fire a hook to load in custom metabox styles.
         do_action( 'blox_metabox_styles' );
     }
@@ -113,7 +113,6 @@ class Blox_Metaboxes {
 
         // Fire action for CSS on global Blox post type screens.
         do_action( 'blox_global_admin_css' );
-
     }
 
 
@@ -149,12 +148,30 @@ class Blox_Metaboxes {
        	// Used for adding local blocks via ajax 
         wp_localize_script( 
         	$this->base->plugin_slug . '-metabox-scripts', 
-        	'blox_localize', 
+        	'blox_localize_metabox_scripts', 
         	array( 
-        		'ajax_url' 		  	   => admin_url( 'admin-ajax.php' ), 
-        		'blox_add_block_nonce' => wp_create_nonce( 'blox_add_block_nonce' ) 
+        		'ajax_url' 		  	   		=> admin_url( 'admin-ajax.php' ), 
+        		'blox_add_block_nonce' 		=> wp_create_nonce( 'blox_add_block_nonce' ) ,
+        		'confirm_remove'			=> __( 'Are you sure you want to remove this content block? This action cannot be undone.', 'blox' ),
+        		'location_test_hide'		=> sprintf( __( 'Choose the pages you would like the content block to be %1$shidden%2$s on.', 'blox' ), '<strong>', '</strong>' ),
+        		'location_test_show'		=> sprintf( __( 'Choose the pages you would like the content block to be %1$svisible%2$s on.', 'blox' ), '<strong>', '</strong>' ),
+        		
+        		'image_media_title'			=> __( 'Choose or Upload an Image', 'blox' ),
+        		'image_media_button'		=> __( 'Use Selected Image', 'blox' ),
+        		
+        		'editor_hide_html'			=> __( 'Hide HTML', 'blox' ),
+        		'editor_show_html'			=> __( 'Show HTML', 'blox' ),
+        		
+        		'slideshow_media_title'		=> __( 'Choose or Upload an Image(s)', 'blox' ),
+        		'slideshow_media_button'	=> __( 'Insert Image(s)', 'blox' ),
+        		'slideshow_details'			=> __( 'Details', 'blox' ),
+        		'slideshow_remove'			=> __( 'Remove', 'blox' ),
+        		'slideshow_confirm_remove' 	=> __( 'Are you sure you want to remove this image from the slideshow? This action cannot be undone.', 'blox' ),
         	)
         );
+        
+        // Allow the use of the media uploader on global blocks pages
+        wp_enqueue_media( 'blox' );
         
         // Fire a hook to load custom metabox scripts.
         do_action( 'blox_metabox_scripts' );
@@ -171,13 +188,13 @@ class Blox_Metaboxes {
 		global $typenow;
         
         // Check if local blocks are enabled and user has permission to manage local blocks
-		$local_enable      = blox_get_option( 'local_enable', true );
+		$local_enable      = blox_get_option( 'local_enable', false );
 		$local_permissions = blox_get_option( 'local_permissions', 'manage_options' );		
        	
         if ( $local_enable && current_user_can( $local_permissions ) ) { 
        		
        		// Get all post types that are allowed to have local blocks
-        	$local_enabled_pages = blox_get_option( 'local_enabled_pages', array( 'post', 'page' ) );
+        	$local_enabled_pages = blox_get_option( 'local_enabled_pages', '' );
         	$local_metabox_title = blox_get_option( 'local_metabox_title', __( 'Local Content Blocks', 'blox' ) );
 
 			// Loops through allowed post types and add the local block metabox
@@ -191,7 +208,7 @@ class Blox_Metaboxes {
 		// Add the global block metabox
 		if ( $typenow == 'blox' ) {
 			
-			// Remove all unnecessary metaboxes, one not added by this plugin
+			// Remove all unnecessary metaboxes, ones not added by this plugin
         	$this->remove_all_the_metaboxes();
 		
             add_meta_box( 'global_block_metabox', __( 'Block Settings', 'blox' ), array( $this, 'global_block_metabox_callback' ), 'blox', 'normal', 'low' );
@@ -341,7 +358,6 @@ class Blox_Metaboxes {
 					$name_prefix = $_POST['blox_content_blocks_data'][$tab];
 									
 					$settings[$tab] = apply_filters( 'blox_save_metabox_tab_' . $tab, null, $name_prefix, true );
-
 				}
 			}
 			
@@ -451,17 +467,25 @@ class Blox_Metaboxes {
 						<input type="text" name="blox_content_blocks_data[<?php echo $name_id; ?>][title]" placeholder="<?php _e( 'Content Block Title' ); ?>" value="<?php echo $block_title . $copy_text; ?>">
 					</div>
 					<div class="blox-content-block-controls">
-						<a class="blox-replicate-block" href="#">Replicate</a>
-						<a class="blox-remove-block" href="#">Delete</a>
+						<a class="blox-replicate-block" href="#"><?php _e( 'Replicate', 'blox' );?></a>
+						<a class="blox-remove-block" href="#"><?php _e( 'Delete', 'blox' );?></a>
 					</div>
 				</div>
 				<div class="blox-content-block-details">
 					<div class="blox-content-block-details-wrap">
 						<span class="blox-content-block-type">
-							<?php echo ! empty( $data[$name_id]['content']['content_type'] ) ? ucfirst( $data[$name_id]['content']['content_type'] ) : ''; ?>
-							<?php if ( empty( $data[$name_id]['content']['content_type'] ) || ! array_key_exists( $data[$name_id]['content']['content_type'], $this->get_content_types() ) ) { ?>
-								- <span class="blox-error"><?php _e( 'Error', 'blox' ); ?></span>
-							<?php } ?>
+							<?php 
+								if ( empty( $data[$name_id] ) ) {
+									_e( 'Not Saved', 'blox' );
+								} else if ( ! empty( $data[$name_id]['content']['content_type'] ) ) {
+									echo ucfirst( $data[$name_id]['content']['content_type'] );  
+									if ( ! array_key_exists( $data[$name_id]['content']['content_type'], $this->get_content_types() ) ) {
+										echo ' - <span class="blox-error">' . __( 'Error', 'blox' ) . '</span>';
+									}
+								} else {
+									echo '<span class="blox-error">' . __( 'Error', 'blox' ) . '</span>';
+								}
+							?>
 						</span>
 					</div>
 					<a class="blox-content-block-edit" title="<?php _e( 'Edit Content Block', 'blox' ); ?>" href="#"></a>
@@ -536,8 +560,7 @@ class Blox_Metaboxes {
 
 				$name_prefix = $_POST['blox_content_blocks_data'][$id];
 				
-				$settings[$id] = array();
-				
+				$settings[$id] 				= array();
 				$settings[$id]['editing'] 	= isset( $name_prefix['editing'] ) ? 1 : 0;
 				$settings[$id]['title']		= trim( strip_tags( $name_prefix['title'] ) );
 				
@@ -601,7 +624,7 @@ class Blox_Metaboxes {
     public function get_skipped_posttypes( $blox = false ) {
 
         $post_types = get_post_types();
-        $local_enabled_pages = blox_get_option( 'local_enabled_pages', array( 'post', 'page' ) );
+        $local_enabled_pages = blox_get_option( 'local_enabled_pages', '' );
         
         // Remove the blox post type from the "skipped" array
         if ( ! $blox ) {

@@ -58,6 +58,9 @@ h2.nav-tab-wrapper a {
 #tab_container td .button {
 	margin-left: 5px;
 }
+#tab_container .header-container {
+	padding-top: 7px;
+}
 
 #tab_container p.edit-license.description {
 	display: none;
@@ -69,23 +72,53 @@ h2.nav-tab-wrapper a {
 #tab_container .text-large { width: 400px; }
 #tab_container .text-full { width: 100%; }
 
-/* Styling for alerts */
-.blox-alert {
-	color: #444;
+textarea.blox-textarea-code {
+	font-family: Consolas,Monaco,monospace;
+	padding: 10px;
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+}
+
+
+/* Styles for Blox Addons */
+.blox-addon-container p {
+	margin: 25px 0;
+}
+.blox-addon {
+	float: left;
+	background-color: #fff;
+	margin: 0 20px 20px 0;
 	padding: 15px;
-	margin: 10px 0px 10px;
-	border: 1px solid transparent;
-	border-radius: 4px;
-	background-color: #ffe2da;
-	border-color: #e4a697;
+	border: 1px solid #ccc;
+	width: 300px;
+	position: relative;
+	overflow: hidden;
 }
-.blox-alert.narrow {
-	margin-left: 10px;
-	margin-right: 10px;
+.blox-addon-title {
+	font-size: 14px;
+	margin: 0 0 8px;
 }
-.blox-alert-warning {
-	background-color: #fffae7;
-	border-color: #ede0a9;
+.blox-addon-image {
+	width: 100%;
+}
+.blox-addon-uc {
+	background-color: #333;
+	color: #fff;
+	font-size: 10px;
+	letter-spacing: 2px;
+	padding: 6px 12px;
+	position: absolute;	
+	right: -45px;
+	text-align: center;
+	text-transform: uppercase;
+	top: 30px;
+	width: 160px;
+	
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
 }
 
 @media only screen and (max-width: 599px) {
@@ -104,5 +137,8 @@ h2.nav-tab-wrapper a {
 	}
 	h2.nav-tab-wrapper a:nth-child(odd) {
 		margin-right: 2%;
+	}
+	#tab_container .header-container {
+		padding-top: 0;
 	}
 }
