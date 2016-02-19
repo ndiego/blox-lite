@@ -104,10 +104,6 @@ class Blox_Lite_Main {
         // Load the plugin.
         add_action( 'init', array( $this, 'init' ), 0 );
         
-        // Make sure our default settings are set during activation if blox_settings does 
-       	// not exist (i.e. we have a brand new install)
-       	register_activation_hook( __FILE__ , array( $this, 'set_default_settings' ) );
-
         // Add additional links to the plugin's row on the admin plugin page
         add_filter( 'plugin_action_links', array( $this, 'plugin_action_links' ), 10, 2 );
         add_filter( 'plugin_row_meta', array( $this, 'plugin_row_meta' ), 10, 2 );
@@ -179,14 +175,14 @@ class Blox_Lite_Main {
 
         // Run hook once Blox has been initialized.
         do_action( 'blox_init' );
+        
+        // Settings class
+		require plugin_dir_path( __FILE__ ) . 'includes/global/settings.php';
 
        	// Plugin utility classes
         require plugin_dir_path( __FILE__ ) . 'includes/global/common.php';
         require plugin_dir_path( __FILE__ ) . 'includes/global/posttype.php';
 		require plugin_dir_path( __FILE__ ) . 'includes/global/action-storage.php';
-
-		// Settings class
-		require plugin_dir_path( __FILE__ ) . 'includes/global/settings.php';
 		
 		// Content block settings classes that need to be global in scope
 		require plugin_dir_path( __FILE__ ) . 'includes/global/location.php';
@@ -217,43 +213,9 @@ class Blox_Lite_Main {
         	// Class for generating all frontend markup
 			require plugin_dir_path( __FILE__ ) . 'includes/frontend/frontend.php';
         }
-    }
-    
-    
-    /**
-	 * This function runs on plugin activation. It checks if the option blox_settings is 
-	 * set, and if not it creates it an fills it with our default settings.
-	 *
-	 * @since 1.0.0
-	 */
-	public function set_default_settings() {
+        
 
-		if ( get_option( 'blox_settings' ) != false ) {
-			
-			// The option already exists so bail...
-			return;
-		} else {
-		
-			// The option does not exist, so add it.
-			add_option( 'blox_settings' );
-			
-			// Get and set the default settings
-			$instance = Blox_Settings::get_instance();
-        	$settings = $instance->get_registered_settings();		
-			$defaults = array();
-			
-			if ( ! empty( $settings[$tab] ) ) {
-				foreach ( $settings[$tab] as $key => $value ) {
-					if ( ! empty( $value[ 'default' ] ) ) {
-						$defaults[$key] = $value[ 'default' ];
-					}
-				}
-			}
-			
-			// Update the option with the defaults
-			update_option( 'blox_settings', $defaults );
-		}
-	}
+    }
 
 
     /**

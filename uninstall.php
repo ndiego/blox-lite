@@ -23,7 +23,9 @@ include_once( 'blox-lite.php' );
 
 global $wpdb;
 
-if ( blox_get_option( 'uninstall_on_delete' ) ) {
+$blox_settings = get_option( 'blox_settings' );
+
+if ( $blox_settings['uninstall_on_delete'] == 1 ) {
 
 	// Delete all Global Blocks
 	$global_blocks = get_posts( array( 'post_type' => 'blox', 'post_status' => 'any', 'numberposts' => -1, 'fields' => 'ids' ) );

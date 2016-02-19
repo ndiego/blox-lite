@@ -158,7 +158,7 @@ class Blox_Style {
 					<th scope="row"><?php _e( 'Disable Default CSS', 'blox' ); ?></th>
 					<td>
 						<label>
-							<input type="checkbox" name="<?php echo $name_prefix; ?>[disable_default_css]" value="1" <?php ! empty( $get_prefix['disable_default_css'] ) ? checked( $get_prefix['disable_default_css'] ) : ''; ?> />
+							<input type="checkbox" name="<?php echo $name_prefix; ?>[disable_default_css]" value="1" <?php ! empty( $get_prefix['disable_default_css'] ) ? checked( esc_attr( $get_prefix['disable_default_css'] ) ) : ''; ?> />
 							<?php _e( 'Check to disable all default styles on this block', 'blox' ); ?>
 						</label>
 						<span class="blox-help-text-icon">
@@ -173,7 +173,7 @@ class Blox_Style {
 					<th scope="row"><?php _e( 'Enable Wrap', 'blox' ); ?></th>
 					<td>
 						<label>
-							<input type="checkbox" name="<?php echo $name_prefix; ?>[enable_wrap]" value="1" <?php ! empty( $get_prefix['enable_wrap'] ) ? checked( $get_prefix['enable_wrap'] ) : ''; ?> />
+							<input type="checkbox" name="<?php echo $name_prefix; ?>[enable_wrap]" value="1" <?php ! empty( $get_prefix['enable_wrap'] ) ? checked( esc_attr( $get_prefix['enable_wrap'] ) ) : ''; ?> />
 							<?php echo sprintf( __( 'Check to include the %1$swrap%2$s CSS selector in the block markup.', 'blox' ), '<code>', '</code>' ); ?>
 						</label>
 						<span class="blox-help-text-icon">

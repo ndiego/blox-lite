@@ -52,6 +52,9 @@ class Blox_Settings {
 
         // Load the base class object.
         $this->base = Blox_Lite_Main::get_instance();
+        
+        // Set default settings for a new install
+        $this->set_default_settings();
         		
 		add_action( 'admin_menu', array( $this, 'add_menu_links' ), 10 );
 		add_action( 'admin_init', array( $this, 'register_settings' ), 10 );
@@ -59,6 +62,44 @@ class Blox_Settings {
 		// Enqueue Setting scripts and styles
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
     }
+    
+    
+    /**
+	 * This function is used when the plugin is first installed. It checks if the option
+	 * blox_settings is set, and if not it creates it an fills it with our default settings.
+	 *
+	 * @since 1.0.0
+	 */
+	public function set_default_settings() {
+
+		if ( get_option( 'blox_settings' ) != false ) {
+			
+			// The option already exists so bail...
+			return;
+		} else {
+		
+			// The option does not exist, so add it.
+			add_option( 'blox_settings' );
+			
+			// Get and set the default settings
+        	$settings = $this->get_registered_settings();
+        	$tabs     = $this->get_settings_tabs();		
+			$defaults = array();
+			
+			foreach ( $tabs as $tab => $tab_name ) {
+				if ( ! empty( $settings[$tab] ) ) {
+					foreach ( $settings[$tab] as $key => $value ) {
+						if ( ! empty( $value[ 'default' ] ) ) {
+							$defaults[$key] = $value[ 'default' ];
+						}
+					}
+				}
+			}
+			
+			// Update the option with the defaults
+			update_option( 'blox_settings', $defaults );
+		}
+	}
     
     
     /**
@@ -562,7 +603,7 @@ class Blox_Settings {
 
 		global $blox_options;
 
-		$checked = isset( $blox_options[ $args['id'] ] ) ? checked( 1, $blox_options[ $args['id'] ], false ) : '';
+		$checked = isset( $blox_options[ $args['id'] ] ) ? checked( 1, esc_attr( $blox_options[ $args['id'] ] ), false ) : '';
 		$html = '<label><input type="checkbox" id="blox_settings[' . $args['id'] . ']" name="blox_settings[' . $args['id'] . ']" value="1" ' . $checked . '/> ' . $args['label'] . '</label>';
 		$html .= ! empty( $args['desc'] ) ? ( '<p class="description">' . $args['desc'] . '</p>' ) : '';
 
@@ -647,7 +688,7 @@ class Blox_Settings {
 		$html = '<select id="blox_settings[' . $args['id'] . ']" name="blox_settings[' . $args['id'] . ']" />';
 
 		foreach ( $args['options'] as $option => $name ) {
-			$selected = selected( $option, $value, false );
+			$selected = selected( $option, esc_attr( $value ), false );
 			$html .= '<option value="' . $option . '" ' . $selected . '>' . $name . '</option>';
 		}
 
@@ -685,7 +726,7 @@ class Blox_Settings {
 		foreach ( $hooks as $sections => $section ) {
 			$html .= '<optgroup label="' . $section['name'] . '">';
 			foreach ( $section['hooks'] as $hooks => $hook ) {
-				$selected = selected( $hooks, $value, false );
+				$selected = selected( $hooks, esc_attr( $value ), false );
 				$html .= '<option value="' . $hooks . '" ' . $selected . '>' . $hook['name'] . '</option>';
 			}
 			$html .= '</optgroup>';
@@ -710,7 +751,8 @@ class Blox_Settings {
 	public function enabled_pages_callback( $args ) {
 
 		global $blox_options;
-
+		
+		// Array of all enabled page types
 		$enabled_pages = isset( $blox_options[ $args['id'] ] ) ? $blox_options[ $args['id'] ] : false;
 		
 		?>

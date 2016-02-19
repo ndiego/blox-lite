@@ -310,7 +310,7 @@ function blox_frontend_content( $args, $parameters ) {
 			do_action( 'blox_print_content_' . $content_data['content_type'], $content_data, $id, $block, $global );
 		} else {
 			?>
-			<div id="<?php echo 'blox_' . $block_scope . '_' . $id; ?>" class="blox-container <?php echo 'blox-content-' . $content_data['content_type']; ?> <?php echo $blox_theme; ?> <?php echo 'blox-scope-' . $block_scope; ?> <?php echo ! empty( $style_data['custom_classes'] ) ? esc_attr( $style_data['custom_classes'] ) : '';?>">
+			<div id="<?php echo 'blox_' . $block_scope . '_' . esc_attr( $id ); ?>" class="blox-container <?php echo 'blox-content-' . esc_attr( $content_data['content_type'] ); ?> <?php echo $blox_theme; ?> <?php echo 'blox-scope-' . $block_scope; ?> <?php echo ! empty( $style_data['custom_classes'] ) ? esc_attr( $style_data['custom_classes'] ) : '';?>">
 				<div class="blox-wrap <?php echo $style_data['enable_wrap'] == 1 ? 'wrap' : '';?>">
 					<?php do_action( 'blox_print_content_' . $content_data['content_type'], $content_data, $id, $block, $global ); ?>
 				</div>

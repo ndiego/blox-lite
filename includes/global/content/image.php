@@ -88,7 +88,14 @@ class Blox_Content_Image {
 		// Check if current post type supports Featured Images (thumbnail), ignore on global blocks
 		// If the block was generated via ajax (local blocks) we need to get the post type using the post_id
 		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ){
-			$thumbnail = post_type_supports( get_post_type( $_POST['post_id'] ), 'thumbnail' ) && ! $global ? true : false;
+			
+			$post_id   = is_numeric( $_POST['post_id'] ) ? $_POST['post_id'] : '';
+			
+			if ( $post_id ) {
+				$thumbnail = post_type_supports( get_post_type( $_POST['post_id'] ), 'thumbnail' ) && ! $global ? true : false;
+			} else {
+				$thumbnail = false;
+			}
 		} else {
 			$thumbnail = post_type_supports( get_post_type(), 'thumbnail' ) && ! $global ? true : false;
 		}
@@ -102,11 +109,11 @@ class Blox_Content_Image {
 					<th scope="row"><?php _e( 'Image Type', 'blox' ); ?></th>
 					<td>
 						<select name="<?php echo $name_prefix; ?>[image][image_type]" class="blox-image-type blox-has-help">
-							<option value="featured" <?php echo ! empty( $get_prefix['image']['image_type'] ) ? selected( $get_prefix['image']['image_type'], 'featured' ) : ''; ?> <?php if ( ! $global && ! $thumbnail ) echo 'disabled'; ?>><?php _e( 'Featured Image', 'blox' ); ?></option>
-							<option value="custom" <?php echo ! empty( $get_prefix['image']['image_type'] ) ? selected( $get_prefix['image']['image_type'], 'custom' ) : ''; ?>><?php _e( 'Custom Image', 'blox' ); ?></option>
+							<option value="featured" <?php echo ! empty( $get_prefix['image']['image_type'] ) ? selected( esc_attr( $get_prefix['image']['image_type'] ), 'featured' ) : ''; ?> <?php if ( ! $global && ! $thumbnail ) echo 'disabled'; ?>><?php _e( 'Featured Image', 'blox' ); ?></option>
+							<option value="custom" <?php echo ! empty( $get_prefix['image']['image_type'] ) ? selected( esc_attr( $get_prefix['image']['image_type'] ), 'custom' ) : ''; ?>><?php _e( 'Custom Image', 'blox' ); ?></option>
 
 							<?php if ( $global ) { ?>
-								<option value="featured-custom" <?php echo ! empty( $get_prefix['image']['image_type'] ) ? selected( $get_prefix['image']['image_type'], 'featured-custom' ) : ''; ?>><?php _e( 'Featured or Custom Image', 'blox' ); ?></option>
+								<option value="featured-custom" <?php echo ! empty( $get_prefix['image']['image_type'] ) ? selected( esc_attr( $get_prefix['image']['image_type'] ), 'featured-custom' ) : ''; ?>><?php _e( 'Featured or Custom Image', 'blox' ); ?></option>
 							<?php } ?>
 						</select>						
 						<span class="blox-help-text-icon">
@@ -168,7 +175,7 @@ class Blox_Content_Image {
 					<td>
 						<select class="genesis-image-size-selector blox-has-help" name="<?php echo $name_prefix; ?>[image][size][size_type]">
 							<?php foreach ( (array) $this->get_image_sizes() as $i => $size ) { ?>
-								<option value="<?php echo $size['value']; ?>" <?php ! empty( $get_prefix['image']['size']['size_type'] ) ? selected( $size['value'], $get_prefix['image']['size']['size_type'] ) : '';?>><?php echo $size['name']; ?></option>
+								<option value="<?php echo $size['value']; ?>" <?php ! empty( $get_prefix['image']['size']['size_type'] ) ? selected( $size['value'], esc_attr( $get_prefix['image']['size']['size_type'] ) ) : '';?>><?php echo $size['name']; ?></option>
 							<?php } ?>
 						</select>
 
@@ -189,7 +196,7 @@ class Blox_Content_Image {
 					<th scope="row"><?php _e( 'Image Link', 'blox' ); ?></th>
 					<td>
 						<label class="blox-image-link-enable">
-							<input type="checkbox" name="<?php echo $name_prefix; ?>[image][link][enable]" value="1" <?php ! empty( $get_prefix['image']['link']['enable'] ) ? checked( $get_prefix['image']['link']['enable'] ) : ''; ?> />
+							<input type="checkbox" name="<?php echo $name_prefix; ?>[image][link][enable]" value="1" <?php ! empty( $get_prefix['image']['link']['enable'] ) ? checked( esc_attr( $get_prefix['image']['link']['enable'] ) ) : ''; ?> />
 							<?php _e( 'Check to enable', 'blox' ); ?>
 						</label>
 						<div class="blox-image-link">
@@ -202,7 +209,7 @@ class Blox_Content_Image {
 								<input type="text" name="<?php echo $name_prefix; ?>[image][link][title]" value="<?php echo ! empty( $get_prefix['image']['link']['title'] ) ? esc_attr( $get_prefix['image']['link']['title'] ) : ''; ?>" />
 							</label>
 							<label>
-								<input type="checkbox" name="<?php echo $name_prefix; ?>[image][link][target]" value="1" <?php ! empty( $get_prefix['image']['link']['target'] ) ? checked( $get_prefix['image']['link']['target'] ) : ''; ?> />
+								<input type="checkbox" name="<?php echo $name_prefix; ?>[image][link][target]" value="1" <?php ! empty( $get_prefix['image']['link']['target'] ) ? checked( esc_attr( $get_prefix['image']['link']['target'] ) ) : ''; ?> />
 								<?php _e( 'Open link in new window/tab', 'blox' ); ?>
 							</label>
 							<label class="blox-subtitle">
@@ -232,7 +239,7 @@ class Blox_Content_Image {
 					<th scope="row"><?php _e( 'Set As Background', 'blox' ); ?></th>
 					<td>
 						<label>
-							<input type="checkbox" name="<?php echo $name_prefix; ?>[image][background]" value="1" <?php ! empty( $get_prefix['image']['background'] ) ? checked( $get_prefix['image']['background'] ) : ''; ?> />
+							<input type="checkbox" name="<?php echo $name_prefix; ?>[image][background]" value="1" <?php ! empty( $get_prefix['image']['background'] ) ? checked( esc_attr( $get_prefix['image']['background'] ) ) : ''; ?> />
 							<?php _e( 'Check to enable', 'blox' ); ?>
 						</label>
 						<span class="blox-help-text-icon">
@@ -323,7 +330,7 @@ class Blox_Content_Image {
 
 			if ( $background ) {
 				$thumb_id = get_post_thumbnail_id();
-				$thumb_url_array = wp_get_attachment_image_src( $thumb_id, 'full', true );
+				$thumb_url_array = wp_get_attachment_image_src( $thumb_id, 'full', false );
 				$image = $thumb_url_array[0];
 			} else {
 				$image = genesis_get_image( array(
