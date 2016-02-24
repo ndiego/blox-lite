@@ -27,18 +27,25 @@ $blox_settings = get_option( 'blox_settings' );
 
 if ( $blox_settings['uninstall_on_delete'] == 1 ) {
 
-	// Delete all Global Blocks
-	$global_blocks = get_posts( array( 'post_type' => 'blox', 'post_status' => 'any', 'numberposts' => -1, 'fields' => 'ids' ) );
+	// If Blox exists and is activated, do not delete data because it will 
+	// wipe out all Blox data since Blox data is Blox Lite data
+	if ( class_exists( 'Blox_Main' ) ) {
+		return;
+	} else {
 
-	if ( $global_blocks ) {
-		foreach ( $global_blocks as $global_block ) {
-			wp_delete_post( $global_block, true);
+		// Delete all Global Blocks
+		$global_blocks = get_posts( array( 'post_type' => 'blox', 'post_status' => 'any', 'numberposts' => -1, 'fields' => 'ids' ) );
+
+		if ( $global_blocks ) {
+			foreach ( $global_blocks as $global_block ) {
+				wp_delete_post( $global_block, true);
+			}
 		}
+	
+		// Delete all Local Blocks
+		delete_metadata( 'post', 0, '_blox_content_blocks_data', '', true );
+	
+		// Delete all Blox settings
+		delete_option( 'blox_settings' );
 	}
-	
-	// Delete all Local Blocks
-	delete_metadata( 'post', 0, '_blox_content_blocks_data', '', true );
-	
-	// Delete all Blox settings
-	delete_option( 'blox_settings' );
 }

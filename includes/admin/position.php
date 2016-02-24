@@ -166,7 +166,7 @@ class Blox_Position {
 							<?php } ?>
 						</select>
 						<div class="blox-description">
-							<?php echo sprintf( __( 'Please refer to the %1$sGenesis Visual Hook Guide%2$s for hook reference and position information.', 'blox' ), '<a href="http://genesistutorials.com/visual-hook-guide/" alt="' . __( 'Genesis Visual Hook Guide', 'blox' ) . '" target="_blank">', '</a>' ); ?>
+							<?php echo sprintf( __( 'Please refer to the %1$sBlox Documentation%2$s for hook reference.', 'blox' ), '<a href="https://www.bloxwp.com/documentation/position-hooks/?utm_source=blox-lite&utm_medium=plugin&utm_content=position-tab-links&utm_campaign=Blox_Plugin_Links" title="' . __( 'Blox Documentation', 'blox' ) . '" target="_blank">', '</a>' ); ?>
 						</div>
 					</td>
 				</tr>

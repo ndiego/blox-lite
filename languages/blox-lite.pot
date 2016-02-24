@@ -1,401 +1,263 @@
-# Copyright (C) 2015 Blox Lite - Content Blocks for Genesis
+# Copyright (C) 2016 Blox Lite - Content Blocks for Genesis
 # This file is distributed under the same license as the Blox Lite - Content Blocks for Genesis package.
 msgid ""
 msgstr ""
 "Project-Id-Version: Blox Lite - Content Blocks for Genesis 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/blox-lite\n"
-"POT-Creation-Date: 2015-11-08 14:30:44+00:00\n"
+"POT-Creation-Date: 2016-02-23 02:09:00+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: blox-lite.php:130
+#: blox-lite.php:128
 msgid "Sorry, you can't activate %1$sBlox-Lite%2$s unless you have installed the %3$sGenesis Framework%4$s. Go back to the %5$sPlugins Page%4$s."
 msgstr ""
 
-#: blox-lite.php:135
+#: blox-lite.php:133
 msgid "Sorry, you can't activate %1$sBlox-Lite%2$s unless you have installed the %3$sGenesis %4$s%5$s. Go back to the %6$sPlugins Page%5$s."
 msgstr ""
 
-#: blox-lite.php:264 includes/global/settings.php:72
+#: blox-lite.php:233 includes/global/settings.php:113
 msgid "Settings"
 msgstr ""
 
-#: includes/admin/content.php:72 includes/admin/posttype.php:85
+#: blox-lite.php:268
+msgid "Documentation"
+msgstr ""
+
+#: includes/admin/content.php:79 includes/admin/content.php:237
 msgid "Content"
 msgstr ""
 
-#: includes/admin/content.php:131
+#: includes/admin/content.php:138
 msgid "Content Type"
 msgstr ""
 
-#: includes/admin/content.php:213
-msgid "The content type of this block is currently set to %1$s, which no longer exists. Therefore, this block is currently not visible on your site. Perhaps you deactivated a Blox Extension by mistake, or switched to Blox Lite. Choose a new content type and publish to get this block displaying again."
+#: includes/admin/content.php:222
+msgid "The content type of this block is currently set to %1$s, which no longer exists. Therefore, this block is currently not visible on your site. Perhaps you deactivated a Blox Addon by mistake, or switched to Blox Lite. Choose a new content type and publish to get this block displaying again."
 msgstr ""
 
-#: includes/admin/location.php:73 includes/admin/posttype.php:87
-msgid "Location"
-msgstr ""
-
-#: includes/admin/location.php:132
-msgid "Block Location"
-msgstr ""
-
-#: includes/admin/location.php:135
-msgid "All Pages"
-msgstr ""
-
-#: includes/admin/location.php:136
-msgid "Show on Selected"
-msgstr ""
-
-#: includes/admin/location.php:137
-msgid "Hide on Selected"
-msgstr ""
-
-#: includes/admin/location.php:143
-msgid "Choose \"Show on Selected\" or \"Hide on Selected\" to view additional options. \"Show on Selected\" will only display the content block on pages that match the citeria selected below. \"Hide on Selected\" does to opposite. Selecting this option will display the block on every page %1$sexcept%2$s for those that match the citeria selected below."
-msgstr ""
-
-#: includes/admin/location.php:157
-msgid "Choose the pages you would like the content block to be %1$svisible%2$s on."
-msgstr ""
-
-#: includes/admin/location.php:159
-msgid "Choose the pages you would like the content block to be %1$shidden%2$s on."
-msgstr ""
-
-#: includes/admin/location.php:176 includes/admin/location.php:228
-#: includes/admin/location.php:305 includes/admin/location.php:340
-#: includes/admin/location.php:380 includes/admin/location.php:426
-#: includes/admin/location.php:562 includes/admin/location.php:688
-#: includes/admin/location.php:761
-msgid "Select All"
-msgstr ""
-
-#: includes/admin/location.php:176 includes/admin/location.php:228
-#: includes/admin/location.php:305 includes/admin/location.php:340
-#: includes/admin/location.php:380 includes/admin/location.php:426
-#: includes/admin/location.php:562 includes/admin/location.php:688
-#: includes/admin/location.php:761
-msgid "Unselect All"
-msgstr ""
-
-#: includes/admin/location.php:183 includes/admin/location.php:881
-msgid "Single Pages"
-msgstr ""
-
-#: includes/admin/location.php:186
-msgid "All Single Pages"
-msgstr ""
-
-#: includes/admin/location.php:187
-msgid "Selected Single Pages"
-msgstr ""
-
-#: includes/admin/location.php:194
-msgid "Select a post type below to view additional options."
-msgstr ""
-
-#: includes/admin/location.php:272 includes/admin/location.php:882
-msgid "Archive Pages"
-msgstr ""
-
-#: includes/admin/location.php:275
-msgid "All Archive Pages"
-msgstr ""
-
-#: includes/admin/location.php:276
-msgid "Selected Archive Types"
-msgstr ""
-
-#: includes/admin/location.php:284 includes/admin/location.php:311
-msgid "Post Type"
-msgstr ""
-
-#: includes/admin/location.php:285 includes/admin/location.php:353
-msgid "Author"
-msgstr ""
-
-#: includes/admin/location.php:286
-msgid "Date & Time"
-msgstr ""
-
-#: includes/admin/location.php:314
-msgid "Show or hide on all post type archives."
-msgstr ""
-
-#: includes/admin/location.php:314
-msgid "All Post Type Archives"
-msgstr ""
-
-#: includes/admin/location.php:315
-msgid "Show or hide on selected post type archives."
-msgstr ""
-
-#: includes/admin/location.php:315
-msgid "Selected Post Type Archives"
-msgstr ""
-
-#: includes/admin/location.php:318
-msgid "Use this option to show/hide the content block on archive pages of post types. Note: If you are looking to target the \"archive\" page for Posts, use the Blog Page option in the main Block Location settings panel above."
-msgstr ""
-
-#: includes/admin/location.php:344
-msgid "There does not appear to be any post types that have archives."
-msgstr ""
-
-#: includes/admin/location.php:356
-msgid "Show or hide on all author archives."
-msgstr ""
-
-#: includes/admin/location.php:356
-msgid "All Author Archives"
-msgstr ""
-
-#: includes/admin/location.php:357
-msgid "Show or hide on selected author archives."
-msgstr ""
-
-#: includes/admin/location.php:357
-msgid "Selected Author Archives"
-msgstr ""
-
-#: includes/admin/location.php:384 includes/admin/location.php:765
-msgid "There does not appear to be any authors on this website."
-msgstr ""
-
-#: includes/admin/location.php:405
-msgid "Show or hide on all taxonomy archives."
-msgstr ""
-
-#: includes/admin/location.php:405
-msgid "All %1$s Archives"
-msgstr ""
-
-#: includes/admin/location.php:406
-msgid "Show or hide on selected taxonomy archives."
-msgstr ""
-
-#: includes/admin/location.php:406
-msgid "Selected %1$s Archives"
-msgstr ""
-
-#: includes/admin/location.php:430 includes/admin/location.php:692
-msgid "There does not appear to be any %1$s yet."
-msgstr ""
-
-#: includes/admin/location.php:447
-msgid "Manual Override (Show)"
-msgstr ""
-
-#: includes/admin/location.php:451
-msgid "Enter a list of comma separated IDs (page, post, custom post type) to show."
-msgstr ""
-
-#: includes/admin/location.php:456
-msgid "Manual Override (Hide)"
-msgstr ""
-
-#: includes/admin/location.php:460
-msgid "Enter a list of comma separated IDs (page, post, custom post type) to hide."
-msgstr ""
-
-#: includes/admin/location.php:514
-msgid "Enter a list of comma separated Media IDs."
-msgstr ""
-
-#: includes/admin/location.php:635
-msgid "Test Strength"
-msgstr ""
-
-#: includes/admin/location.php:639
-msgid "Loose taxonomy test."
-msgstr ""
-
-#: includes/admin/location.php:639
-msgid "Loose"
-msgstr ""
-
-#: includes/admin/location.php:640
-msgid "Strict taxonomy test."
-msgstr ""
-
-#: includes/admin/location.php:640
-msgid "Strict"
-msgstr ""
-
-#: includes/admin/location.php:641
-msgid "Binding taxonomy test."
-msgstr ""
-
-#: includes/admin/location.php:641
-msgid "Binding"
-msgstr ""
-
-#: includes/admin/location.php:648
-msgid "The taxonomy test strength determines how the selection of different taxonomy terms interact with one another. A \"Loose\" test means that the block will show/hide so long as it has %1$sany%2$s of the selected taxonomy terms. A \"Strict\" test will only show/hide the block if it has %1$sall%2$s the selected taxonomy terms. A \"Binding\" test will only show/hide the block if it has %1$sall and only%2$s the selected taxonomy terms. The taxonomy test takes into account terms across all included taxonomies. Ignored taxonomies are not included in the test. Please see the %3$sBlox Documentation%4$s for further explanation."
-msgstr ""
-
-#: includes/admin/location.php:710
-msgid "There does not appear to be any taxonomies associated with this post type yet."
-msgstr ""
-
-#: includes/admin/location.php:879
-msgid "Front Page"
-msgstr ""
-
-#: includes/admin/location.php:880
-msgid "Blog Page"
-msgstr ""
-
-#: includes/admin/location.php:883
-msgid "Search Pages"
-msgstr ""
-
-#: includes/admin/location.php:884
-msgid "404 Error Page"
-msgstr ""
-
-#: includes/admin/metaboxes.php:178 includes/global/settings.php:258
-#: includes/global/settings.php:396
-msgid "Local Content Blocks"
-msgstr ""
-
-#: includes/admin/metaboxes.php:194
-msgid "Block Settings"
-msgstr ""
-
-#: includes/admin/metaboxes.php:368
-msgid "Add Content Block"
-msgstr ""
-
-#: includes/admin/metaboxes.php:373
-msgid "Click to add a local content block to this webpage. Local content blocks will only be visible on the page/post/custom post type that they are added to."
-msgstr ""
-
-#: includes/admin/metaboxes.php:421
-msgid " COPY"
-msgstr ""
-
-#: includes/admin/metaboxes.php:448
-msgid "Content Block Title"
-msgstr ""
-
-#: includes/admin/metaboxes.php:460 includes/admin/posttype.php:117
-#: includes/admin/posttype.php:126 includes/admin/posttype.php:146
+#: includes/admin/content.php:249 includes/admin/metaboxes.php:443
+#: includes/admin/metaboxes.php:485 includes/admin/metaboxes.php:488
+#: includes/admin/position.php:245 includes/admin/position.php:248
+#: includes/global/location.php:931
 msgid "Error"
 msgstr ""
 
-#: includes/admin/metaboxes.php:464
+#: includes/admin/marketing.php:72
+msgid "Marketing Notices"
+msgstr ""
+
+#: includes/admin/marketing.php:73
+msgid "Check to disable all those annoying marketing notices!"
+msgstr ""
+
+#: includes/admin/marketing.php:74
+msgid "But seriously though, the full version of Blox takes Blox Lite to the next level and comes with great support. %1$sLearn More%2$s."
+msgstr ""
+
+#: includes/admin/marketing.php:95
+msgid "Enjoying %1$sBlox Lite%2$s but looking for more content options, visibility settings, priority support, frequent updates and more? Then you should consider %3$supgrading%4$s to %1$sBlox%2$s. Happy with the free version and have no need to upgrade? Then you might as well turn off these notifications in the plugin %5$ssettings%4$s."
+msgstr ""
+
+#: includes/admin/metaboxes.php:155
+msgid "Are you sure you want to remove this content block? This action cannot be undone."
+msgstr ""
+
+#: includes/admin/metaboxes.php:156 includes/global/location.php:167
+msgid "Choose the pages you would like the content block to be %1$shidden%2$s on."
+msgstr ""
+
+#: includes/admin/metaboxes.php:157 includes/global/location.php:165
+msgid "Choose the pages you would like the content block to be %1$svisible%2$s on."
+msgstr ""
+
+#: includes/admin/metaboxes.php:159
+msgid "Choose or Upload an Image"
+msgstr ""
+
+#: includes/admin/metaboxes.php:160
+msgid "Use Selected Image"
+msgstr ""
+
+#: includes/admin/metaboxes.php:162
+msgid "Hide HTML"
+msgstr ""
+
+#: includes/admin/metaboxes.php:163
+msgid "Show HTML"
+msgstr ""
+
+#: includes/admin/metaboxes.php:165
+msgid "Choose or Upload an Image(s)"
+msgstr ""
+
+#: includes/admin/metaboxes.php:166
+msgid "Insert Image(s)"
+msgstr ""
+
+#: includes/admin/metaboxes.php:167
+msgid "Details"
+msgstr ""
+
+#: includes/admin/metaboxes.php:168
+msgid "Remove"
+msgstr ""
+
+#: includes/admin/metaboxes.php:169
+msgid "Are you sure you want to remove this image from the slideshow? This action cannot be undone."
+msgstr ""
+
+#: includes/admin/metaboxes.php:198 includes/global/settings.php:298
+#: includes/global/settings.php:429
+msgid "Local Content Blocks"
+msgstr ""
+
+#: includes/admin/metaboxes.php:214
+msgid "Block Settings"
+msgstr ""
+
+#: includes/admin/metaboxes.php:387
+msgid "Add Content Block"
+msgstr ""
+
+#: includes/admin/metaboxes.php:392
+msgid "Click to add a local content block to this webpage. Local content blocks will only be visible on the page/post/custom post type that they are added to."
+msgstr ""
+
+#: includes/admin/metaboxes.php:431
+msgid "Please try refreshing the page and try again..."
+msgstr ""
+
+#: includes/admin/metaboxes.php:442
+msgid " COPY"
+msgstr ""
+
+#: includes/admin/metaboxes.php:466
+msgid "No Title"
+msgstr ""
+
+#: includes/admin/metaboxes.php:469
+msgid "Content Block Title"
+msgstr ""
+
+#: includes/admin/metaboxes.php:472
+msgid "Replicate"
+msgstr ""
+
+#: includes/admin/metaboxes.php:473
+msgid "Delete"
+msgstr ""
+
+#: includes/admin/metaboxes.php:481
+msgid "Not Saved"
+msgstr ""
+
+#: includes/admin/metaboxes.php:493
 msgid "Edit Content Block"
 msgstr ""
 
-#: includes/admin/position.php:73 includes/admin/posttype.php:86
+#: includes/admin/position.php:78 includes/admin/position.php:229
 msgid "Position"
 msgstr ""
 
-#: includes/admin/position.php:134
+#: includes/admin/position.php:139
 msgid "Position Type"
 msgstr ""
 
-#: includes/admin/position.php:137
+#: includes/admin/position.php:142
 msgid "Default"
 msgstr ""
 
-#: includes/admin/position.php:138 includes/global/common.php:108
+#: includes/admin/position.php:143 includes/global/common.php:109
 msgid "Custom"
 msgstr ""
 
-#: includes/admin/position.php:145
+#: includes/admin/position.php:150
 msgid "The default position is %1$s and the default priority is %2$s. You can change this default positioning by visiting the %3$sSettings Page%4$s, or use custom positioning to override this default."
 msgstr ""
 
-#: includes/admin/position.php:151
+#: includes/admin/position.php:156
 msgid "Position on Page"
 msgstr ""
 
-#: includes/admin/position.php:164
-msgid "Please refer to the %1$sGenesis Visual Hook Guide%2$s for hook reference and position information."
+#: includes/admin/position.php:169
+msgid "Please refer to the %1$sBlox Documentation%2$s for hook reference."
 msgstr ""
 
-#: includes/admin/position.php:170
+#: includes/admin/position.php:169 includes/global/settings.php:338
+msgid "Blox Documentation"
+msgstr ""
+
+#: includes/admin/position.php:175
 msgid "Priority"
 msgstr ""
 
-#: includes/admin/position.php:174
+#: includes/admin/position.php:179
 msgid "Enter a whole number greater than zero."
 msgstr ""
 
-#: includes/admin/position.php:180
+#: includes/admin/position.php:185
 msgid "Other plugins and themes can use Genesis Hooks to add content to a page. A low number tells Wordpress to try and add your custom content before all other content using the same Genesis Hook. A larger number will add the content later in the queue. (ex: Early=1, Medium=10, Late=100)"
 msgstr ""
 
-#: includes/admin/posttype.php:84 includes/global/content/image.php:146
-#: includes/global/content/image.php:188
+#: includes/admin/posttype.php:84 includes/global/content/image.php:155
+#: includes/global/content/image.php:208
 msgid "Title"
 msgstr ""
 
-#: includes/admin/posttype.php:88
+#: includes/admin/posttype.php:89
 msgid "Last Modified"
 msgstr ""
 
-#: includes/admin/posttype.php:89
+#: includes/admin/posttype.php:90
 msgid "Date"
 msgstr ""
 
-#: includes/admin/posttype.php:137
-msgid "All"
-msgstr ""
-
-#: includes/admin/posttype.php:140 includes/admin/posttype.php:143
-msgid "Selected"
-msgstr ""
-
-#: includes/admin/posttype.php:201 includes/admin/posttype.php:204
+#: includes/admin/posttype.php:161 includes/admin/posttype.php:164
 msgid "Global block updated."
 msgstr ""
 
-#: includes/admin/posttype.php:202
+#: includes/admin/posttype.php:162
 msgid "Global block custom field updated."
 msgstr ""
 
-#: includes/admin/posttype.php:203
+#: includes/admin/posttype.php:163
 msgid "Global block custom field deleted."
 msgstr ""
 
-#: includes/admin/posttype.php:205
+#: includes/admin/posttype.php:165
 msgid "Global block restored to revision from %s."
 msgstr ""
 
-#: includes/admin/posttype.php:206
+#: includes/admin/posttype.php:166
 msgid "Global block published."
 msgstr ""
 
-#: includes/admin/posttype.php:207
+#: includes/admin/posttype.php:167
 msgid "Global block saved."
 msgstr ""
 
-#: includes/admin/posttype.php:208
+#: includes/admin/posttype.php:168
 msgid "Global block submitted."
 msgstr ""
 
-#: includes/admin/posttype.php:209
+#: includes/admin/posttype.php:169
 msgid "Global block scheduled for: <strong>%1$s</strong>."
 msgstr ""
 
-#: includes/admin/posttype.php:209
+#: includes/admin/posttype.php:169
 msgid "M j, Y @ G:i"
 msgstr ""
 
-#: includes/admin/posttype.php:210
+#: includes/admin/posttype.php:170
 msgid "Global block draft updated."
 msgstr ""
 
-#: includes/admin/posttype.php:253
+#: includes/admin/posttype.php:218
 msgid "Local Blocks"
 msgstr ""
 
@@ -403,419 +265,656 @@ msgstr ""
 msgid "Style"
 msgstr ""
 
-#: includes/admin/style.php:137
+#: includes/admin/style.php:140
 msgid "Custom Block Classes"
 msgstr ""
 
-#: includes/admin/style.php:141
+#: includes/admin/style.php:144
 msgid "Enter a space separated list of custom CSS classes to add to this content block."
 msgstr ""
 
-#: includes/admin/style.php:146
+#: includes/admin/style.php:149
 msgid "Custom Block CSS"
 msgstr ""
 
-#: includes/admin/style.php:150
+#: includes/admin/style.php:153
 msgid "All custom CSS for this block should begin with "
 msgstr ""
 
-#: includes/admin/style.php:150
-msgid ". Otherwise the custom CSS could interfere with other content blocks."
+#: includes/admin/style.php:153
+msgid "Otherwise the custom CSS could interfere with other content blocks. For reference on content block frontend markup, please refer to the %1$sBlox Documentation%2$s."
 msgstr ""
 
-#: includes/admin/style.php:155 includes/global/settings.php:369
+#: includes/admin/style.php:158 includes/global/settings.php:410
 msgid "Disable Default CSS"
 msgstr ""
 
-#: includes/admin/style.php:159
+#: includes/admin/style.php:162
 msgid "Check to disable all default styles on this block"
 msgstr ""
 
-#: includes/admin/style.php:162
+#: includes/admin/style.php:168
 msgid "Blox includes default CSS to provide minimal styling. This option will remove all default styling from this block, which can be useful when custom CSS is used extensively."
 msgstr ""
 
-#: includes/admin/style.php:167
+#: includes/admin/style.php:173
 msgid "Enable Wrap"
 msgstr ""
 
-#: includes/admin/style.php:171
+#: includes/admin/style.php:177
 msgid "Check to include the %1$swrap%2$s CSS selector in the block markup."
 msgstr ""
 
-#: includes/admin/style.php:174
+#: includes/admin/style.php:183
 msgid "Many Genesis child themes use this selector and enabling it can assist with block styling."
 msgstr ""
 
-#: includes/global/common.php:70
+#: includes/global/common.php:71
 msgid "Default (Original Image Size)"
 msgstr ""
 
-#: includes/global/common.php:129
+#: includes/global/common.php:130
 msgid "Document Head Action Hooks"
 msgstr ""
 
-#: includes/global/common.php:131
+#: includes/global/common.php:132
 msgid "This hook executes between tags and outputs the doctitle. You can find all doctitle related code in /lib/structure/header.php."
 msgstr ""
 
-#: includes/global/common.php:132
+#: includes/global/common.php:133
 msgid "This hook executes in the <head></head> section of the document source. By default, things like META descriptions and keywords are output using this hook, along with the default stylesheet and the reference to the favicon. This hook is very similar to wp_head"
 msgstr ""
 
-#: includes/global/common.php:136
+#: includes/global/common.php:137
 msgid "Structural Action Hooks"
 msgstr ""
 
-#: includes/global/common.php:138 includes/global/common.php:143
+#: includes/global/common.php:139 includes/global/common.php:144
 msgid "This hook executes immediately after the opening tag in the document source."
 msgstr ""
 
-#: includes/global/common.php:139
+#: includes/global/common.php:140
 msgid "This hook executes immediately before the header (outside the #header div)."
 msgstr ""
 
-#: includes/global/common.php:140
+#: includes/global/common.php:141
 msgid "By default, this hook outputs the header code, including the title, description, and widget area (if necessary)."
 msgstr ""
 
-#: includes/global/common.php:141
+#: includes/global/common.php:142
 msgid "This hook executes immediately before the Header Right widget area inside div.widget-area."
 msgstr ""
 
-#: includes/global/common.php:142
+#: includes/global/common.php:143
 msgid "This hook executes immediately after the header (outside the #header div)."
 msgstr ""
 
-#: includes/global/common.php:144 includes/global/common.php:158
+#: includes/global/common.php:145 includes/global/common.php:163
 msgid "This hook executes immediately before the closing tag in the document source."
 msgstr ""
 
-#: includes/global/common.php:145
+#: includes/global/common.php:146
 msgid "This hook executes immediately before the div block that wraps the content and the primary sidebar (outside the #content-sidebar-wrap div)."
 msgstr ""
 
-#: includes/global/common.php:146
+#: includes/global/common.php:147
 msgid "This hook executes immediately after the div block that wraps the content and the primary sidebar (outside the #content-sidebar-wrap div)."
 msgstr ""
 
-#: includes/global/common.php:147
+#: includes/global/common.php:148
 msgid "This hook executes immediately before the content column (outside the #content div)."
 msgstr ""
 
-#: includes/global/common.php:148
+#: includes/global/common.php:149
 msgid "This hook executes immediately after the content column (outside the #content div)."
 msgstr ""
 
-#: includes/global/common.php:149
-msgid "This hook outputs the content of the primary sidebar, including the widget area output."
-msgstr ""
-
 #: includes/global/common.php:150
-msgid "This hook executes immediately before the primary sidebar widget area (inside the #sidebar div)."
+msgid "This hook executes immediately before the primary sidebar column."
 msgstr ""
 
 #: includes/global/common.php:151
-msgid "This hook executes immediately after the primary sidebar widget area (inside the #sidebar div)."
+msgid "This hook outputs the content of the primary sidebar, including the widget area output."
 msgstr ""
 
 #: includes/global/common.php:152
-msgid "This hook outputs the content of the secondary sidebar, including the widget area output."
+msgid "This hook executes immediately after the primary sidebar column."
 msgstr ""
 
 #: includes/global/common.php:153
-msgid "This hook executes immediately before the alternate sidebar widget area (inside the #sidebar-alt div)."
+msgid "This hook executes immediately before the primary sidebar widget area (inside the #sidebar div)."
 msgstr ""
 
 #: includes/global/common.php:154
-msgid "This hook executes immediately after the alternate sidebar widget area (inside the #sidebar-alt div)."
+msgid "This hook executes immediately after the primary sidebar widget area (inside the #sidebar div)."
 msgstr ""
 
 #: includes/global/common.php:155
-msgid "This hook executes immediately before the footer, outside the #footer div."
+msgid "This hook executes immediately before the alternate sidebar column."
 msgstr ""
 
 #: includes/global/common.php:156
-msgid "This hook, by default, outputs the content of the footer, including the #footer div wrapper."
+msgid "This hook outputs the content of the secondary sidebar, including the widget area output."
 msgstr ""
 
 #: includes/global/common.php:157
-msgid "This hook executes immediately after the footer, outside the #footer div."
+msgid "This hook executes immediately after the alternate sidebar column."
+msgstr ""
+
+#: includes/global/common.php:158
+msgid "This hook executes immediately before the alternate sidebar widget area (inside the #sidebar-alt div)."
+msgstr ""
+
+#: includes/global/common.php:159
+msgid "This hook executes immediately after the alternate sidebar widget area (inside the #sidebar-alt div)."
+msgstr ""
+
+#: includes/global/common.php:160
+msgid "This hook executes immediately before the footer, outside the #footer div."
+msgstr ""
+
+#: includes/global/common.php:161
+msgid "This hook, by default, outputs the content of the footer, including the #footer div wrapper."
 msgstr ""
 
 #: includes/global/common.php:162
-msgid "Loop Action Hooks"
-msgstr ""
-
-#: includes/global/common.php:164
-msgid "This hook executes immediately before all loop blocks. Therefore, this hook falls outside the loop, and cannot execute functions that require loop template tags or variables."
-msgstr ""
-
-#: includes/global/common.php:165
-msgid "This hook outputs the actual loop. See lib/structure/loop.php and lib/structure/post.php for more details."
-msgstr ""
-
-#: includes/global/common.php:166
-msgid "This hook executes immediately after all loop blocks. Therefore, this hook falls outside the loop, and cannot execute functions that require loop template tags or variables."
+msgid "This hook executes immediately after the footer, outside the #footer div."
 msgstr ""
 
 #: includes/global/common.php:167
-msgid "This hook executes after the endwhile; statement in all loop blocks."
+msgid "Loop Action Hooks"
 msgstr ""
 
-#: includes/global/common.php:168
-msgid "This hook executes after the else : statement in all loop blocks."
+#: includes/global/common.php:169
+msgid "This hook executes immediately before all loop blocks. Therefore, this hook falls outside the loop, and cannot execute functions that require loop template tags or variables."
 msgstr ""
 
 #: includes/global/common.php:170
-msgid "This hook executes before each entry in all loop blocks (outside the post_class() container)."
+msgid "This hook outputs the actual loop. See lib/structure/loop.php and lib/structure/post.php for more details."
 msgstr ""
 
 #: includes/global/common.php:171
-msgid "This hook executes after each entry in all loop blocks (outside the post_class() container)."
+msgid "This hook executes immediately after all loop blocks. Therefore, this hook falls outside the loop, and cannot execute functions that require loop template tags or variables."
 msgstr ""
 
 #: includes/global/common.php:172
-msgid "This hook executes before the entry content and generates the entry header content in all loop blocks."
+msgid "This hook executes after the endwhile; statement in all loop blocks."
 msgstr ""
 
 #: includes/global/common.php:173
-msgid "This hook executes before the .entry-content container in all loop blocks."
-msgstr ""
-
-#: includes/global/common.php:174
-msgid "This hook executes within the .entry-content container in all loop blocks."
+msgid "This hook executes after the else : statement in all loop blocks."
 msgstr ""
 
 #: includes/global/common.php:175
-msgid "This hook executes after the .entry-content container in all loop blocks."
+msgid "This hook executes before each entry in all loop blocks (outside the post_class() container)."
 msgstr ""
 
 #: includes/global/common.php:176
-msgid "This hook executes after the entry content and generates the entry footer content in all loop blocks."
+msgid "This hook executes before the entry content and generates the entry header content in all loop blocks."
+msgstr ""
+
+#: includes/global/common.php:177
+msgid "This hook executes before the .entry-content container in all loop blocks."
 msgstr ""
 
 #: includes/global/common.php:178
-msgid "This hook executes before each post in all loop blocks (outside the post_class() div)."
+msgid "This hook executes within the .entry-content container in all loop blocks."
 msgstr ""
 
 #: includes/global/common.php:179
-msgid "This hook executes after each post in all loop blocks (outside the post_class() div)."
+msgid "This hook executes after the .entry-content container in all loop blocks."
 msgstr ""
 
 #: includes/global/common.php:180
-msgid "This hook executes immediately before each post title for each post within the loop."
+msgid "This hook executes after the entry content and generates the entry footer content in all loop blocks."
 msgstr ""
 
 #: includes/global/common.php:181
-msgid "This hook outputs the actual post title, contextually, based on what type of page you are viewing."
-msgstr ""
-
-#: includes/global/common.php:182
-msgid "This hook executes immediately after each post title for each post within the loop."
-msgstr ""
-
-#: includes/global/common.php:183
-msgid "This hook executes immediately before the post/page content is output, outside the .entry-content div."
-msgstr ""
-
-#: includes/global/common.php:184
-msgid "This hook outputs the actual post content and if chosen, the post image (inside the #content div)."
-msgstr ""
-
-#: includes/global/common.php:185
-msgid "This hook executes immediately after the post/page content is output, outside the .entry-content div."
-msgstr ""
-
-#: includes/global/common.php:189
-msgid "Comment Action Hooks"
-msgstr ""
-
-#: includes/global/common.php:191
-msgid "This hook executes immediately before the comments block (outside the #comments div)."
-msgstr ""
-
-#: includes/global/common.php:192
-msgid "This hook outputs the entire comments block, including the section title. It also executes the genesis_list_comments hook, which outputs the comment list."
-msgstr ""
-
-#: includes/global/common.php:193
-msgid "This hook executes immediately after the comments block (outside the #comments div)."
-msgstr ""
-
-#: includes/global/common.php:194
-msgid "This hook executes inside the comments block, inside the .comment-list OL. By default, it outputs a list of comments associated with a post via the genesis_default_list_comments() function."
-msgstr ""
-
-#: includes/global/common.php:195
-msgid "This hook executes immediately before the pings block (outside the #pings div)."
+msgid "This hook executes after each entry in all loop blocks (outside the post_class() container)."
 msgstr ""
 
 #: includes/global/common.php:196
-msgid "This hook outputs the entire pings block, including the section title. It also executes the genesis_list_pings hook, which outputs the ping list."
-msgstr ""
-
-#: includes/global/common.php:197
-msgid "This hook executes immediately after the pings block (outside the #pings div)."
+msgid "Comment Action Hooks"
 msgstr ""
 
 #: includes/global/common.php:198
-msgid "This hook executes inside the pings block, inside the .ping-list OL. By default, it outputs a list of pings associated with a post via the genesis_default_list_pings() function."
+msgid "This hook executes immediately before the comments block (outside the #comments div)."
 msgstr ""
 
 #: includes/global/common.php:199
-msgid "This hook executes before the output of each individual comment (author, meta, comment text)."
+msgid "This hook outputs the entire comments block, including the section title. It also executes the genesis_list_comments hook, which outputs the comment list."
 msgstr ""
 
 #: includes/global/common.php:200
-msgid "This hook executes after the output of each individual comment (author, meta, comment text)."
+msgid "This hook executes inside the comments block, inside the .comment-list OL. By default, it outputs a list of comments associated with a post via the genesis_default_list_comments() function."
 msgstr ""
 
 #: includes/global/common.php:201
-msgid "This hook executes immediately before the comment form, outside the #respond div."
+msgid "This hook executes immediately after the comments block (outside the #comments div)."
 msgstr ""
 
 #: includes/global/common.php:202
-msgid "This hook outputs the actual comment form, including the #respond div wrapper."
+msgid "This hook executes immediately before the pings block (outside the #pings div)."
 msgstr ""
 
 #: includes/global/common.php:203
-msgid "This hook executes immediately after the comment form, outside the #respond div."
+msgid "This hook outputs the entire pings block, including the section title. It also executes the genesis_list_pings hook, which outputs the ping list."
+msgstr ""
+
+#: includes/global/common.php:204
+msgid "This hook executes inside the pings block, inside the .ping-list OL. By default, it outputs a list of pings associated with a post via the genesis_default_list_pings() function."
+msgstr ""
+
+#: includes/global/common.php:205
+msgid "This hook executes immediately after the pings block (outside the #pings div)."
+msgstr ""
+
+#: includes/global/common.php:206
+msgid "This hook executes before the output of each individual comment (author, meta, comment text)."
+msgstr ""
+
+#: includes/global/common.php:207
+msgid "This hook executes after the output of each individual comment (author, meta, comment text)."
+msgstr ""
+
+#: includes/global/common.php:208
+msgid "This hook executes immediately before the comment form, outside the #respond div."
 msgstr ""
 
 #: includes/global/common.php:209
+msgid "This hook outputs the actual comment form, including the #respond div wrapper."
+msgstr ""
+
+#: includes/global/common.php:210
+msgid "This hook executes immediately after the comment form, outside the #respond div."
+msgstr ""
+
+#: includes/global/common.php:216
 msgid "Wordpress Core Hooks"
 msgstr ""
 
-#: includes/global/common.php:211
+#: includes/global/common.php:218
 msgid "This hook executes within the <head></head> section of the document source."
 msgstr ""
 
-#: includes/global/common.php:212
+#: includes/global/common.php:219
 msgid "This hook executes near the </body> tag of the document source."
 msgstr ""
 
-#: includes/global/content/image.php:98
-msgid "Static Image Settings"
-msgstr ""
-
-#: includes/global/content/image.php:100
-msgid "Image Type"
-msgstr ""
-
-#: includes/global/content/image.php:103
-msgid "Featured Image"
-msgstr ""
-
-#: includes/global/content/image.php:104 includes/global/content/image.php:129
-msgid "Custom Image"
+#: includes/global/content/image.php:71
+msgid "Static Image"
 msgstr ""
 
 #: includes/global/content/image.php:107
-msgid "Featured or Custom Image"
+msgid "Static Image Settings"
+msgstr ""
+
+#: includes/global/content/image.php:109
+msgid "Image Type"
+msgstr ""
+
+#: includes/global/content/image.php:112
+msgid "Featured Image"
+msgstr ""
+
+#: includes/global/content/image.php:113 includes/global/content/image.php:138
+msgid "Custom Image"
 msgstr ""
 
 #: includes/global/content/image.php:116
+msgid "Featured or Custom Image"
+msgstr ""
+
+#: includes/global/content/image.php:125
 msgid "Choose between the page's featured image or select a custom image from the media library. Otherwise, select Featured or Custom Image. This setting will display a custom image in place of the featured image if the page does not support or have a featured image."
 msgstr ""
 
-#: includes/global/content/image.php:119
+#: includes/global/content/image.php:128
 msgid "Choose between this page's featured image or select a custom image from the media library."
 msgstr ""
 
-#: includes/global/content/image.php:121
+#: includes/global/content/image.php:130
 msgid "This post type does not support featured images, so select a custom image from the media library instead."
 msgstr ""
 
-#: includes/global/content/image.php:135
+#: includes/global/content/image.php:143
+msgid "Select an Image"
+msgstr ""
+
+#: includes/global/content/image.php:144
 msgid "Remove Image"
 msgstr ""
 
-#: includes/global/content/image.php:150
+#: includes/global/content/image.php:159
 msgid "Alt"
 msgstr ""
 
-#: includes/global/content/image.php:158
+#: includes/global/content/image.php:163 includes/global/content/image.php:220
+msgid "Class"
+msgstr ""
+
+#: includes/global/content/image.php:164 includes/global/content/image.php:221
+#: includes/global/settings.php:385 includes/global/settings.php:395
+msgid "e.g. class-one class-two"
+msgstr ""
+
+#: includes/global/content/image.php:166
+msgid "Enter a space separated list of custom CSS classes to add to the image."
+msgstr ""
+
+#: includes/global/content/image.php:174
 msgid "Image Size"
 msgstr ""
 
-#: includes/global/content/image.php:172
+#: includes/global/content/image.php:191
 msgid "If you are using a Custom Image, note that the size selection will not be reflected in the image preview above."
 msgstr ""
 
-#: includes/global/content/image.php:176
+#: includes/global/content/image.php:196
 msgid "Image Link"
 msgstr ""
 
-#: includes/global/content/image.php:180 includes/global/content/image.php:212
+#: includes/global/content/image.php:200 includes/global/content/image.php:243
 msgid "Check to enable"
 msgstr ""
 
-#: includes/global/content/image.php:184
+#: includes/global/content/image.php:204
 msgid "URL"
 msgstr ""
 
-#: includes/global/content/image.php:193
+#: includes/global/content/image.php:213
 msgid "Open link in new window/tab"
 msgstr ""
 
-#: includes/global/content/image.php:199
+#: includes/global/content/image.php:216
+msgid "Rel"
+msgstr ""
+
+#: includes/global/content/image.php:223
+msgid "Enter a space separated list of custom CSS classes to add to the image link."
+msgstr ""
+
+#: includes/global/content/image.php:230
 msgid "Image Caption"
 msgstr ""
 
-#: includes/global/content/image.php:203
+#: includes/global/content/image.php:234
 msgid "Only basic HTML and shortcodes are accepted. Leave blank for no caption."
 msgstr ""
 
-#: includes/global/content/image.php:208
+#: includes/global/content/image.php:239
 msgid "Set As Background"
 msgstr ""
 
-#: includes/global/content/image.php:218
+#: includes/global/content/image.php:249
 msgid "Set image as a background image. When this setting is enabled, the CSS class %1$sblox-image-background%2$s is added to the content block. Additional custom CSS may be required to attain your desired effect."
 msgstr ""
 
-#: includes/global/content/raw.php:89
-msgid "Raw Content Settings"
-msgstr ""
-
-#: includes/global/content/raw.php:91
+#: includes/global/content/raw.php:71 includes/global/content/raw.php:96
 msgid "Raw Content"
 msgstr ""
 
-#: includes/global/content/raw.php:95
-msgid "By default, the Raw Content box will accept practically anything except PHP. When PHP is enabled, make sure to use correct syntax and wrap all PHP code in "
-msgstr ""
-
-#: includes/global/content/raw.php:95
-msgid " and "
+#: includes/global/content/raw.php:94
+msgid "Raw Content Settings"
 msgstr ""
 
 #: includes/global/content/raw.php:100
+msgid "By default, the Raw Content box will accept practically anything except PHP. When PHP is enabled, make sure to use correct syntax and wrap all PHP code in "
+msgstr ""
+
+#: includes/global/content/raw.php:100
+msgid " and "
+msgstr ""
+
+#: includes/global/content/raw.php:105
 msgid "Check to enable shortcodes"
 msgstr ""
 
-#: includes/global/content/raw.php:104
+#: includes/global/content/raw.php:109
 msgid "Check to enable PHP code"
 msgstr ""
 
-#: includes/global/content/raw.php:108
+#: includes/global/content/raw.php:113
 msgid "Check to disable all markup"
 msgstr ""
 
-#: includes/global/content/raw.php:114
-msgid "By default, Raw Content is wrapped in the following markup: "
+#: includes/global/content/raw.php:119
+msgid "By default, Raw Content is wrapped in the following markup:"
 msgstr ""
 
-#: includes/global/content/raw.php:114
-msgid " Your Raw Content "
+#: includes/global/content/raw.php:119
+msgid "Your Raw Content "
 msgstr ""
 
-#: includes/global/content/raw.php:114
-msgid ". This setting removes all wrapper divs. Note that by removing all markup, most of the Style settings will no longer apply."
+#: includes/global/content/raw.php:119
+msgid "This setting removes all wrapper divs. Note that by removing all markup, most of the Style settings will no longer apply."
 msgstr ""
 
-#: includes/global/posttype.php:59 includes/global/settings.php:240
+#: includes/global/location.php:81 includes/global/location.php:905
+msgid "Location"
+msgstr ""
+
+#: includes/global/location.php:140
+msgid "Block Location"
+msgstr ""
+
+#: includes/global/location.php:143
+msgid "All Pages"
+msgstr ""
+
+#: includes/global/location.php:144
+msgid "Show on Selected"
+msgstr ""
+
+#: includes/global/location.php:145
+msgid "Hide on Selected"
+msgstr ""
+
+#: includes/global/location.php:151
+msgid "Choose \"Show on Selected\" or \"Hide on Selected\" to view additional options. \"Show on Selected\" will only display the content block on pages that match the citeria selected below. \"Hide on Selected\" does to opposite. Selecting this option will display the block on every page %1$sexcept%2$s for those that match the citeria selected below."
+msgstr ""
+
+#: includes/global/location.php:184 includes/global/location.php:236
+#: includes/global/location.php:313 includes/global/location.php:348
+#: includes/global/location.php:388 includes/global/location.php:434
+#: includes/global/location.php:570 includes/global/location.php:696
+#: includes/global/location.php:769
+msgid "Select All"
+msgstr ""
+
+#: includes/global/location.php:184 includes/global/location.php:236
+#: includes/global/location.php:313 includes/global/location.php:348
+#: includes/global/location.php:388 includes/global/location.php:434
+#: includes/global/location.php:570 includes/global/location.php:696
+#: includes/global/location.php:769
+msgid "Unselect All"
+msgstr ""
+
+#: includes/global/location.php:191 includes/global/location.php:888
+msgid "Single Pages"
+msgstr ""
+
+#: includes/global/location.php:194
+msgid "All Single Pages"
+msgstr ""
+
+#: includes/global/location.php:195
+msgid "Selected Single Pages"
+msgstr ""
+
+#: includes/global/location.php:202
+msgid "Select a post type below to view additional options."
+msgstr ""
+
+#: includes/global/location.php:280 includes/global/location.php:889
+msgid "Archive Pages"
+msgstr ""
+
+#: includes/global/location.php:283
+msgid "All Archive Pages"
+msgstr ""
+
+#: includes/global/location.php:284
+msgid "Selected Archive Types"
+msgstr ""
+
+#: includes/global/location.php:292 includes/global/location.php:319
+msgid "Post Type"
+msgstr ""
+
+#: includes/global/location.php:293 includes/global/location.php:361
+msgid "Author"
+msgstr ""
+
+#: includes/global/location.php:294
+msgid "Date & Time"
+msgstr ""
+
+#: includes/global/location.php:322
+msgid "Show or hide on all post type archives."
+msgstr ""
+
+#: includes/global/location.php:322
+msgid "All Post Type Archives"
+msgstr ""
+
+#: includes/global/location.php:323
+msgid "Show or hide on selected post type archives."
+msgstr ""
+
+#: includes/global/location.php:323
+msgid "Selected Post Type Archives"
+msgstr ""
+
+#: includes/global/location.php:326
+msgid "Use this option to show/hide the content block on archive pages of post types. Note: If you are looking to target the \"archive\" page for Posts, use the Blog Page option in the main Block Location settings panel above."
+msgstr ""
+
+#: includes/global/location.php:352
+msgid "There does not appear to be any post types that have archives."
+msgstr ""
+
+#: includes/global/location.php:364
+msgid "Show or hide on all author archives."
+msgstr ""
+
+#: includes/global/location.php:364
+msgid "All Author Archives"
+msgstr ""
+
+#: includes/global/location.php:365
+msgid "Show or hide on selected author archives."
+msgstr ""
+
+#: includes/global/location.php:365
+msgid "Selected Author Archives"
+msgstr ""
+
+#: includes/global/location.php:392 includes/global/location.php:773
+msgid "There does not appear to be any authors on this website."
+msgstr ""
+
+#: includes/global/location.php:413
+msgid "Show or hide on all taxonomy archives."
+msgstr ""
+
+#: includes/global/location.php:413
+msgid "All %1$s Archives"
+msgstr ""
+
+#: includes/global/location.php:414
+msgid "Show or hide on selected taxonomy archives."
+msgstr ""
+
+#: includes/global/location.php:414
+msgid "Selected %1$s Archives"
+msgstr ""
+
+#: includes/global/location.php:438 includes/global/location.php:700
+msgid "There does not appear to be any %1$s yet."
+msgstr ""
+
+#: includes/global/location.php:455
+msgid "Manual Override (Show)"
+msgstr ""
+
+#: includes/global/location.php:459
+msgid "Enter a list of comma separated IDs (page, post, custom post type) to show."
+msgstr ""
+
+#: includes/global/location.php:464
+msgid "Manual Override (Hide)"
+msgstr ""
+
+#: includes/global/location.php:468
+msgid "Enter a list of comma separated IDs (page, post, custom post type) to hide."
+msgstr ""
+
+#: includes/global/location.php:522
+msgid "Enter a list of comma separated Media IDs."
+msgstr ""
+
+#: includes/global/location.php:643
+msgid "Test Strength"
+msgstr ""
+
+#: includes/global/location.php:647
+msgid "Loose taxonomy test."
+msgstr ""
+
+#: includes/global/location.php:647
+msgid "Loose"
+msgstr ""
+
+#: includes/global/location.php:648
+msgid "Strict taxonomy test."
+msgstr ""
+
+#: includes/global/location.php:648
+msgid "Strict"
+msgstr ""
+
+#: includes/global/location.php:649
+msgid "Binding taxonomy test."
+msgstr ""
+
+#: includes/global/location.php:649
+msgid "Binding"
+msgstr ""
+
+#: includes/global/location.php:656
+msgid "The taxonomy test strength determines how the selection of different taxonomy terms interact with one another. A \"Loose\" test means that the block will show/hide so long as it has %1$sany%2$s of the selected taxonomy terms. A \"Strict\" test will only show/hide the block if it has %1$sall%2$s the selected taxonomy terms. A \"Binding\" test will only show/hide the block if it has %1$sall and only%2$s the selected taxonomy terms. The taxonomy test takes into account terms across all included taxonomies. Ignored taxonomies are not included in the test. Please see the %3$sBlox Documentation%4$s for further explanation."
+msgstr ""
+
+#: includes/global/location.php:718
+msgid "There does not appear to be any taxonomies associated with this post type yet."
+msgstr ""
+
+#: includes/global/location.php:886
+msgid "Front Page"
+msgstr ""
+
+#: includes/global/location.php:887
+msgid "Posts Page"
+msgstr ""
+
+#: includes/global/location.php:890
+msgid "Search Pages"
+msgstr ""
+
+#: includes/global/location.php:891
+msgid "404 Error Page"
+msgstr ""
+
+#: includes/global/location.php:922
+msgid "All"
+msgstr ""
+
+#: includes/global/location.php:925 includes/global/location.php:928
+msgid "Selected"
+msgstr ""
+
+#: includes/global/posttype.php:59 includes/global/settings.php:272
 msgid "Global Content Blocks"
 msgstr ""
 
@@ -859,220 +958,208 @@ msgstr ""
 msgid "All Global Blocks"
 msgstr ""
 
-#: includes/global/posttype.php:71
-msgid "Blox Lite"
-msgstr ""
-
-#: includes/global/settings.php:72 includes/global/settings.php:89
+#: includes/global/settings.php:113 includes/global/settings.php:130
 msgid "Blox Settings"
 msgstr ""
 
-#: includes/global/settings.php:146
+#: includes/global/settings.php:159
+msgid "Save %1$s Settings"
+msgstr ""
+
+#: includes/global/settings.php:160
+msgid "Reset %1$s Settings"
+msgstr ""
+
+#: includes/global/settings.php:184
 msgid "General"
 msgstr ""
 
-#: includes/global/settings.php:147
+#: includes/global/settings.php:185
 msgid "Defaults"
 msgstr ""
 
-#: includes/global/settings.php:148
+#: includes/global/settings.php:186
 msgid "Styles"
 msgstr ""
 
-#: includes/global/settings.php:149
-msgid "Licenses"
-msgstr ""
-
-#: includes/global/settings.php:152
-msgid "Extensions"
-msgstr ""
-
-#: includes/global/settings.php:155
+#: includes/global/settings.php:187
 msgid "Misc"
 msgstr ""
 
-#: includes/global/settings.php:246
-msgid "Global Permissions"
+#: includes/global/settings.php:278
+msgid "Enable Global Blocks"
 msgstr ""
 
-#: includes/global/settings.php:247
-msgid "Determines what type of user can manage global content blocks."
-msgstr ""
-
-#: includes/global/settings.php:250 includes/global/settings.php:283
-msgid "Admins Only"
-msgstr ""
-
-#: includes/global/settings.php:251 includes/global/settings.php:284
-msgid "Admins and Editors"
-msgstr ""
-
-#: includes/global/settings.php:252 includes/global/settings.php:285
-msgid "Admins, Editors, and Authors"
-msgstr ""
-
-#: includes/global/settings.php:264
-msgid "Enable Local Blocks"
-msgstr ""
-
-#: includes/global/settings.php:265
+#: includes/global/settings.php:279 includes/global/settings.php:305
 msgid "Globally enable local content blocks"
 msgstr ""
 
-#: includes/global/settings.php:266
-msgid "Turning off this setting will disable local blocks on all post types."
-msgstr ""
-
-#: includes/global/settings.php:272
-msgid "Enable Local Blocks On..."
-msgstr ""
-
-#: includes/global/settings.php:273
-msgid "Enable local blocks on specific post types. Note that only \"public\" custom post types will be displayed above. Disabling local blocks on a specific post type will not remove any meta data."
-msgstr ""
-
-#: includes/global/settings.php:279
-msgid "Local Permissions"
-msgstr ""
-
 #: includes/global/settings.php:280
-msgid "Determines what type of user can manage local content blocks."
+msgid "Turning off this setting will disable all global content blocks."
 msgstr ""
 
-#: includes/global/settings.php:297
-msgid "Default Block Position"
+#: includes/global/settings.php:286
+msgid "Global Permissions"
 msgstr ""
 
-#: includes/global/settings.php:303
-msgid "Global Block Position"
+#: includes/global/settings.php:287
+msgid "Determines what type of user can manage global content blocks."
+msgstr ""
+
+#: includes/global/settings.php:290 includes/global/settings.php:323
+msgid "Admins Only"
+msgstr ""
+
+#: includes/global/settings.php:291 includes/global/settings.php:324
+msgid "Admins and Editors"
+msgstr ""
+
+#: includes/global/settings.php:292 includes/global/settings.php:325
+msgid "Admins, Editors, and Authors"
 msgstr ""
 
 #: includes/global/settings.php:304
-msgid "Set the default block position for all global content blocks."
+msgid "Enable Local Blocks"
 msgstr ""
 
-#: includes/global/settings.php:310
-msgid "Global Block Priority"
+#: includes/global/settings.php:306
+msgid "Turning off this setting will disable local blocks on all post types."
 msgstr ""
 
-#: includes/global/settings.php:311
-msgid "Set the default block priority for all global content blocks"
+#: includes/global/settings.php:312
+msgid "Enable Local Blocks On..."
+msgstr ""
+
+#: includes/global/settings.php:313
+msgid "Enable local blocks on specific post types. Note that only \"public\" custom post types will be displayed above. Disabling local blocks on a specific post type will not remove any meta data."
 msgstr ""
 
 #: includes/global/settings.php:319
-msgid "Local Block Position"
+msgid "Local Permissions"
 msgstr ""
 
 #: includes/global/settings.php:320
-msgid "Set the default block position for all local content blocks."
+msgid "Determines what type of user can manage local content blocks."
 msgstr ""
 
-#: includes/global/settings.php:326
-msgid "Local Block Priority"
+#: includes/global/settings.php:337
+msgid "Default Block Position"
 msgstr ""
 
-#: includes/global/settings.php:327
-msgid "Set the default block priority for all local content blocks"
+#: includes/global/settings.php:338
+msgid "Please refer to the %1$sBlox Documentation%2$s for hook reference. For priority, it is important to note that other plugins and themes can use Genesis Hooks to add content to a page. A low number tells Wordpress to try and add your custom content before all other content using the same Genesis Hook. A larger number will add the content later in the queue. (ex: Early=1, Medium=10, Late=100)"
 msgstr ""
 
-#: includes/global/settings.php:341
-msgid "Global Custom Classes"
+#: includes/global/settings.php:343
+msgid "Global Block Position"
 msgstr ""
 
-#: includes/global/settings.php:342
-msgid "Enter a space separated list of custom CSS classes to add to all global blocks."
+#: includes/global/settings.php:344
+msgid "Set the default block position for all global content blocks."
 msgstr ""
 
-#: includes/global/settings.php:345 includes/global/settings.php:355
-msgid "e.g. class-one class-two"
+#: includes/global/settings.php:350
+msgid "Global Block Priority"
 msgstr ""
 
 #: includes/global/settings.php:351
-msgid "Local Custom Classes"
+msgid "Set the default block priority for all global content blocks"
 msgstr ""
 
-#: includes/global/settings.php:352
-msgid "Enter a space separated list of custom CSS classes to add to all local blocks."
+#: includes/global/settings.php:359
+msgid "Local Block Position"
 msgstr ""
 
-#: includes/global/settings.php:361
-msgid "Custom CSS"
+#: includes/global/settings.php:360
+msgid "Set the default block position for all local content blocks."
 msgstr ""
 
-#: includes/global/settings.php:362
-msgid "Add custom CSS that can affect all content blocks. For reference on content block frontend markup, please refer to the %1$sBlox Documentation%2$s."
+#: includes/global/settings.php:366
+msgid "Local Block Priority"
 msgstr ""
 
-#: includes/global/settings.php:370
-msgid "Globally disable all default styles"
+#: includes/global/settings.php:367
+msgid "Set the default block priority for all local content blocks"
 msgstr ""
 
-#: includes/global/settings.php:371
-msgid "Blox includes default CSS to provide minimal block styling. If this option is left un-checked, default CSS can be disabled on each individual content block as needed."
+#: includes/global/settings.php:381
+msgid "Global Custom Classes"
+msgstr ""
+
+#: includes/global/settings.php:382
+msgid "Enter a space separated list of custom CSS classes to add to all global blocks."
 msgstr ""
 
 #: includes/global/settings.php:391
-msgid "Local Metabox Title"
+msgid "Local Custom Classes"
 msgstr ""
 
 #: includes/global/settings.php:392
+msgid "Enter a space separated list of custom CSS classes to add to all local blocks."
+msgstr ""
+
+#: includes/global/settings.php:401
+msgid "Custom CSS"
+msgstr ""
+
+#: includes/global/settings.php:402
+msgid "Add custom CSS that can affect all content blocks. For reference on content block frontend markup, please refer to the %1$sBlox Documentation%2$s."
+msgstr ""
+
+#: includes/global/settings.php:411
+msgid "Globally disable all default styles"
+msgstr ""
+
+#: includes/global/settings.php:412
+msgid "Blox includes default CSS to provide minimal block styling. If this option is left un-checked, default CSS can be disabled on each individual content block as needed."
+msgstr ""
+
+#: includes/global/settings.php:424
+msgid "Local Metabox Title"
+msgstr ""
+
+#: includes/global/settings.php:425
 msgid "This is the metabox title that is displayed on pages/posts/custom post types when local blocks are activated."
 msgstr ""
 
-#: includes/global/settings.php:395
+#: includes/global/settings.php:428
 msgid "e.g. Local Content Blocks"
 msgstr ""
 
-#: includes/global/settings.php:467
+#: includes/global/settings.php:434
+msgid "Remove Data on Uninstall"
+msgstr ""
+
+#: includes/global/settings.php:435
+msgid "Check to completely remove all plugin data when Blox Lite is deleted"
+msgstr ""
+
+#: includes/global/settings.php:507
 msgid "Settings updated."
 msgstr ""
 
-#: includes/global/settings.php:501
+#: includes/global/settings.php:541
 msgid "Settings have been reset."
 msgstr ""
 
-#: includes/global/settings.php:527
+#: includes/global/settings.php:567
 msgid "The callback function used for the <strong>%s</strong> setting seems to be missing..."
 msgstr ""
 
-#: includes/global/settings.php:711
+#: includes/global/settings.php:761
 msgid "Pages"
 msgstr ""
 
-#: includes/global/settings.php:715
+#: includes/global/settings.php:765
 msgid "Posts"
 msgstr ""
 
-#: includes/global/settings.php:775
-msgid "Check License"
+#: includes/global/settings.php:780
+msgid "custom"
 msgstr ""
 
-#: includes/global/settings.php:776
-msgid "Deactivate License"
-msgstr ""
-
-#: includes/global/settings.php:777
-msgid "This license key is %1$sactive%2$s, and expires on %3$s. Click to deactivate. Once deactivated, you will no longer receive automatic updates for %4$s."
-msgstr ""
-
-#: includes/global/settings.php:782
-msgid "Activate License"
-msgstr ""
-
-#: includes/global/settings.php:783
-msgid "Edit"
-msgstr ""
-
-#: includes/global/settings.php:784
-msgid "This license key is %1$snot activated%2$s, so you are not receiving automatic updates. Click to activate or edit the license key."
-msgstr ""
-
-#: includes/global/settings.php:785
-msgid "Edited license keys need to be resaved before they can be activated."
-msgstr ""
-
-#: includes/global/settings.php:796
-msgid "Enter your license key and save. Once saved, you will be able to activate and begin receiving automatic updates."
+#: includes/global/settings.php:911
+msgid "Are you sure you want to reset these settings? This action cannot be undone."
 msgstr ""
 #. Plugin Name of the plugin/theme
 msgid "Blox Lite - Content Blocks for Genesis"

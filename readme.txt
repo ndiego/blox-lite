@@ -4,7 +4,7 @@ Donate Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: genesis, content block, add content, genesis hooks, Genesis Framework, genesiswp, header, footer, sidebar, custom header, featured image
 Requires at least: 3.8
 Tested up to: 4.4.2
-Stable tag: 1.0.0
+Stable tag: 1.0.2
 License: GNU General Public License v2.0 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Easily add custom content to your Genesis powered website.
 
 == Description ==
 
-**Please Note:** This plugin is only for Genesis Framework users. Genesis is a premium product by [StudioPress](http://www.studiopress.com). Furthermore, Box Lite is the free version of the premium plugin [Blox](https://www.bloxwp.com). See below for more information on Blox. 
+**Please Note:** This plugin is only for Genesis Framework users. Genesis is a premium product by [StudioPress](http://www.studiopress.com). We have no affiliation with the company. We just love building useful tools for Genesis users.
 
 Blox Lite provides you with the easiest way to add custom content to your Genesis powered website. Lets assume you have picked out a theme for your website, but wish you could add a banner image to each post. Or perhaps you want to add a call-to-action just before the site footer but there is no designated widget area for that location. Now you could search the web for the needed code and modify your theme’s functions.php file, but there are 3 problems with this approach:
 
@@ -26,9 +26,9 @@ https://www.youtube.com/watch?v=uPAR-GI6sxQ
 *Skip ahead to 4:40 and 9:10 for the examples*.
 
 = Features =
-
 * Add content locally to posts, pages, and all public custom post types
 * Add content globally to virtually any page(s) on your website including 404 pages, search pages, and archive pages
+* Add as many content blocks to a page as you want
 * Position content anywhere there is a Genesis Hook
 * Display a custom image or featured image
 * Display HMTL content
@@ -39,7 +39,7 @@ https://www.youtube.com/watch?v=uPAR-GI6sxQ
 * Raw Content
 * Static Image
 
-You might be wondering why there are only two content options… Well this is the lite version of [Blox](https://www.bloxwp.com/?utm_source=blox-lite&utm_medium=plugin&utm_content=readme-links&utm_campaign=Blox_Plugin_Links), which is a premium plugin that will be available for purchase soon. Not all of the content options that are available in Blox are included in Blox Lite. But don't worry, arguably the two most important ones are! With Raw Content you can add anything to your website, whether that be raw HTML, CSS, Javascript, iframes, shortcodes, and even PHP. If you are looking to add images, such as a banner image, the Static Image option is fantastic. Add a photo directly from your media library, choose the size, add a caption, and more. The Static Image option even supports background images. This is great for setting up responsive headers or adding a parallax effect.
+You might be wondering why there are only two content options… Well this is the lite version of [Blox](https://www.bloxwp.com/?utm_source=blox-lite&utm_medium=plugin&utm_content=readme-links&utm_campaign=Blox_Plugin_Links), which is a premium plugin that will be available for purchase soon. Not all of the content options that are available in Blox are included in Blox Lite. But don't worry, arguably the two most important ones are! With Raw Content you can add anything to your website, whether that be raw HTML, CSS, Javascript, iframes, shortcodes, and even PHP. If you are looking to add images, such as a banner image, the Static Image option is the way to go. Add a photo directly from your media library, choose the size, add a caption, and more. The Static Image option even supports background images. This is great for setting up responsive headers or adding a parallax effect.
 
 = What Blox Lite Doesn’t Do =
 
@@ -52,7 +52,7 @@ Blox Lite does not include any styling aside from a small amount of default CSS 
 There are many ways you can support the development of this plugin:
 
 1. If you spot an error or bug, please let us know in the support forums. The issue will be diagnosed an a new release push out as soon as possible.
-1. If you are looking for additional features, we encourage you to check out the premium version of Blox. The more people that purchase Blox, the more likely additional features will work their way into both Blox and Blox Lite.
+1. If you are looking for additional features, we encourage you to check out the premium version of [Blox](https://www.bloxwp.com/?utm_source=blox-lite&utm_medium=plugin&utm_content=readme-links&utm_campaign=Blox_Plugin_Links). The more people that purchase Blox, the more likely additional features will work their way into both Blox and Blox Lite.
 1. [Donate](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=52EAFXT8UV3XQ). Time is money, and contributions from users like you really help us dedicate more hours to the continual development and support of this plugin. 
 
 == Installation ==
@@ -93,6 +93,15 @@ There are a couple resources that will help you get started with Blox Lite:
 4. The Blox settings screen
 
 == Changelog ==
+
+= 1.0.2 =
+* Fixed bug with Static Image caption stripping HTML tags (Thanks Nestor!)
+* Fixed bug with Featured/Custom pulling wrong featured image on non-singular pages (Thanks Nestor!)
+* Updated a few informational links in the plugin
+
+= 1.0.1 =
+* Fixed bug with PHP 5.3 (Thanks Tom!)
+* Updated a few informational links in the plugin
 
 = 1.0.0 =
 * Initial Release

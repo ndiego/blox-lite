@@ -174,9 +174,15 @@ class Blox_Content_Image {
 					<th scope="row"><?php _e( 'Image Size', 'blox' ); ?></th>
 					<td>
 						<select class="genesis-image-size-selector blox-has-help" name="<?php echo $name_prefix; ?>[image][size][size_type]">
-							<?php foreach ( (array) $this->get_image_sizes() as $i => $size ) { ?>
-								<option value="<?php echo $size['value']; ?>" <?php ! empty( $get_prefix['image']['size']['size_type'] ) ? selected( $size['value'], esc_attr( $get_prefix['image']['size']['size_type'] ) ) : '';?>><?php echo $size['name']; ?></option>
-							<?php } ?>
+							<?php foreach ( (array) $this->get_image_sizes() as $i => $size ) { 
+							
+								// Remove the new Custom option added in WP 4.4 for now. Could cause confusion...
+								if ( $size['value'] != 'custom' ) {
+								?>
+									<option value="<?php echo $size['value']; ?>" <?php ! empty( $get_prefix['image']['size']['size_type'] ) ? selected( $size['value'], esc_attr( $get_prefix['image']['size']['size_type'] ) ) : '';?>><?php echo $size['name']; ?></option>
+								<?php 
+								}
+							} ?>
 						</select>
 
 						<!--
@@ -285,7 +291,7 @@ class Blox_Content_Image {
 		$settings['link']['target']				= isset( $name_prefix['link']['target'] ) ? 1 : 0;
 		$settings['link']['rel']				= trim( strip_tags( $name_prefix['link']['rel'] ) );
 		$settings['link']['css']				= trim( strip_tags( $name_prefix['link']['css'] ) );
-		$settings['caption']					= trim( strip_tags( $name_prefix['caption'] ) );
+		$settings['caption']					= wp_kses_post( $name_prefix['caption'] );
 		$settings['background']					= isset( $name_prefix['background'] ) ? 1 : 0;
 
 		return $settings;
@@ -306,8 +312,13 @@ class Blox_Content_Image {
 	public function print_image_content( $content_data, $block_id, $block, $global ) {
 
 		// Check to see if the current post/page/custom post type has a featured image set
-		$thumbnail = has_post_thumbnail( get_the_ID() );
-
+		// Disable for non-singular pages because has_post_thumbnail can return true on archive pages, search pages, etc.
+		if ( is_singular() ) {
+			$thumbnail = has_post_thumbnail( get_the_ID() );
+		} else {
+			$thumbnail = false;
+		}
+		
 		// Aquire some misc settings
 		$content_type = $content_data['image']['image_type'] != '' ? $content_data['image']['image_type'] : null;
 		$background   = ! empty( $content_data['image']['background'] ) ? true : false;
@@ -322,7 +333,7 @@ class Blox_Content_Image {
 				$image =  esc_url( $content_data['image']['custom']['url'] );
 			} else {
 				if ( ! empty( $content_data['image']['custom']['id'] ) ) {
-					$image = wp_get_attachment_image( $content_data['image']['custom']['id'], $content_data['image']['size']['size_type'], false, array( 'class' => 'entry-image ' . $content_data['image']['custom']['css'], 'title' => $content_data['image']['custom']['title'], 'alt' => $content_data['image']['custom']['alt'] ) );
+					$image = wp_get_attachment_image( $content_data['image']['custom']['id'], $content_data['image']['size']['size_type'], false, array( 'class' => $content_data['image']['custom']['css'], 'title' => $content_data['image']['custom']['title'], 'alt' => $content_data['image']['custom']['alt'] ) );
 				}
 			}
 
@@ -336,8 +347,8 @@ class Blox_Content_Image {
 				$image = genesis_get_image( array(
 					'format'  => 'html',
 					'size'    =>  isset( $content_data['image']['size']['size_type'] ) ? $content_data['image']['size']['size_type'] : 'full',
-					'context' => 'featured-page-widget',
-					'attr'    => genesis_parse_attr( 'entry-image-widget' ),
+					'context' => '',
+					'attr'    => '',
 				) );
 			}
 

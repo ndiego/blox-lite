@@ -5,22 +5,24 @@
  * Description: Easily add custom content blocks to themes built on the Genesis Framework
  * Author:      Nick Diego
  * Author URI:  http://www.outermostdesign.com
- * Version:     1.0.0
+ * Version:     1.0.2
  * Text Domain: blox
  * Domain Path: languages
  *
- * Blox is free software: you can redistribute it and/or modify
+ * Copyright 2016 Nick Diego
+ *
+ * Blox Lite is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 2 of the License, or
  * any later version.
  *
- * Blox is distributed in the hope that it will be useful,
+ * Blox Lite is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Blox. If not, visit <http://www.gnu.org/licenses/>.
+ * along with Blox Lite. If not, visit <http://www.gnu.org/licenses/>.
  */
 
 
@@ -263,7 +265,7 @@ class Blox_Lite_Main {
 		);
 
 		$new_links = array(
-			'<a href="' . $docs_link . '">' . esc_html__( 'Documentation', 'blox' ) . '</a>',
+			'<a href="' . $docs_link . '" target="_blank">' . esc_html__( 'Documentation', 'blox' ) . '</a>',
 		);
 
 		$links = array_merge( $links, $new_links );
