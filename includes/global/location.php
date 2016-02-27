@@ -287,6 +287,9 @@ class Blox_Location {
 						<div class="blox-location-selected-container <?php if ( empty( $get_prefix['archive']['select_type'] ) ||  $get_prefix['archive']['select_type'] != 'selected' ) echo ('blox-hidden'); ?>">
 							
 							<div class="blox-location-archive-selection">
+								<div class="blox-description">
+									<?php _e( 'Select an archive type below to view additional options.', 'blox' ); ?>
+								</div>
 								<div class="blox-checkbox-container">
 									<ul class="blox-columns">
 										<li><label><input type="checkbox" name="<?php echo $name_prefix; ?>[archive][selection][]" value="posttypes" <?php echo ! empty( $get_prefix['archive']['selection'] ) && in_array( 'posttypes', $get_prefix['archive']['selection'] ) ? 'checked="checked"' : ''; ?> /> <?php _e( 'Post Type', 'blox' ); ?></label></li>
@@ -632,8 +635,6 @@ class Blox_Location {
      */
     public function blox_location_singles_get_taxonomies( $name_prefix, $get_prefix, $post_type, $post_name_singular ) {
 
-    	//echo print_r( $get_prefix['singles'][$post_type]['taxonomies'] );
-
 		$taxonomy_objects = get_object_taxonomies( $post_type, 'object' );
 
 		if ( ! empty( $taxonomy_objects ) ) {
@@ -653,7 +654,7 @@ class Blox_Location {
 					<a href="#" class="dashicons dashicons-editor-help" onclick="helpIcon.toggleHelp(this);return false;"></a>
 				</span>
 				<div class="blox-help-text top">
-					<?php echo sprintf( __( 'The taxonomy test strength determines how the selection of different taxonomy terms interact with one another. A "Loose" test means that the block will show/hide so long as it has %1$sany%2$s of the selected taxonomy terms. A "Strict" test will only show/hide the block if it has %1$sall%2$s the selected taxonomy terms. A "Binding" test will only show/hide the block if it has %1$sall and only%2$s the selected taxonomy terms. The taxonomy test takes into account terms across all included taxonomies. Ignored taxonomies are not included in the test. Please see the %3$sBlox Documentation%4$s for further explanation.', 'blox' ), '<strong>', '</strong>', '<a href="http://www.bloxwp.com/documentation" title="Blox Documentation">', '</a>' ); ?>
+					<?php echo sprintf( __( 'The taxonomy test strength determines how the selection of different taxonomy terms interact with one another. A "Loose" test means that the block will show/hide so long as it has %1$sany%2$s of the selected taxonomy terms. A "Strict" test will only show/hide the block if it has %1$sall%2$s the selected taxonomy terms. A "Binding" test will only show/hide the block if it has %1$sall and only%2$s the selected taxonomy terms. The taxonomy test takes into account terms across all included taxonomies. Ignored taxonomies are not included in the test. Please see the %3$sBlox Documentation%4$s for further explanation.', 'blox' ), '<strong>', '</strong>', '<a href="https://www.bloxwp.com/documentation/location/?utm_source=blox-lite&utm_medium=plugin&utm_content=location-links&utm_campaign=Blox_Plugin_Links" title="' . __( 'Blox Documentation', 'blox' ) . '" target="_blank">', '</a>' ); ?>
 				</div>
 
 
@@ -686,7 +687,7 @@ class Blox_Location {
 											<li>
 												<label>
 													<input type="checkbox" name="<?php echo $name_prefix; ?>[singles][<?php echo $post_type; ?>][taxonomies][<?php echo $taxonomy_type; ?>][selection][]" value="<?php echo $term->term_id; ?>"  <?php echo ! empty( $get_prefix['singles'][$post_type]['taxonomies'][$taxonomy_type]['selection'] ) && in_array( $term->term_id, $get_prefix['singles'][$post_type]['taxonomies'][$taxonomy_type]['selection'] ) ? 'checked="checked"' : ''; ?> />
-													<?php echo apply_filters( 'the_title', $term->name, $term->term_id ); ?>
+													<?php echo apply_filters( 'the_title', $term->name, $term->term_id ) . ' <span class="blox-post-status">(' . $term->count. ')</span>'; ?>
 												</label>
 											</li>
 											<?php } ?>
@@ -735,8 +736,8 @@ class Blox_Location {
      * @param string $post_name_singular The singular name of the given post type
      */
 	public function blox_location_singles_get_authors( $name_prefix, $get_prefix, $post_type, $post_name_singular ) {
-
 		?>
+		
 		<div class="<?php if ( empty( $get_prefix['singles'][$post_type]['select_type'] ) || $get_prefix['singles'][$post_type]['select_type'] != 'selected_authors' ) echo ( 'blox-hidden' ); ?> blox-singles-authors-container-wrapper" >
 	
 			<?php 

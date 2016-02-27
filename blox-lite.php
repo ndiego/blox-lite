@@ -5,7 +5,7 @@
  * Description: Easily add custom content blocks to themes built on the Genesis Framework
  * Author:      Nick Diego
  * Author URI:  http://www.outermostdesign.com
- * Version:     1.0.2
+ * Version:     1.0.3
  * Text Domain: blox
  * Domain Path: languages
  *

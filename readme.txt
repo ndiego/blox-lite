@@ -1,10 +1,10 @@
 === Blox Lite - Content Blocks for Genesis ===
-Contributors: ndiego, outermost design
+Contributors: ndiego, outermostdesign
 Donate Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=52EAFXT8UV3XQ
 Tags: genesis, content block, add content, genesis hooks, Genesis Framework, genesiswp, header, footer, sidebar, custom header, featured image
 Requires at least: 3.8
 Tested up to: 4.4.2
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GNU General Public License v2.0 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -94,14 +94,20 @@ There are a couple resources that will help you get started with Blox Lite:
 
 == Changelog ==
 
+= 1.0.3 =
+* Added additional description text to Location settings tab
+* Added count indicators on taxonomies in Location settings
+* Fixed bug with PHP 5.2 (Thanks hampi52!)
+* Updated a few informational links in plugin
+
 = 1.0.2 =
 * Fixed bug with Static Image caption stripping HTML tags (Thanks Nestor!)
 * Fixed bug with Featured/Custom pulling wrong featured image on non-singular pages (Thanks Nestor!)
-* Updated a few informational links in the plugin
+* Updated a few informational links in plugin
 
 = 1.0.1 =
 * Fixed bug with PHP 5.3 (Thanks Tom!)
-* Updated a few informational links in the plugin
+* Updated a few informational links in plugin
 
 = 1.0.0 =
 * Initial Release
