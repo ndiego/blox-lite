@@ -10,7 +10,7 @@ This plugin is freely available in the [Wordpress repository](https://wordpress.
 
 There are a number of ways you can get help with Blox Lite:
 
-* Visit the Documentation pages on [www.bloxwp.com](https://www.bloxwp.com/documentationhttps://www.bloxwp.com/documentation/?utm_source=blox-lite&utm_medium=plugin&utm_content=github-readme-links&utm_campaign=Blox_Plugin_Links). Note that this documentation is for Blox, the premium version of Blox Lite, but most of the information is interchangeable. 
+* Visit the Documentation pages on [www.bloxwp.com](https://www.bloxwp.com/documentation/?utm_source=blox-lite&utm_medium=plugin&utm_content=github-readme-links&utm_campaign=Blox_Plugin_Links). Note that this documentation is for Blox, the premium version of Blox Lite, but most of the information is interchangeable. 
 * Submit a support request in the Blox Lite [support forums](https://wordpress.org/support/plugin/blox-lite) on WordPress.org.
 
 ### Find a bug or have a feature request?
