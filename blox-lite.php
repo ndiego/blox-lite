@@ -55,7 +55,7 @@ class Blox_Lite_Main {
      *
      * @var string
      */
-    public $version = '1.0.0';
+    public $version = '1.0.3';
 
     /**
      * The name of the plugin.
