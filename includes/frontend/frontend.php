@@ -282,8 +282,6 @@ function blox_frontend_content( $args, $parameters ) {
 	$content_data = $block['content'];
 	$style_data   = $block['style'];
 
-	//echo print_r( $content_data );
-
 	// Get access to some of our helper functions
 	$instance = Blox_Common::get_instance();
 
@@ -319,11 +317,3 @@ function blox_frontend_content( $args, $parameters ) {
 		}
 	}
 }
-
-
-function some_func( $query ){
-    if ( is_archive() ) {
-         echo 'Archive Test';
-    }
-}
-//add_action('genesis_after_header','some_func');
