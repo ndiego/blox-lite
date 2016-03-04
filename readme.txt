@@ -4,7 +4,7 @@ Donate Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: genesis, content block, add content, genesis hooks, Genesis Framework, genesiswp, header, footer, sidebar, custom header, featured image
 Requires at least: 3.8
 Tested up to: 4.4.2
-Stable tag: 1.0.3
+Stable tag: 1.1.0
 License: GNU General Public License v2.0 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,6 +34,7 @@ https://www.youtube.com/watch?v=uPAR-GI6sxQ
 * Display HMTL content
 * Add scripts, CSS, iframes, and even PHP
 * Plugin is fully translatable (.pot file included)
+* **New**: Now includes a few handy utility [shortcodes](https://www.bloxwp.com/documentation/shortcodes/?utm_source=blox-lite&utm_medium=plugin&utm_content=readme-links&utm_campaign=Blox_Plugin_Links)
 
 = Content Options =
 * Raw Content
@@ -93,6 +94,10 @@ There are a couple resources that will help you get started with Blox Lite:
 4. The Blox settings screen
 
 == Changelog ==
+
+= 1.1.0 =
+* Added utility shortcodes, more to come...
+* Fixed bug with image link (Thanks nixiemartyn and skytthe!)
 
 = 1.0.3 =
 * Added additional description text to Location settings tab

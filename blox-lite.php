@@ -5,7 +5,7 @@
  * Description: Easily add custom content blocks to themes built on the Genesis Framework
  * Author:      Nick Diego
  * Author URI:  http://www.outermostdesign.com
- * Version:     1.0.3
+ * Version:     1.1.0
  * Text Domain: blox
  * Domain Path: languages
  *
@@ -192,6 +192,7 @@ class Blox_Lite_Main {
 		// Content classes
 		require plugin_dir_path( __FILE__ ) . 'includes/global/content/image.php';
 		require plugin_dir_path( __FILE__ ) . 'includes/global/content/raw.php';
+		require plugin_dir_path( __FILE__ ) . 'includes/global/content/shortcodes.php';
 		
         // Load admin only components.
         if ( is_admin() ) {

@@ -357,7 +357,7 @@ class Blox_Content_Image {
 		// Get our image link if enabled
 		if ( ! empty( $content_data['image']['link']['url'] ) && $content_data['image']['link']['enable'] ) {
 
-			$target = isset( $content_data['image']['link']['target'] ) ? '_blank' : '_self';
+			$target = ! empty( $content_data['image']['link']['target'] ) ? '_blank' : '_self';
 
 			$link_start = '<a href="' . $content_data['image']['link']['url'] . '" target="' . $target . '" title="' . $content_data['image']['link']['title'] . '" class="' . $content_data['image']['link']['css'] . '" rel="' . $content_data['image']['link']['rel'] . '">';
 			$link_end   = '</a>';
