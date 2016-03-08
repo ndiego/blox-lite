@@ -184,12 +184,6 @@ class Blox_Content_Image {
 								}
 							} ?>
 						</select>
-
-						<!--
-						<div class="blox-image-size-custom <?php if ( empty( $get_prefix['image']['size']['size_type'] ) || $get_prefix['image']['size']['size_type'] != 'custom' ) echo ( 'blox-hidden' ); ?>">
-							<input type="text" name="<?php echo $name_prefix; ?>[image][size][custom][width]" value="<?php echo ! empty( $get_prefix['image']['size']['custom']['width'] ) ? esc_attr( $get_prefix['image']['size']['custom']['width'] ) : ''; ?>"/> <span>×</span> <input type="text" name="<?php echo $name_prefix; ?>[image][size][custom][height]" value="<?php echo ! empty( $get_prefix['image']['size']['custom']['height'] ) ? esc_attr( $get_prefix['image']['size']['custom']['height'] ) : ''; ?>"/> <strong>px</strong>
-						</div>
-						-->
 						<span class="blox-help-text-icon">
 							<a href="#" class="dashicons dashicons-editor-help" onclick="helpIcon.toggleHelp(this);return false;"></a>
 						</span>
@@ -283,8 +277,6 @@ class Blox_Content_Image {
 		$settings['custom']['alt']				= trim( strip_tags( $name_prefix['custom']['alt'] ) );
 		$settings['custom']['css']				= trim( strip_tags( $name_prefix['custom']['css'] ) );
 		$settings['size']['size_type']			= esc_attr( $name_prefix['size']['size_type'] );
-		//$settings['size']['custom']['width']	= absint( $name_prefix['size']['custom']['width'] );
-		//$settings['size']['custom']['height']	= absint( $name_prefix['size']['custom']['height'] );
 		$settings['link']['enable']				= isset( $name_prefix['link']['enable'] ) ? 1 : 0;
 		$settings['link']['url']				= $name_prefix['link']['url'] == 'http://' ? '' : esc_url( $name_prefix['link']['url'] );
 		$settings['link']['title']				= trim( strip_tags( $name_prefix['link']['title'] ) );

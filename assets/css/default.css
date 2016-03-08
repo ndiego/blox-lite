@@ -31,10 +31,12 @@
 	margin: 0 auto;
 	position: relative;
 	text-align: center;
+	width: 100%;
 }
 .blox-theme-default .blox-image-wrap {
 	display: inline-block;
 	position: relative;
+	width: 100%;
 }
 
 .blox-theme-default .blox-image-container img {

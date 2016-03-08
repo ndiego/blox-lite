@@ -179,17 +179,6 @@ class Blox_Common {
 					'genesis_after_entry_content' 	=> array( 'name'  => 'genesis_after_entry_content', 'title' => __( 'This hook executes after the .entry-content container in all loop blocks.', 'blox' ) ),
 					'genesis_entry_footer' 			=> array( 'name'  => 'genesis_entry_footer', 'title' => __( 'This hook executes after the entry content and generates the entry footer content in all loop blocks.', 'blox' ) ),
 					'genesis_after_entry' 			=> array( 'name'  => 'genesis_after_entry', 'title' => __( 'This hook executes after each entry in all loop blocks (outside the post_class() container).', 'blox' ) ),
-					// XHTML Hooks - Deactivated for now, possibly remove completely in v2.0.0
-					/*
-					'genesis_before_post' 			=> array( 'name'  => 'genesis_before_post (XHTML)', 'title' => __( 'This hook executes before each post in all loop blocks (outside the post_class() div).', 'blox' ) ),
-					'genesis_before_post_title' 	=> array( 'name'  => 'genesis_before_post_title (XHTML)', 'title' => __( 'This hook executes immediately before each post title for each post within the loop.', 'blox' ) ),
-					'genesis_post_title' 			=> array( 'name'  => 'genesis_post_title (XHTML)', 'title' => __( 'This hook outputs the actual post title, contextually, based on what type of page you are viewing.', 'blox' ) ),
-					'genesis_after_post_title' 		=> array( 'name'  => 'genesis_after_post_title (XHTML)', 'title' => __( 'This hook executes immediately after each post title for each post within the loop.', 'blox' ) ),
-					'genesis_before_post_content' 	=> array( 'name'  => 'genesis_before_post_content (XHTML)', 'title' => __( 'This hook executes immediately before the post/page content is output, outside the .entry-content div.', 'blox' ) ),
-					'genesis_post_content' 			=> array( 'name'  => 'genesis_post_content (XHTML)', 'title' => __( 'This hook outputs the actual post content and if chosen, the post image (inside the #content div).', 'blox' ) ),
-					'genesis_after_post_content' 	=> array( 'name'  => 'genesis_after_post_content (XHTML)', 'title' => __( 'This hook executes immediately after the post/page content is output, outside the .entry-content div.', 'blox' ) )
-					'genesis_after_post' 			=> array( 'name'  => 'genesis_after_post (XHTML)', 'title' => __( 'This hook executes after each post in all loop blocks (outside the post_class() div).', 'blox' ) ),
-					*/
 				)
 			),
 			'comment' => array(

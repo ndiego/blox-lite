@@ -216,8 +216,6 @@ class Blox_Lite_Main {
         	// Class for generating all frontend markup
 			require plugin_dir_path( __FILE__ ) . 'includes/frontend/frontend.php';
         }
-        
-
     }
 
 

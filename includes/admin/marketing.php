@@ -116,4 +116,5 @@ class Blox_Marketing {
     }
 } 
 // Load the class.
-$blox_marketing = Blox_Marketing::get_instance();   
+$blox_marketing = Blox_Marketing::get_instance();
+  
