@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Blox Lite - Content Blocks for Genesis
  * Plugin URI:  https://www.bloxwp.com
- * Description: Easily add custom content blocks to themes built on the Genesis Framework
+ * Description: Easily customize themes built on the Genesis Framework
  * Author:      Nick Diego
  * Author URI:  http://www.outermostdesign.com
  * Version:     1.2.0

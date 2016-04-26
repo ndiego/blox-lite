@@ -1389,7 +1389,6 @@ class Blox_Location {
 			
 			// Since we are running a show test, we only show the block if the location_test is true
 			if ( $location_test == true ) {
-				//echo 'hello';
 				return true;
 			} else {
 				return false;
