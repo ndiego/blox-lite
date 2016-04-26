@@ -2,9 +2,9 @@
 
 Blox Lite is a Wordpress plugin built for users of the [Genesis Framework](http://www.studiopress.com). Blox Lite is developed by Outermost Design, LLC. We have no direct affiliation with the makers of Genesis.
 
-Blox Lite allows you to easily add content to your Genesis theme through Genesis hooks. Check out our [demo video](https://www.youtube.com/watch?v=uPAR-GI6sxQ) or a brief overview of what Blox Lite can do.
+Blox Lite allows you to easily add content to your Genesis theme through Genesis hooks. Check out the [demo video](https://www.youtube.com/watch?v=uPAR-GI6sxQ) for a brief overview of what Blox Lite can do.
 
-This plugin is freely available in the [Wordpress repository](https://wordpress.org/plugins/blox-lite). The premium version of this plugin, Blox, is coming soon. More details can be found at [www.bloxwp.com](https://www.bloxwp.com/?utm_source=blox-lite&utm_medium=plugin&utm_content=github-readme-links&utm_campaign=Blox_Plugin_Links).
+This plugin is freely available in the [Wordpress repository](https://wordpress.org/plugins/blox-lite). The premium version of this plugin, Blox, offers additional features and power. More details can be found at [www.bloxwp.com](https://www.bloxwp.com/?utm_source=blox-lite&utm_medium=plugin&utm_content=github-readme-links&utm_campaign=Blox_Plugin_Links).
 
 ### Support
 

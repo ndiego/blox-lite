@@ -34,7 +34,7 @@ https://www.youtube.com/watch?v=uPAR-GI6sxQ
 * Display HMTL content
 * Add scripts, CSS, iframes, and even PHP
 * Plugin is fully translatable (.pot file included)
-* **New**: Now includes a few handy utility [shortcodes](https://www.bloxwp.com/documentation/shortcodes/?utm_source=blox-lite&utm_medium=plugin&utm_content=readme-links&utm_campaign=Blox_Plugin_Links)
+* **New**: Now includes utility [shortcodes](https://www.bloxwp.com/documentation/shortcodes/?utm_source=blox-lite&utm_medium=plugin&utm_content=readme-links&utm_campaign=Blox_Plugin_Links)
 
 = Content Options =
 * Raw Content
@@ -95,8 +95,14 @@ There are a couple resources that will help you get started with Blox Lite:
 
 == Changelog ==
 
+= 1.3.0 =
+* Added admin column sorting
+* Added category and tag list utility shortcodes
+* Added the featured image singular only setting
+* Fixed Custom taxonomy archive location bug
+
 = 1.2.0 =
-* Add archive title utility shortcode
+* Added archive title utility shortcode
 * Added sortable admin columns
 * Added toggle to better manage featured image on non-singular pages (i.e. front page, posts page, archives, etc.)
 * Fixed default CSS to render images full width on non-webkit browsers
