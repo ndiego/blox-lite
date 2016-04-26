@@ -5,7 +5,7 @@
  * Description: Easily add custom content blocks to themes built on the Genesis Framework
  * Author:      Nick Diego
  * Author URI:  http://www.outermostdesign.com
- * Version:     1.1.0
+ * Version:     1.2.0
  * Text Domain: blox
  * Domain Path: languages
  *
@@ -55,7 +55,7 @@ class Blox_Lite_Main {
      *
      * @var string
      */
-    public $version = '1.0.3';
+    public $version = '1.2.0';
 
     /**
      * The name of the plugin.
@@ -262,9 +262,18 @@ class Blox_Lite_Main {
 				'utm_content'  => 'plugins-page-link'
 			), 'https://www.bloxwp.com/documentation/' )
 		);
+		
+		$upgrade_link = esc_url( add_query_arg( array(
+				'utm_source'   => 'blox-lite',
+				'utm_medium'   => 'plugin',
+				'utm_campaign' => 'Blox_Plugin_Links',
+				'utm_content'  => 'plugins-page-link'
+			), 'https://www.bloxwp.com/features/' )
+		);
 
 		$new_links = array(
 			'<a href="' . $docs_link . '" target="_blank">' . esc_html__( 'Documentation', 'blox' ) . '</a>',
+			'<a href="' . $upgrade_link . '" target="_blank">' . esc_html__( 'Upgrade to Blox', 'blox' ) . '</a>',
 		);
 
 		$links = array_merge( $links, $new_links );

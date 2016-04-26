@@ -61,6 +61,11 @@ class Blox_Position {
 		// Add the admin column data for global blocks
 		add_filter( 'blox_admin_column_titles', array( $this, 'admin_column_title' ), 2, 1 );
 		add_action( 'blox_admin_column_data_position', array( $this, 'admin_column_data' ), 10, 2 );
+		
+		// Make admin column sortable
+		add_filter( 'manage_edit-blox_sortable_columns', array( $this, 'admin_column_sortable' ), 5 );
+        add_filter( 'request', array( $this, 'admin_column_orderby' ) );
+
     }
 
 
@@ -238,16 +243,70 @@ class Blox_Position {
      * @param array $block_data
      */
     public function admin_column_data( $post_id, $block_data ) {
+    
+    	$error = '<span style="color:#a00;font-style:italic;">' . __( 'Error', 'blox' ) . '</span>';
+    
 		if ( ! empty( $block_data['position']['position_type'] ) ) {
 			if ( $block_data['position']['position_type'] == 'default' ) {
-				echo esc_attr( blox_get_option( 'global_default_position', 'genesis_after_header' ) );
-			} else if ( $block_data['position']['custom'] ) {
-				echo ! empty( $block_data['position']['custom']['position'] ) ? esc_attr( $block_data['position']['custom']['position'] ) : '<span style="color:#a00;font-style:italic;">' . __( 'Error', 'blox' ) . '</span>';
+				$default_position = esc_attr( blox_get_option( 'global_default_position', 'genesis_after_header' ) );
+				if ( ! empty( $default_position ) ){
+					$position = $meta_data = esc_attr( blox_get_option( 'global_default_position', 'genesis_after_header' ) );
+				} else {
+					$position  = $error;
+					$meta_data = '';
+				}
+			} else if ( ! empty( $block_data['position']['custom'] ) ) {
+				if( ! empty( $block_data['position']['custom']['position'] ) ) {
+					$position = $meta_data = esc_attr( $block_data['position']['custom']['position'] );
+				} else {
+					$position = $error;
+					$meta_data = '';
+				}
 			}
 		} else {
-			echo '<span style="color:#a00;font-style:italic;">' . __( 'Error', 'blox' ) . '</span>';
+			$position  = $error;
+			$meta_data = '';
 		}
+		
+		echo $position;
+		
+		// Save our position meta values separately for sorting
+		update_post_meta( $post_id, '_blox_content_blocks_position', $meta_data );
     }
+    
+    
+    /**
+     * Tell Wordpress that the position column is sortable
+     *
+     * @since 1.0.0
+     *
+     * @param array $vars  Array of query variables
+     */
+	public function admin_column_sortable( $sortable_columns ) {
+		$sortable_columns[ 'position' ] = 'position';
+		return $sortable_columns;
+	}
+	
+	
+	/**
+     * Tell Wordpress how to sort the position column
+     *
+     * @since 1.0.0
+     *
+     * @param array $vars  Array of query variables
+     */
+	public function admin_column_orderby( $vars ) {
+		
+		if ( isset( $vars['orderby'] ) && 'position' == $vars['orderby'] ) {
+			$vars = array_merge( $vars, array(
+				'meta_key' => '_blox_content_blocks_position',
+				'orderby' => 'meta_value'
+			) );
+		}
+ 
+		return $vars;
+	}
+
 
 
     /**

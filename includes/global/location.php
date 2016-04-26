@@ -62,6 +62,10 @@ class Blox_Location {
 		add_filter( 'blox_admin_column_titles', array( $this, 'admin_column_title' ), 3, 1 );
 		add_action( 'blox_admin_column_data_location', array( $this, 'admin_column_data' ), 10, 2 );
 		
+		// Make admin column sortable
+		add_filter( 'manage_edit-blox_sortable_columns', array( $this, 'admin_column_sortable' ), 5 );
+        add_filter( 'request', array( $this, 'admin_column_orderby' ) );
+		
 		// Run location test on the frontend.
 		add_filter( 'blox_display_test', array( $this, 'run_location_display_test' ), 5, 4 );
     }
@@ -916,17 +920,19 @@ class Blox_Location {
      */
     public function admin_column_data( $post_id, $block_data ) {
 		$type = ! empty( $block_data['location']['location_type'] ) ? esc_attr( $block_data['location']['location_type'] ) : '';	
-                
+        
+        $meta_data = $type;
+               
 		// More location information to come...
 		switch ( $type ) {
 			case 'all' :
 				$output = __( 'All', 'blox' );
 				break;
 			case 'show_selected' :
-				$output = __( 'Selected', 'blox' );
+				$output = __( 'Show On Selected', 'blox' );
 				break;
 			case 'hide_selected' :
-				$output = __( 'Selected', 'blox' );
+				$output = __( 'Hide On Selected', 'blox' );
 				break;
 			default :
 				$output = '<span style="color:#a00;font-style:italic;">' . __( 'Error', 'blox' ) . '</span>';
@@ -934,7 +940,43 @@ class Blox_Location {
 		}
 		
 		echo $output;
+		
+		// Save our location meta values separately for sorting
+		update_post_meta( $post_id, '_blox_content_blocks_location', $meta_data );
     }
+    
+    
+    /**
+     * Tell Wordpress that the location column is sortable
+     *
+     * @since 1.0.0
+     *
+     * @param array $vars  Array of query variables
+     */
+	public function admin_column_sortable( $sortable_columns ) {
+		$sortable_columns[ 'location' ] = 'location';
+		return $sortable_columns;
+	}
+	
+	
+	/**
+     * Tell Wordpress how to sort the location column
+     *
+     * @since 1.0.0
+     *
+     * @param array $vars  Array of query variables
+     */
+	public function admin_column_orderby( $vars ) {
+		
+		if ( isset( $vars['orderby'] ) && 'location' == $vars['orderby'] ) {
+			$vars = array_merge( $vars, array(
+				'meta_key' => '_blox_content_blocks_location',
+				'orderby' => 'meta_value'
+			) );
+		}
+ 
+		return $vars;
+	}
 
 
 	/**
@@ -1033,8 +1075,6 @@ class Blox_Location {
 					// Show the block on any archive page
 					$location_test = true;
 					
-					//echo 'hello';
-
 				} else if ( $location_data['archive']['select_type'] == 'selected' ) {
 				
 					// If our archive selection set is not empty, proceed...
@@ -1138,10 +1178,12 @@ class Blox_Location {
                 			// Remove Date/Time, Authors, Post Types, Post Tags, and Post Categories from the selection (if they are there)
 							$taxonomy_archives = array_diff( $location_data['archive']['selection'],  array( 'datetime', 'authors', 'posttypes', 'category', 'post_tag' ) );
 							
+							echo print_r($taxonomy_archives );
+							
 							if ( ! empty( $taxonomy_archives ) ) {
 								foreach ( $taxonomy_archives as $taxonomy_archive ) {
 							
-									if ( $location_data['archive'][$taxonomy_archive]['select_type'] == 'all' ) {
+									if ( $location_data['archive'][$taxonomy_archive]['select_type'] == 'all' && is_tax( $taxonomy_archive ) ) {
 
 										// Show the block on any taxonomy's archive pages
 										$location_test = true;
