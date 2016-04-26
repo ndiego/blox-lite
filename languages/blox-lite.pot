@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blox Lite - Content Blocks for Genesis 1.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/blox-lite\n"
-"POT-Creation-Date: 2016-03-18 01:16:02+00:00\n"
+"POT-Creation-Date: 2016-04-26 02:25:31+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,8 +24,12 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: blox-lite.php:267
+#: blox-lite.php:275
 msgid "Documentation"
+msgstr ""
+
+#: blox-lite.php:276
+msgid "Upgrade to Blox"
 msgstr ""
 
 #: includes/admin/content.php:83 includes/admin/content.php:241
@@ -59,7 +63,7 @@ msgid "But seriously though, the full version of Blox takes Blox Lite to the nex
 msgstr ""
 
 #: includes/admin/marketing.php:95
-msgid "Enjoying %1$sBlox Lite%2$s but looking for more content options, visibility settings, priority support, frequent updates and more? Then you should consider %3$supgrading%4$s to %1$sBlox%2$s. Happy with the free version and have no need to upgrade? Then you might as well turn off these notifications in the plugin %5$ssettings%4$s."
+msgid "Enjoying %1$sBlox Lite%2$s but looking for more content options, visibility settings, hooks control, priority support, frequent updates and more? Then you should consider %3$supgrading%4$s to %1$sBlox%2$s. Happy with the free version and have no need to upgrade? Then you might as well turn off these notifications in the plugin %5$ssettings%4$s."
 msgstr ""
 
 #: includes/admin/metaboxes.php:155

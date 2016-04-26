@@ -12,15 +12,11 @@ Easily add custom content to your Genesis powered website.
 
 == Description ==
 
-**Please Note:** This plugin is only for Genesis Framework users. Genesis is a premium product by [StudioPress](http://www.studiopress.com). We have no affiliation with the company. We just love building useful tools for Genesis users.
+**Please Note:** This plugin is only for Genesis Framework users. Genesis is a premium product of [StudioPress](http://www.studiopress.com), which has no affiliation with Blox Lite.
 
-Blox Lite provides you with the easiest way to add custom content to your Genesis powered website. Lets assume you have picked out a theme for your website, but wish you could add a banner image to each post. Or perhaps you want to add a call-to-action just before the site footer but there is no designated widget area for that location. Now you could search the web for the needed code and modify your theme’s functions.php file, but there are 3 problems with this approach:
+Blox Lite allows you to easily customize your Genesis powered website through the use of content blocks. It is not a tool for changing the colors of your theme. While it can wrangle styles, think more along the lines of banner images, dynamic content areas and custom footers. In other words, structural customization.
 
-1. It is not easy!
-1. Any updates by the theme's developer will overwrite your modifications
-1. Your modifications will not be automatically transferred if you ever desire to switch themes
-
-Blox Lite is the solution. Check out the video below for an introduction to this plugin. 
+Blox Lite is best demonstrated visually. Check out the video below for an introduction to this plugin. 
 
 https://www.youtube.com/watch?v=uPAR-GI6sxQ
 *Skip ahead to 4:40 and 9:10 for the examples*.
@@ -28,8 +24,8 @@ https://www.youtube.com/watch?v=uPAR-GI6sxQ
 = Features =
 * Add content locally to posts, pages, and all public custom post types
 * Add content globally to virtually any page(s) on your website including 404 pages, search pages, and archive pages
-* Add as many content blocks to a page as you want
-* Position content anywhere there is a Genesis Hook
+* Add an unlimited number of content blocks
+* Choose from 50+ Genesis hooks to position content anywhere
 * Display a custom image or featured image
 * Display HMTL content
 * Add scripts, CSS, iframes, and even PHP
