@@ -1177,9 +1177,7 @@ class Blox_Location {
                 			
                 			// Remove Date/Time, Authors, Post Types, Post Tags, and Post Categories from the selection (if they are there)
 							$taxonomy_archives = array_diff( $location_data['archive']['selection'],  array( 'datetime', 'authors', 'posttypes', 'category', 'post_tag' ) );
-							
-							echo print_r($taxonomy_archives );
-							
+														
 							if ( ! empty( $taxonomy_archives ) ) {
 								foreach ( $taxonomy_archives as $taxonomy_archive ) {
 							
