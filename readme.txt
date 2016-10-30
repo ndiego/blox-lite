@@ -4,7 +4,7 @@ Donate Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: genesis, content block, add content, genesis hooks, Genesis Framework, genesiswp, header, footer, sidebar, custom header, featured image
 Requires at least: 3.8
 Tested up to: 4.5
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GNU General Public License v2.0 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,7 +16,7 @@ Easily customize themes built on the Genesis Framework.
 
 Blox Lite allows you to easily customize your Genesis powered website through the use of content blocks. It is not a tool for changing the colors of your theme. While it can wrangle styles, think more along the lines of banner images, dynamic content areas and custom footers. In other words, **structural** customization.
 
-Blox Lite is best demonstrated visually. Check out the video below for an introduction to this plugin. 
+Blox Lite is best demonstrated visually. Check out the video below for an introduction to this plugin.
 
 https://www.youtube.com/watch?v=uPAR-GI6sxQ
 *Skip ahead to 4:40 and 9:10 for the examples*.
@@ -47,7 +47,7 @@ As a general rule, Blox Lite allows you to **add** content. It does not remove e
 
 Blox Lite does not include any styling aside from a small amount of default CSS for images, which can be turned off in the Settings. It is your site and we do not want to impose styling choices on you. Blox Lite will inherit most of your theme's styling, but you will likely need to add some additional CSS. This customizability is an intended feature of Blox Lite and makes it all that more powerful. Simple questions about styling can be asked in the plugin’s support forum. If you would like in depth assistance, please look into purchasing the full version of [Blox](https://www.bloxwp.com/?utm_source=blox-lite&utm_medium=plugin&utm_content=readme-links&utm_campaign=Blox_Plugin_Links). A paid Blox license comes with extensive support.
 
-= Support This Plugin = 
+= Support This Plugin =
 
 There are many ways you can support the development of this plugin:
 
@@ -71,7 +71,7 @@ There are many ways you can support the development of this plugin:
 Blox Lite is a WordPress plugin that is designed for users of the Genesis Framework, which is a product of [StudioPress](http://www.studiopress.com). Therefore, a Genesis theme needs to be active for Blox Lite to work, and the site must also must be running Genesis v2.0 or greater. *It is important to note that we do not have any direct affiliation with Studiopress.*
 
 	In addition to Genesis requirements, Blox Lite requires at least WordPress 3.8 and a modern web browser. Blox is not compatible with the WordPress.com platform. You must be using a self-hosted version of WordPress to use this plugin on your site.
-	
+
 1. **Is Blox Lite multisite compatible?**
 Yes, Blox Lite works flawlessly with WordPress MultiSite, both network activated and activated on individual sites.
 
@@ -81,8 +81,8 @@ Yup. Blox Lite has full translation and localization support via the blox textdo
 1. **I need help getting started, what resources are available?**
 There are a couple resources that will help you get started with Blox Lite:
 	* Watch our [Getting Started Video](https://www.youtube.com/watch?v=uPAR-GI6sxQ).
-	* Check out the [Blox Documentation](https://www.bloxwp.com/documentation/?utm_source=blox-lite&utm_medium=plugin&utm_content=readme-links&utm_campaign=Blox_Plugin_Links). **Note** that these docs are for the premium version of Blox Lite, but most of the information is interchangeable. 
-	* When all else fails, send us a support request and we will do our best to get you straightened out. For in depth priority support, consider purchasing a [Blox license](https://www.bloxwp.com/pricing/?utm_source=blox-lite&utm_medium=plugin&utm_content=readme-links&utm_campaign=Blox_Plugin_Links). 
+	* Check out the [Blox Documentation](https://www.bloxwp.com/documentation/?utm_source=blox-lite&utm_medium=plugin&utm_content=readme-links&utm_campaign=Blox_Plugin_Links). **Note** that these docs are for the premium version of Blox Lite, but most of the information is interchangeable.
+	* When all else fails, send us a support request and we will do our best to get you straightened out. For in depth priority support, consider purchasing a [Blox license](https://www.bloxwp.com/pricing/?utm_source=blox-lite&utm_medium=plugin&utm_content=readme-links&utm_campaign=Blox_Plugin_Links).
 
 == Screenshots ==
 
@@ -92,6 +92,9 @@ There are a couple resources that will help you get started with Blox Lite:
 4. The Blox settings screen
 
 == Changelog ==
+
+= 1.2.2 =
+* Fixed local block count not displaying correctly in admin columns
 
 = 1.2.1 =
 * Fixed location taxonomy bug
