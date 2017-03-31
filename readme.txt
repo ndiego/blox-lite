@@ -3,8 +3,8 @@ Contributors: ndiego, outermostdesign
 Donate Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=52EAFXT8UV3XQ
 Tags: genesis, content block, add content, genesis hooks, Genesis Framework, genesiswp, header, footer, sidebar, custom header, featured image
 Requires at least: 3.8
-Tested up to: 4.5
-Stable tag: 1.2.2
+Tested up to: 4.7
+Stable tag: 1.2.3
 License: GNU General Public License v2.0 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -92,6 +92,11 @@ There are a couple resources that will help you get started with Blox Lite:
 4. The Blox settings screen
 
 == Changelog ==
+
+= 1.2.3 – 2017-03-31 =
+* Fixed post type archive location setting bug where the global block would not display if multiple post type archives were selected
+* Fixed quick edit bug where the Local Blocks admin column would disappear on quick edit save
+* Fixed slideshow copy bug that caused issues with the caption include parentheses
 
 = 1.2.2 =
 * Fixed local block count not displaying correctly in admin columns

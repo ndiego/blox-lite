@@ -60,15 +60,17 @@ class Blox_Posttype_Admin {
         add_filter( 'manage_edit-blox_columns', array( $this, 'admin_column_titles' ) );
         add_filter( 'manage_blox_posts_custom_column', array( $this, 'admin_column_data' ), 10, 2 );
 
+        add_action( 'save_post', array( $this, 'local_blocks_columns_quickedit' ));
+
         // Update post type messages.
         add_filter( 'post_updated_messages', array( $this, 'messages' ) );
-        
+
         // Conditionally add the Local Blocks column to admin pages
         // Note: Need to fire immediately after admin_init, hence current_screen
         add_action( 'current_screen', array( $this, 'local_blocks_columns' ) );
 	}
-	
-	
+
+
     /**
      * Customize the post columns for the blox post type.
      *
@@ -85,10 +87,10 @@ class Blox_Posttype_Admin {
         );
 
         $columns = apply_filters( 'blox_admin_column_titles', $columns );
-        
+
         $columns['modified'] = __( 'Last Modified', 'blox' );
         $columns['date'] = __( 'Date', 'blox' );
-        
+
         return $columns;
     }
 
@@ -106,17 +108,17 @@ class Blox_Posttype_Admin {
 
         global $post;
         $post_id = absint( $post_id );
-        
+
         $block_data = get_post_meta( $post_id, '_blox_content_blocks_data', true );
-        
+
         // Print all additional column data
         do_action( 'blox_admin_column_data_' . $column, $post_id, $block_data );
-        
+
         // Print the date last modified
         if ( $column == 'modified' ) {
         	the_modified_date();
         }
-        
+
         // Hook in additional generic column settings
         do_action( 'blox_admin_column_data', $column, $post_id, $block_data );
     }
@@ -184,26 +186,57 @@ class Blox_Posttype_Admin {
      */
 	public function local_blocks_columns() {
 		global $typenow;
-		
+
 		$local_enable  = blox_get_option( 'local_enable', false );
-		
+
 		if ( $local_enable ) {
-		
+
 			$enabled_pages = blox_get_option( 'local_enabled_pages', '' );
-		
+
 			// Note this does not work on some custom post types in other plugins, need to explore reason...
 			if ( ! empty( $enabled_pages ) && in_array( $typenow, $enabled_pages ) ) {
 				add_filter( 'manage_' . $typenow . '_posts_columns', array( $this, 'local_blocks_column_title' ), 5 );
 				add_action( 'manage_' . $typenow . '_posts_custom_column', array( $this, 'local_blocks_column_data' ), 10, 2);
-				
+
 				// Tell Wordpress that the Local Blocks column is sortable
 				add_filter( 'manage_edit-' . $typenow . '_sortable_columns', array( $this, 'local_blocks_columns_sortable' ), 5 );
 			}
         }
-        
+
         // Tell Wordpress how to sort Local Blocks
         add_filter( 'request', array( $this, 'local_blocks_columns_orderby' ) );
 	}
+
+
+    /**
+     * Fixed bug where custom columns are not added back on quick edit (A bit redundant though)
+     *
+     * @since 1.2.3
+     */
+    public function local_blocks_columns_quickedit() {
+
+        // Since this function is run when WP is using ajax, we need to use the $_POST to get the current post type
+        $typenow = $_POST['post_type'];
+
+        $local_enable  = blox_get_option( 'local_enable', false );
+
+        if ( $local_enable ) {
+
+            $enabled_pages = blox_get_option( 'local_enabled_pages', '' );
+
+            // Note this does not work on some custom post types in other plugins, need to explore reason...
+            if ( ! empty( $enabled_pages ) && in_array( $typenow, $enabled_pages ) ) {
+                add_filter( 'manage_' . $typenow . '_posts_columns', array( $this, 'local_blocks_column_title' ), 5 );
+                add_action( 'manage_' . $typenow . '_posts_custom_column', array( $this, 'local_blocks_column_data' ), 10, 2);
+
+                // Tell Wordpress that the Local Blocks column is sortable
+                add_filter( 'manage_edit-' . $typenow . '_sortable_columns', array( $this, 'local_blocks_columns_sortable' ), 5 );
+            }
+        }
+
+        // Tell Wordpress how to sort Local Blocks
+        add_filter( 'request', array( $this, 'local_blocks_columns_orderby' ) );
+    }
 
 
 	/**
@@ -216,7 +249,7 @@ class Blox_Posttype_Admin {
      */
 	public function local_blocks_column_title( $columns ) {
 	  	$new_columns = array();
-	  	
+
 	  	// Specify where we want to put our column
   		foreach( $columns as $key => $title ) {
     		$new_columns[$key] = $title;
@@ -226,8 +259,8 @@ class Blox_Posttype_Admin {
   		}
   		return $new_columns;
 	}
-	
-	
+
+
 	/**
      * Add content to the Local Blocks column
      *
@@ -238,7 +271,7 @@ class Blox_Posttype_Admin {
      */
 	public function local_blocks_column_data( $column_name, $post_ID ) {
 		if ( $column_name == 'local_blocks' ) {
-			
+
 			// Get the number of local blocks on the given post
 			$count = get_post_meta( $post_ID, '_blox_content_blocks_count', true );
 
@@ -250,8 +283,8 @@ class Blox_Posttype_Admin {
 			}
 		}
 	}
-	
-	
+
+
 	/**
      * Tell Wordpress that the Local Blocks column is sortable
      *
@@ -260,11 +293,11 @@ class Blox_Posttype_Admin {
      * @param array $vars  Array of query variables
      */
 	public function local_blocks_columns_sortable( $sortable_columns ) {
-	
+
 		$sortable_columns[ 'local_blocks' ] = 'local_blocks';
 		return $sortable_columns;
 	}
-	
+
 	/**
      * Tell Wordpress how to sort Local Blocks
      *
@@ -273,14 +306,14 @@ class Blox_Posttype_Admin {
      * @param array $vars  Array of query variables
      */
 	public function local_blocks_columns_orderby( $vars ) {
-		
+
 		if ( isset( $vars['orderby'] ) && 'local_blocks' == $vars['orderby'] ) {
 			$vars = array_merge( $vars, array(
 				'meta_key' => '_blox_content_blocks_count',
 				'orderby' => 'meta_value_num'
 			) );
 		}
- 
+
 		return $vars;
 	}
 

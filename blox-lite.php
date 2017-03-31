@@ -5,11 +5,11 @@
  * Description: Easily customize themes built on the Genesis Framework
  * Author:      Nick Diego
  * Author URI:  http://www.outermostdesign.com
- * Version:     1.2.2
+ * Version:     1.2.3
  * Text Domain: blox
  * Domain Path: languages
  *
- * Copyright 2016 Nick Diego
+ * Copyright 2017 Nick Diego
  *
  * Blox Lite is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -55,7 +55,7 @@ class Blox_Lite_Main {
      *
      * @var string
      */
-    public $version = '1.2.2';
+    public $version = '1.2.3';
 
     /**
      * The name of the plugin.
