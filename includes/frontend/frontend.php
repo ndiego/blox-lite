@@ -41,8 +41,8 @@ class Blox_Frontend {
      * @var object
      */
     public $base;
-    
-    
+
+
     /**
      * Holds an array of our active block content types
      *
@@ -76,33 +76,33 @@ class Blox_Frontend {
 	public function display_content_block() {
 
 		global $post;
-		
+
 		// Check if global blocks are enabled
 		$global_enable = blox_get_option( 'global_enable', false );
-		
+
 		if ( $global_enable ) {
-		
+
 			// Get all of the Global Content Blocks
 			$global_blocks = get_posts( array(
 				'post_type'    => 'blox',
 				'post_status'  => 'publish',
 				'numberposts'  => -1  // We want all global blocks
 			) );
-		
+
 			// echo print_r( $global_blocks );
-		
+
 			if ( ! empty( $global_blocks ) ) {
 				foreach ( $global_blocks as $block ) {
 					$id     = $block->ID;
 					$block  = get_post_meta( $id, '_blox_content_blocks_data', true );
 					$global = true;
-					
+
 					// The display test begins as true
 					$display_test = true;
-					
+
 					// Let all available tests filter the test parameter
 					$display_test = apply_filters( 'blox_display_test', $display_test, $id, $block, $global );
-					
+
 					// If the test parameter is still true, proceed with block positioning
 					if ( $display_test == true ) {
 						$this->position_content_block( $id, $block, $global );
@@ -130,13 +130,13 @@ class Blox_Frontend {
 
 				if ( ! empty( $local_blocks ) ) {
 					foreach ( $local_blocks as $id => $block ) {
-						
+
 						// The display test begins as true
 						$display_test = true;
-					
+
 						// Let all available tests filter the test parameter
 						$display_test = apply_filters( 'blox_display_test', $display_test, $id, $block, $global );
-					
+
 						// If the test parameter is still true, proceed with block positioning
 						if ( $display_test == true ) {
 							$this->position_content_block( $id, $block, $global );
@@ -145,13 +145,13 @@ class Blox_Frontend {
 				}
 			}
 		}
-		
+
 		// Now that our blocks have been added (maybe), check to see if we should run wp_enqueue_scripts
 		if ( ! empty( $this->active_content_types ) ) {
-		
+
 			// We have active content blocks so enqueue the needed stypes and scripts
    			add_action( 'wp_enqueue_scripts', array( $this, 'frontend_scripts_styles' ) );
-   			
+
    			// Also load our global custom CSS if there is any...
    			add_action( 'wp_head', array( $this, 'print_global_custom_css' ), 10 );
 		}
@@ -168,7 +168,7 @@ class Blox_Frontend {
 	 * @param bool $global  Tells whether our block is global or local
 	 */
 	public function position_content_block( $id, $block, $global ) {
-		
+
 		// Since this block passed all previous tests, it is considered active to pass it's content type to $active_content_types
 		array_push( $this->active_content_types, $block['content']['content_type'] );
 
@@ -183,13 +183,13 @@ class Blox_Frontend {
 			$position = ! empty( $position_data['custom']['position'] ) ? $position_data['custom']['position'] : 'genesis_after_header';
 			$priority = ! empty( $position_data['custom']['priority'] ) ? $position_data['custom']['priority'] : 1;
 		}
-		
+
 		// Action hook for modifying/adding position settings
 		do_action( 'blox_content_block_position', $id, $block, $global );
-		
+
 		// Allows you to disable blocks with code if location and visibility settings are not doing it for you
 		$disable = apply_filters( 'blox_disable_content_blocks', false, $position, $id, $block, $global );
-		
+
 		if ( ! $disable ) {
 			// Load the final "printing" function
 			add_action( $position, array( new Blox_Action_Storage( array( $id, $block, $global ) ), 'blox_frontend_content' ), $priority, 1 );
@@ -212,35 +212,35 @@ class Blox_Frontend {
         	wp_register_style( $this->base->plugin_slug . '-default-styles', plugins_url( 'assets/css/default.css', $this->base->file ), array(), $this->base->version );
         	wp_enqueue_style( $this->base->plugin_slug . '-default-styles' );
 		}
-		
+
 		// Fire a hook to load in custom metabox scripts and styles.
         do_action( 'blox_frontend_main_scripts_styles' );
-		
+
 		// Get all active content types, strip out any duplicates
 		$active_content_types = array_unique( $this->active_content_types );
-		
+
 		// Now that critical scripts and styles have been enqueued, conditionally load content specific scripts and styles
 		foreach ( $active_content_types as $type ) {
 			do_action( 'blox_frontend_' . $type . '_scripts_styles' );
 		}
     }
-    
-    
+
+
     /**
      * Print global custom CSS if there is any...
      *
      * @since 1.0.0
      */
     public function print_global_custom_css() {
-	
+
 		$custom_css = blox_get_option( 'custom_css', '' );
-		
+
 		if ( $custom_css ){
 			echo '<style type="text/css">'. $custom_css . '</style>';
 		}
 	}
-	
-	
+
+
     /**
      * Returns the singleton instance of the class.
      *
@@ -304,12 +304,12 @@ function blox_frontend_content( $args, $parameters ) {
 
 	// If this block has its own custom css, add that before the block is displayed on the page
 	if ( ! empty( $style_data['custom_css'] ) ) {
-		echo '<style type="text/css">' . $instance->minify_string( html_entity_decode( $style_data['custom_css'] ) ) . '</style>';
+		echo '<style type="text/css">' . html_entity_decode( $style_data['custom_css'] ) . '</style>';
 	}
 
 	// Make sure a content type is selected and then print our content block
 	if ( ! empty( $content_data['content_type'] ) ) {
-		
+
 		if ( $content_data['content_type'] == 'raw' && $content_data['raw']['disable_markup'] == 1 ) {
 			// Get the block content
 			do_action( 'blox_print_content_' . $content_data['content_type'], $content_data, $id, $block, $global );
